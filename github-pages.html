@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="página-web-de-celticman."><a href="https://celticman.github.io/">Página web de Celticman</a>.</h1>
+<h2 id="cómo-crear-una-página-estática-gratuita-utilizando-github-pages-versión-para-niños">¿Cómo crear una página estática gratuita utilizando Github Pages? Versión para niños</h2>
+<p>Esta guía ha sido realizado utilizando como guía <a href="https://es.khanacademy.org/computing/computer-programming/html-css/web-development-tools/a/hosting-your-website-on-github">Hospedar tu sitio web en Github - Khan Academy</a>.</p>
+<h2 id="pasos">Pasos</h2>
+<ul>
+<li><p>Visitar <a href="https://github.com">GitHub</a>.</p></li>
+<li><p>Crear una cuenta, como nombre de usuario hay que inventar un nombre. El nombre es importante, ya que la página tendrá este nombre. <strong>Dado que se trata de un niño y deseamos que tenga la máxima privacidad, este nombre no debe ser usado en ninguna otra cuenta ni corresponderse con el nombre real</strong>.</p></li>
+<li><p>Crear un repositorio dentro de la cuenta de GitHub, con el siguiente nombre: NOMBRE-USUARIO.github.io (sustituyendo NOMBRE-USUARIO por el nombre real utilizado).</p></li>
+<li><p>En el PC hay que instalar Git. Si es un sitema operativo Linux Ubuntu: La instalación se hace con el siguiente comando:</p>
+<pre><code>sudo apt install git</code></pre></li>
+<li><p>Una vez instalado vamos al directorio que va a tener la pagina web y ejecutamos los siguientes comandos:</p>
+<pre><code>git init
+git config user.name  &quot;NOMBRE-USUARIO&quot;
+git config user.email &quot;NOMBRE-USUARIO@NOMBRE-USUARIO.COM&quot;
+git commit -m &quot;Primer Cambio&quot;
+git remote add origin https://github.com/NOMBRE-USUARIO/NOMBRE-USUARIO.github.io.git
+git push -u origin master</code></pre></li>
+<li><p>Ahora ya puedes crear la página web en tu PC. Recuerda que debe existir un fichero &quot;index.html&quot;, que sería la página principal.</p></li>
+<li><p>Cuando quieras enviar los cambios a GitHub tendrías que ejecutar los siguientes comandos:</p>
+<pre><code>git add . --all
+git commit -m &quot;DESCRIPCION-DEL-CAMBIO&quot;
+git push</code></pre></li>
+</ul>
+<h2 id="cómo-eliminar-el-registro-de-cambios-de-github">¿Cómo eliminar el registro de cambios de github?</h2>
+<p>Si el niño publica información que no debe estar en internet, además de cambiar la informacion tenemos que eliminar la historia de los cambios.</p>
+<h3 id="pasos-1">Pasos</h3>
+<ul>
+<li><p>Crear una nueva rama</p>
+<pre><code>git checkout --orphan nueva_rama</code></pre></li>
+<li><p>Añadir todos los ficheros</p>
+<pre><code>git add -A</code></pre></li>
+<li><p>Registrar los cambios</p>
+<pre><code>git commit -am &quot;Cambio historia&quot;</code></pre></li>
+<li><p>Borrar la rama master</p>
+<pre><code>git branch -D master</code></pre></li>
+<li><p>Cambiar el nombre de la rama actual &quot;nueva_rama&quot; a master</p>
+<pre><code>git branch -m master</code></pre></li>
+<li><p>Enviar al repositorio (github)</p>
+<pre><code>git push -f origin master</code></pre></li>
+</ul>
+</body>
+</html>
