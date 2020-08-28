@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="uso-de-vagrant">Uso de Vagrant</h1>
+<h2 id="configuración">Configuración</h2>
+<h3 id="descargar-imágen-máquina-virtual-base">1 - Descargar imágen máquina virtual base</h3>
+<p>Este comando descarga la máquina del registro de vagrant:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> box add ubuntu/focal64</code></pre></div>
+<h3 id="crear-vagrantfile-con-la-base-anterior">2 - Crear Vagrantfile con la base anterior</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> init ubuntu/focal64</code></pre></div>
+<h3 id="arrancar-máquina-vagrant">3 - Arrancar máquina vagrant</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> up</code></pre></div>
+<h3 id="parar-máquina-vagrant">4 - Parar máquina vagrant</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> halt</code></pre></div>
+<h3 id="suspender-máquina-vagrant">5 - Suspender máquina vagrant</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> suspend</code></pre></div>
+<h3 id="destruir-máquina-vagrant">6 - Destruir máquina vagrant</h3>
+<p>Destruye la máquina virtual de vagrant, que la guarda Virtual Box en el directorio ~/VirtualBox VMs.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> destroy</code></pre></div>
+<h3 id="actualizacion">7 - Actualizacion</h3>
+<p>Actualizar imagen</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> box update</code></pre></div>
+<h2 id="conexión-a-máquina-vagrant">Conexión a máquina vagrant</h2>
+<h3 id="conexión-ssh">Conexión SSH</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> ssh</code></pre></div>
+<h3 id="mostar-parámetros-conexión-ssh">Mostar parámetros conexión SSH</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> ssh-config</code></pre></div>
+<h1 id="setup-vagrant-box-ubuntu-14.04">Setup Vagrant box (Ubuntu 14.04)</h1>
+<h2 id="introduction">Introduction</h2>
+<p>This file discribe all the steps in order to setup a Vagrant box (using the <a href="https://github.com/Remiii/remiii-ansible-ubuntu-app-simple-symfony">Ansible Ubuntu simple Symfony App</a> config - please refer to this repository for more info).</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li><a href="http://git-scm.com">Git</a></li>
+<li><a href="https://www.virtualbox.org">Virtual box</a></li>
+<li><a href="http://www.vagrantup.com">Vagrant</a></li>
+<li><a href="http://www.ansible.com">Ansible</a></li>
+</ul>
+<h2 id="install-the-vagrant-box">Install the Vagrant box</h2>
+<h3 id="create-the-box">Create the box</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">cd</span> ~/vagrant/vm1
+$ <span class="ex">vagrant</span> box add <span class="dt">{title}</span> <span class="dt">{url}</span>
+$ <span class="ex">vagrant</span> init <span class="dt">{title}</span></code></pre></div>
+<p>Sample box: <a href="https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box">Ubuntu Server Precise 12.04.4 amd64 (source) Kernel is ready for Docker (Docker not included) Contains Chef, Puppet</a></p>
+<p>For example:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">cd</span> ~/vagrant/vm1
+$ <span class="ex">vagrant</span> box add ubuntu_14_04_basebox https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box
+$ <span class="ex">vagrant</span> init ubuntu_14_04_basebox</code></pre></div>
+<h3 id="config-the-vm">Config the VM</h3>
+<p>Add the following lines in your VagrantFile</p>
+<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby">  config.vm.network <span class="st">&quot;forwarded_port&quot;</span>, <span class="st">guest: </span><span class="dv">20</span>, <span class="st">host: </span><span class="dv">20020</span>
+  config.vm.network <span class="st">&quot;forwarded_port&quot;</span>, <span class="st">guest: </span><span class="dv">21</span>, <span class="st">host: </span><span class="dv">20021</span>
+  config.vm.network <span class="st">&quot;forwarded_port&quot;</span>, <span class="st">guest: </span><span class="dv">22</span>, <span class="st">host: </span><span class="dv">20022</span>
+  config.vm.network <span class="st">&quot;forwarded_port&quot;</span>, <span class="st">guest: </span><span class="dv">80</span>, <span class="st">host: </span><span class="dv">20080</span>
+  <span class="kw">for</span> i <span class="kw">in</span> <span class="dv">1024</span>..<span class="dv">1048</span>
+    config.vm.network <span class="st">:forwarded_port</span>, <span class="st">guest: </span>i, <span class="st">host: </span>i
+  <span class="kw">end</span>
+  config.vm.network <span class="st">&quot;forwarded_port&quot;</span>, <span class="st">guest: </span><span class="dv">3306</span>, <span class="st">host: </span><span class="dv">23306</span></code></pre></div>
+<h3 id="run-the-vm">Run the VM</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">vagrant</span> up</code></pre></div>
+<h2 id="ansible-config">Ansible config</h2>
+<h3 id="clone-the-ansible-config">Clone the Ansible config</h3>
+<p>Clone the <a href="https://github.com/Remiii/remiii-ansible-ubuntu-app-simple-symfony">Ansible Ubuntu simple Symfony App</a>.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">cd</span> ~/git
+$ <span class="fu">git</span> clone https://github.com/Remiii/remiii-ansible-ubuntu-app-simple-symfony.git
+$ <span class="bu">cd</span> remiii-ansible-ubuntu-app-simple-symfony</code></pre></div>
+<h3 id="config-the-ansible-config">Config the Ansible config</h3>
+<p>*** WARNING: is just a sample, please ie. <a href="https://github.com/Remiii/remiii-ansible-ubuntu-app-simple-symfony/blob/master/README.md#setup">remiii-ansible-ubuntu-app-simple-symfony</a> ***</p>
+<p>Setup the vars in <code>vars/myConfig.yml</code> and add <code>ansible_inventory_machinename</code> file: <a href="https://github.com/Remiii/remiii-ansible-ubuntu-app-simple-symfony/blob/master/README.md#setup">More info here</a>.</p>
+<pre><code># ansible_inventory_machinename
+machine ansible_ssh_host=&#39;127.0.0.1&#39; ansible_ssh_port=20022</code></pre>
+<p>Copy the config dist file <code>vars/myConfig.yml.dist</code></p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash">$ <span class="fu">cp</span> vars/myConfig.yml.dist vars/myConfig.yml</code></pre></div>
+<pre><code># pathToTheProject/vars/myConfig.yml
+    ...
+    rootPath: &#39;~/git/remiii-ansible-ubuntu-app-simple-symfony&#39;
+    hostname: &#39;vm1.local&#39;
+    publicIpAddress: &#39;127.0.0.1&#39;
+    ...</code></pre>
+<p>Add some files in the <code>vars</code> directory: <a href="https://github.com/Remiii/remiii-ansible-ubuntu-app-simple-symfony/blob/master/README.md#setup">More info here</a>.</p>
+<ul>
+<li>myGitUserMachineUserKey</li>
+<li>myGitUserMachineUserKey.pub</li>
+<li>mySSHPublicKey.pub</li>
+<li>...</li>
+</ul>
+<h3 id="run-the-ansible-config">Run the Ansible config</h3>
+<p>Exec the config:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">ansible-playbook</span> -i ansible_inventory_machinename --private-key=pathToYourVagrantPrivateKey -u vagrant ./myConfig.yml</code></pre></div>
+<h3 id="update-etchosts-config-on-your-host">Update etc/hosts config on your Host</h3>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash">$ <span class="fu">sudo</span> vi /etc/hosts</code></pre></div>
+<p>Add the following lines in your hosts <code>/etc/hosts</code> file:</p>
+<pre><code>###
+# VM1
+###
+127.0.0.1    vm1.local sql.vm1.local apc.vm1.local website-sample.vm1.local website-sample1.vm1.local website-sample2.vm1.local foo.vm1.local</code></pre>
+<h3 id="thats-it">That's it!</h3>
+<h3 id="restart-and-login-to-the-vm">Restart and login to the VM</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">cd</span> ~/vagrant/vm1
+$ <span class="ex">vagrant</span> reload
+$ <span class="ex">vargant</span> ssh</code></pre></div>
+<h2 id="license">License</h2>
+<p>MIT</p>
+<h2 id="author">Author</h2>
+<ul>
+<li>Rémi Barbe (aka Remiii)</li>
+</ul>
+</body>
+</html>
