@@ -4,8 +4,34 @@
 
 - [¿Cómo crear una página web de un niño?](./ninos_github_pages.html).
 
-## Utilidades
+## Guías
 
 - [¿Cómo verificar la velocidad de descarga desde la línea de ordenes?](./utilidades_velocidad_speedtest.html).
 
 - [Uso de vagrant](./uso_vagrant.html)
+
+## Utilidades
+
+- [fzf - fuzzy finder - Busqueda por nombre de fichero o directorio](https://github.com/junegunn/fzf) 
+  Instalar en ubuntu: "sudo apt install fzf".
+  Uso:
+
+   - Ctrl + T: Búsqueda de ficheros
+   - Alt + C: Busqueda directorios
+
+- [ag - The silver searcher - Busqueda por contedido de ficheros](https://github.com/ggreer/the_silver_searcher)
+  Instalar en ubuntu: "sudo apt install silversearcher-ag"
+  Uso:
+
+   - Teclear: ag TERMINIO-BUSQUEDA.
+   - Para que solo aparezca el listado de ficheros, añadir la opcion "-l".
+   - Para que busque la cadena indicada (sin utilizar una expresión regular), añadir "--literal".
+   - Para buscar en directorios ocultos, añadir la opción "--hidden".
+
+- [httpie - Línea de ordenes para interaccionar con API HTTP](https://httpie.org/)
+  Instalar en ubuntu: "sudo apt install httpie"
+  Uso:
+
+   - http https://ifconfig.me/all.json -p HBhb
+
+
