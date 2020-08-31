@@ -24,9 +24,9 @@
 
 	cryptsetup luksOpen /dev/sdb1 HD1
 
-3) Formatear volumen
+3) Formatear volumen con etiqueta "ETIQUETA"
 
-	mkfs.ext4 /dev/mapper/HD1
+	mkfs.ext4 /dev/mapper/HD1 -L ETIQUETA
 
 4) Montar volumen
 

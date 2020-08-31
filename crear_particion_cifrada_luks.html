@@ -28,8 +28,8 @@
 <p>cryptsetup --verbose --cipher &quot;aes-cbc-essiv:sha256&quot; --key-size 256 --verify-passphrase luksFormat /dev/sdb1</p></li>
 <li><p>Descifrar volumen</p>
 <p>cryptsetup luksOpen /dev/sdb1 HD1</p></li>
-<li><p>Formatear volumen</p>
-<p>mkfs.ext4 /dev/mapper/HD1</p></li>
+<li><p>Formatear volumen con etiqueta &quot;ETIQUETA&quot;</p>
+<p>mkfs.ext4 /dev/mapper/HD1 -L ETIQUETA</p></li>
 <li><p>Montar volumen</p>
 <p>mount /dev/mapper/HD1 /mnt/HD1</p></li>
 </ol>
