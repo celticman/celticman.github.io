@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="uso-de-particiones-cifradas-en-linux">Uso de particiones cifradas en Linux</h2>
+<h3 id="instrucciones-creación-de-volumen-cifrado">Instrucciones creación de volumen CIFRADO</h3>
+<p>0.0) Verificar si existen particiones en el disco duro externo</p>
+<pre><code>fdisk -l /dev/sdb</code></pre>
+<p>0.1) Si no existen hay que crearla con:</p>
+<pre><code>fdisk /dev/sdb
+
+    Comando1:   n (nueva particion)
+    Comando2:   p (partición primaria)
+    Comando3:   (valor predeterminado)
+    Comando4:   (valor predeterminado)
+    Comando5:   w   (escribir la nueva partición y salir)</code></pre>
+<ol type="1">
+<li><p>Crear unidad cifrada</p>
+<p>cryptsetup --verbose --cipher &quot;aes-cbc-essiv:sha256&quot; --key-size 256 --verify-passphrase luksFormat /dev/sdb1</p></li>
+<li><p>Descifrar volumen</p>
+<p>cryptsetup luksOpen /dev/sdb1 HD1</p></li>
+<li><p>Formatear volumen</p>
+<p>mkfs.ext4 /dev/mapper/HD1</p></li>
+<li><p>Montar volumen</p>
+<p>mount /dev/mapper/HD1 /mnt/HD1</p></li>
+</ol>
+<h3 id="para-montar">Para MONTAR:</h3>
+<p>Para montar es necesario ejecutar lo siguiente:</p>
+<pre><code>#!/bin/sh
+cryptsetup luksOpen /dev/sdb1 HD1
+mount /dev/mapper/HD1 /mnt/HD1</code></pre>
+<h3 id="para-desmontar">Para DESMONTAR:</h3>
+<p>Para montar es necesario ejecutar lo siguiente:</p>
+<pre><code>#!/bin/sh
+umount /dev/mapper/HD1
+cryptsetup luksClose HD1</code></pre>
+</body>
+</html>
