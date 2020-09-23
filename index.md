@@ -20,7 +20,7 @@
     - Uso:
 
         - Ctrl + T: Búsqueda de ficheros
-    - Alt + C: Busqueda directorios
+        - Alt + C: Busqueda directorios
 
 - [ag - The silver searcher - Busqueda por contedido de ficheros](https://github.com/ggreer/the_silver_searcher)
 
@@ -38,5 +38,12 @@
     - Uso:
 
         - http https://ifconfig.me/all.json -p HBhb
+        - http https://api.weather.gov/points/40,-116 -p HBhb
+        
+- [visidata - Visor y editor de hojas de calculo en línea de ordenes](https://www.visidata.org)
 
+    - Instalar en Ubuntu: "sudo apt install visidata"
+    - Uso:
 
+        - Ver un fichero CSV con separador ";": vd input.csv
+        - Ver un fichero CSV con separador "ð": vd input.csv --csv-delimiter ð
