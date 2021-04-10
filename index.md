@@ -39,11 +39,18 @@
 
         - http https://ifconfig.me/all.json -p HBhb
         - http https://api.weather.gov/points/40,-116 -p HBhb
+        - http http://worldtimeapi.org/api/ip -p HBhb
         
 - [visidata - Visor y editor de hojas de calculo en línea de ordenes](https://www.visidata.org)
 
     - Instalar en Ubuntu: "sudo apt install visidata"
     - Uso:
-
         - Ver un fichero CSV con separador ";": vd input.csv
         - Ver un fichero CSV con separador "ð": vd input.csv --csv-delimiter ð
+        
+- [ocrmypdf - Genera un pdf con reconocimiento de textos y que se puede buscar](https://ocrmypdf.readthedocs.io/en/latest/index.html)
+
+	- Instalar en Ubuntu: "sudo apt install ocrmypdf"
+	- Instalar idioma de Tesseract "sudo apt install tesseract-ocr tesseract-ocr-spa"
+	- Uso:	ocrmypdf origen.pdf -l spa destino.pdf 
+

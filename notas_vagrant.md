@@ -8,7 +8,7 @@
 Este comando descarga la máquina del registro de vagrant:
 
 ```bash
-vagrant box add ubuntu/focal64
+	vagrant box add ubuntu/focal64
 ```
 
 ### 2 - Crear Vagrantfile con la base anterior
@@ -22,6 +22,8 @@ vagrant init ubuntu/focal64
 ```bash
 vagrant up
 ```
+
+La máquina virtual se crea en el directorio or defecto de VirtualBox.
 
 ### 4 - Parar máquina vagrant
 
@@ -65,6 +67,16 @@ vagrant ssh
 vagrant ssh-config
 ```
 
+### Configurar máquina con Ansible
+
+Añadir al fichero Vagrantfile:
+
+```
+  config.vm.provision "ansible" do |ansible|
+    ansible.verbose = "v"
+    ansible.playbook = "kubuntu_2004_servidor.yml"
+  end
+```
 
 # Setup Vagrant box (Ubuntu 14.04)
 

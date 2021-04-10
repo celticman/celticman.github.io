@@ -8,7 +8,7 @@
 Este comando descarga la máquina del registro de vagrant:
 
 ```bash
-vagrant box add ubuntu/bionic64
+vagrant box add ubuntu/focal64
 ```
 
 Este comando la descarga del servidor de ubuntu:
@@ -19,9 +19,15 @@ vagrant box add ubuntu_14.04 https://cloud-images.ubuntu.com/vagrant/trusty/curr
 
 ### 2 - Crear Vagrantfile con la base anterior
 
+En el directorio en el que se quiere crear la máquina vagrant:
+
 ```bash
-vagrant init ubuntu/bionic64
+mkdir mi_ubuntu_2004
+cd mi_ubuntu_2004
+vagrant init ubuntu/focal64
 ```
+
+Este comando crea el fichero **Vagrantfile** en el directorio **mi_ubuntu_2004**.
 
 ### 3 - Arrancar máquina vagrant
 

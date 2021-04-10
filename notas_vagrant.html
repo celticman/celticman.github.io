@@ -52,11 +52,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2 id="configuración">Configuración</h2>
 <h3 id="descargar-imágen-máquina-virtual-base">1 - Descargar imágen máquina virtual base</h3>
 <p>Este comando descarga la máquina del registro de vagrant:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> box add ubuntu/focal64</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">    <span class="ex">vagrant</span> box add ubuntu/focal64</code></pre></div>
 <h3 id="crear-vagrantfile-con-la-base-anterior">2 - Crear Vagrantfile con la base anterior</h3>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> init ubuntu/focal64</code></pre></div>
 <h3 id="arrancar-máquina-vagrant">3 - Arrancar máquina vagrant</h3>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> up</code></pre></div>
+<p>La máquina virtual se crea en el directorio or defecto de VirtualBox.</p>
 <h3 id="parar-máquina-vagrant">4 - Parar máquina vagrant</h3>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> halt</code></pre></div>
 <h3 id="suspender-máquina-vagrant">5 - Suspender máquina vagrant</h3>
@@ -72,6 +73,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> ssh</code></pre></div>
 <h3 id="mostar-parámetros-conexión-ssh">Mostar parámetros conexión SSH</h3>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> ssh-config</code></pre></div>
+<h3 id="configurar-máquina-con-ansible">Configurar máquina con Ansible</h3>
+<p>Añadir al fichero Vagrantfile:</p>
+<pre><code>  config.vm.provision &quot;ansible&quot; do |ansible|
+    ansible.verbose = &quot;v&quot;
+    ansible.playbook = &quot;kubuntu_2004_servidor.yml&quot;
+  end</code></pre>
 <h1 id="setup-vagrant-box-ubuntu-14.04">Setup Vagrant box (Ubuntu 14.04)</h1>
 <h2 id="introduction">Introduction</h2>
 <p>This file discribe all the steps in order to setup a Vagrant box (using the <a href="https://github.com/Remiii/remiii-ansible-ubuntu-app-simple-symfony">Ansible Ubuntu simple Symfony App</a> config - please refer to this repository for more info).</p>
