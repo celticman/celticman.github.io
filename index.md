@@ -14,6 +14,8 @@
 
 ## Utilidades
 
+### Utilidades Línea de órdenes
+
 - [fzf - fuzzy finder - Busqueda por nombre de fichero o directorio](https://github.com/junegunn/fzf) 
 
     - Instalar en ubuntu: "sudo apt install fzf".
@@ -53,4 +55,10 @@
 	- Instalar en Ubuntu: "sudo apt install ocrmypdf"
 	- Instalar idioma de Tesseract "sudo apt install tesseract-ocr tesseract-ocr-spa"
 	- Uso:	ocrmypdf origen.pdf -l spa destino.pdf 
+
+### Utilidades web
+
+- [OBS.Ninja - Videoconferencia](https://obs.ninja/)
+
+- [Wormhole - Envío de ficheros - alternativa a firefox Send](https://wormhole.app/)
 
