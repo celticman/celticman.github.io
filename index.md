@@ -60,5 +60,7 @@
 
 - [OBS.Ninja - Videoconferencia](https://obs.ninja/)
 
+- [Talky.io - Videoconferencia](https://talky.io)
+
 - [Wormhole - Envío de ficheros - alternativa a firefox Send](https://wormhole.app/)
 
