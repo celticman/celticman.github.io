@@ -55,6 +55,13 @@
 	- Instalar en Ubuntu: "sudo apt install ocrmypdf"
 	- Instalar idioma de Tesseract "sudo apt install tesseract-ocr tesseract-ocr-spa"
 	- Uso:	ocrmypdf origen.pdf -l spa destino.pdf 
+	
+- [espeak-ng - Sintetizador de voz a partir de un texto](https://github.com/espeak-ng/espeak-ng)
+
+	- Instalar en Ubuntu: "sudo apt install espeak-ng"
+	- Uso para que lea la voz de forma directa en Español: espeak-ng -f fichero.txt -v es -s 145 -p 50
+	- Uso para que genere un fichero wav en Español: espeak-ng -f fichero.txt -v es -s 145 -p 50 -w fichero-salida.wav
+	- Convertir el fichero anterior a mp3: ffmpeg -i fichero-salida.wav -acodec mp3 fichero-salida.mp3
 
 ### Utilidades web
 
@@ -63,4 +70,8 @@
 - [Talky.io - Videoconferencia](https://talky.io)
 
 - [Wormhole - Envío de ficheros - alternativa a firefox Send](https://wormhole.app/)
+
+### Utilidades escritorio
+
+- [DBeaver - Administración bases de datos](https://dbeaver.io/)
 

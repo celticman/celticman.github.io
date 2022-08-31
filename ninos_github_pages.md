@@ -25,9 +25,46 @@ Esta guía ha sido realizado utilizando como guía [Hospedar tu sitio web en Git
 	git config user.name  "NOMBRE-USUARIO"
 	git config user.email "NOMBRE-USUARIO@NOMBRE-USUARIO.COM"
 	git commit -m "Primer Cambio"
-	git remote add origin https://github.com/NOMBRE-USUARIO/NOMBRE-USUARIO.github.io.git
-	git push -u origin master
 	```
+	
+- Generar un token de acceso (Desde Agosto de 2021 Github requiere que la conexión a través de la línea de ordenes tenga asociado un Token ó :
+
+	- En el menú Settings -> Developer Settings -> Personal access tokens, seguir los siguientes pasos:
+	
+		- Pulsar "Generate new token".
+		
+		- En **Note** dar un nombre al Token, p.ej. "Token linea ordenes".
+	
+		- En **Expiration** indicar la fecha de caducidad del token, p.ej. 1 año menos un día ó No expiracion
+		
+		- En **Select scopes** seleccionar **repo**.
+		
+		- Pulsar el boton verde **Generate token**.
+		
+	- Si ya se había creado el remote hay que borrarlo:
+	
+		- Se listan los repositorios remotos con:
+		
+		```
+		git remote 
+		```
+		- Si se llama "origin", se borra con:
+		
+		```
+		git remote remove origin
+		```
+			
+		
+	- Añadir el origen
+		
+		```
+		git remote add origin https://<TOKEN>@github.com/NOMBRE-USUARIO/NOMBRE-USUARIO.github.io.git
+
+		```
+		git push -u origin master
+		```
+	
+
 
 - Ahora ya puedes crear la página web en tu PC. Recuerda que debe existir un fichero "index.html", que sería la página principal.
 
