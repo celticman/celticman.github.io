@@ -25,9 +25,31 @@
 <pre><code>git init
 git config user.name  &quot;NOMBRE-USUARIO&quot;
 git config user.email &quot;NOMBRE-USUARIO@NOMBRE-USUARIO.COM&quot;
-git commit -m &quot;Primer Cambio&quot;
-git remote add origin https://github.com/NOMBRE-USUARIO/NOMBRE-USUARIO.github.io.git
-git push -u origin master</code></pre></li>
+git commit -m &quot;Primer Cambio&quot;</code></pre></li>
+<li><p>Generar un token de acceso (Desde Agosto de 2021 Github requiere que la conexión a través de la línea de ordenes tenga asociado un Token ó :</p>
+<ul>
+<li><p>En el menú Settings -&gt; Developer Settings -&gt; Personal access tokens, seguir los siguientes pasos:</p>
+<ul>
+<li><p>Pulsar &quot;Generate new token&quot;.</p></li>
+<li><p>En <strong>Note</strong> dar un nombre al Token, p.ej. &quot;Token linea ordenes&quot;.</p></li>
+<li><p>En <strong>Expiration</strong> indicar la fecha de caducidad del token, p.ej. 1 año menos un día ó No expiracion</p></li>
+<li><p>En <strong>Select scopes</strong> seleccionar <strong>repo</strong>.</p></li>
+<li><p>Pulsar el boton verde <strong>Generate token</strong>.</p></li>
+</ul></li>
+<li><p>Si ya se había creado el remote hay que borrarlo:</p>
+<ul>
+<li>Se listan los repositorios remotos con:</li>
+</ul>
+<pre><code>git remote </code></pre>
+<ul>
+<li>Si se llama &quot;origin&quot;, se borra con:</li>
+</ul>
+<pre><code>git remote remove origin</code></pre></li>
+<li><p>Añadir el origen</p>
+<pre><code>git remote add origin https://&lt;TOKEN&gt;@github.com/NOMBRE-USUARIO/NOMBRE-USUARIO.github.io.git
+</code></pre>
+<p>git push -u origin master ```</p></li>
+</ul></li>
 <li><p>Ahora ya puedes crear la página web en tu PC. Recuerda que debe existir un fichero &quot;index.html&quot;, que sería la página principal.</p></li>
 <li><p>Cuando quieras enviar los cambios a GitHub tendrías que ejecutar los siguientes comandos:</p>
 <pre><code>git add . --all

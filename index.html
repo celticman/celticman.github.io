@@ -70,6 +70,13 @@
 <li>Instalar idioma de Tesseract &quot;sudo apt install tesseract-ocr tesseract-ocr-spa&quot;</li>
 <li>Uso: ocrmypdf origen.pdf -l spa destino.pdf</li>
 </ul></li>
+<li><p><a href="https://github.com/espeak-ng/espeak-ng">espeak-ng - Sintetizador de voz a partir de un texto</a></p>
+<ul>
+<li>Instalar en Ubuntu: &quot;sudo apt install espeak-ng&quot;</li>
+<li>Uso para que lea la voz de forma directa en Español: espeak-ng -f fichero.txt -v es -s 145 -p 50</li>
+<li>Uso para que genere un fichero wav en Español: espeak-ng -f fichero.txt -v es -s 145 -p 50 -w fichero-salida.wav</li>
+<li>Convertir el fichero anterior a mp3: ffmpeg -i fichero-salida.wav -acodec mp3 fichero-salida.mp3</li>
+</ul></li>
 </ul>
 <h3 id="utilidades-web">Utilidades web</h3>
 <ul>
