@@ -19,8 +19,9 @@ $body$
 
 <footer>
 Estilo: <a href="https://minicss.us">Mini.css</a>
-Generador: <a href="https://pandoc.org/">pandoc</a>
-Fecha: $date$
+Generador: <a href="https://pandoc.org/">$pandocversion$</a>
+Fecha: $curdate$
+</footer>
 </div>
 </body>
 </html>
