@@ -18,7 +18,7 @@
 
 1) Crear unidad cifrada
 
-	cryptsetup --verbose --cipher "aes-cbc-essiv:sha256" --key-size 256 --verify-passphrase luksFormat /dev/sdb1
+	cryptsetup luksFormat --type luks2 --verify-passphrase /dev/sdb1
 
 2) Descifrar volumen
 

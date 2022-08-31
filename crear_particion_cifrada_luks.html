@@ -28,7 +28,7 @@
     Comando5:   w   (escribir la nueva partición y salir)</code></pre>
 <ol type="1">
 <li><p>Crear unidad cifrada</p>
-<p>cryptsetup --verbose --cipher &quot;aes-cbc-essiv:sha256&quot; --key-size 256 --verify-passphrase luksFormat /dev/sdb1</p></li>
+<p>cryptsetup luksFormat --type luks2 --verify-passphrase /dev/sdb1</p></li>
 <li><p>Descifrar volumen</p>
 <p>cryptsetup luksOpen /dev/sdb1 HD1</p></li>
 <li><p>Formatear volumen con etiqueta &quot;ETIQUETA&quot;</p>

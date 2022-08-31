@@ -58,8 +58,6 @@ Esta guía ha sido realizado utilizando como guía [Hospedar tu sitio web en Git
 		
 		```
 		git remote add origen https://<TOKEN>@github.com/NOMBRE-USUARIO/NOMBRE-USUARIO.github.io.git
-
-		```
 		git push -u origen master
 		```
 
