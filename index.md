@@ -4,11 +4,13 @@
 
 ## Guías
 
-- [Particionamiento disco cifrado con LUKS en Linux](./crear_particion_cifrada_luks.html) 
+- [Particionamiento disco cifrado con LUKS en Linux](./notas_particion_cifrada_luks.html) 
 
-- [¿Cómo verificar la velocidad de descarga desde la línea de ordenes?](./utilidades_velocidad_speedtest.html).
+- [¿Cómo verificar la velocidad de descarga desde la línea de ordenes?](./notas_velocidad_speedtest.html).
 
-- [Uso de vagrant](./uso_vagrant.html)
+- [Uso de vagrant](./notas_vagrant.html)
+
+- [Go - Golang](./notas_golang.html)
 
 ## Utilidades
 
