@@ -1,5 +1,3 @@
-# [Página web de Celticman](https://celticman.github.io/).
-
 ## ¿Cómo crear una página estática gratuita utilizando Github Pages? Versión para niños
 
 Esta guía ha sido realizado utilizando como guía [Hospedar tu sitio web en Github - Khan Academy](https://es.khanacademy.org/computing/computer-programming/html-css/web-development-tools/a/hosting-your-website-on-github).
@@ -27,7 +25,7 @@ Esta guía ha sido realizado utilizando como guía [Hospedar tu sitio web en Git
 	git commit -m "Primer Cambio"
 	```
 	
-- Generar un token de acceso (Desde Agosto de 2021 Github requiere que la conexión a través de la línea de ordenes tenga asociado un Token ó :
+- Generar un token de acceso (Desde Agosto de 2021 Github requiere que la conexión a través de la línea de ordenes tenga asociado un Token ó clave SSH):
 
 	- En el menú Settings -> Developer Settings -> Personal access tokens, seguir los siguientes pasos:
 	
@@ -48,6 +46,7 @@ Esta guía ha sido realizado utilizando como guía [Hospedar tu sitio web en Git
 		```
 		git remote 
 		```
+		
 		- Si se llama "origin", se borra con:
 		
 		```
@@ -58,13 +57,11 @@ Esta guía ha sido realizado utilizando como guía [Hospedar tu sitio web en Git
 	- Añadir el origen
 		
 		```
-		git remote add origin https://<TOKEN>@github.com/NOMBRE-USUARIO/NOMBRE-USUARIO.github.io.git
+		git remote add origen https://<TOKEN>@github.com/NOMBRE-USUARIO/NOMBRE-USUARIO.github.io.git
 
 		```
-		git push -u origin master
+		git push -u origen master
 		```
-	
-
 
 - Ahora ya puedes crear la página web en tu PC. Recuerda que debe existir un fichero "index.html", que sería la página principal.
 

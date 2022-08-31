@@ -1,5 +1,3 @@
-# [Página web de **celticman**](https://celticman.github.io/.html)
-
 ## Informatica para niños
 
 - [¿Cómo crear una página web de un niño?](./ninos_github_pages.html).

@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html>
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+  <link rel="stylesheet" href="mini.css">
 </head>
 <body>
+<div id="wrapper">  
+<header>
+
+
+<a href="http://celticman.github.io/"><h1 class="title">Celticman - notas personales</h1></a>
+
+</header>
+
+
 <h2 id="uso-de-particiones-cifradas-en-linux">Uso de particiones cifradas en Linux</h2>
 <h3 id="instrucciones-creación-de-volumen-cifrado">Instrucciones creación de volumen CIFRADO</h3>
 <p>0.0) Verificar si existen particiones en el disco duro externo</p>
@@ -43,5 +46,8 @@ mount /dev/mapper/HD1 /mnt/HD1</code></pre>
 <pre><code>#!/bin/sh
 umount /dev/mapper/HD1
 cryptsetup luksClose HD1</code></pre>
+
+
+</div>
 </body>
 </html>

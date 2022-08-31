@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html>
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+  <link rel="stylesheet" href="mini.css">
 </head>
 <body>
-<h1 id="página-web-de-celticman."><a href="https://celticman.github.io/">Página web de Celticman</a>.</h1>
+<div id="wrapper">  
+<header>
+
+
+<a href="http://celticman.github.io/"><h1 class="title">Celticman - notas personales</h1></a>
+
+</header>
+
+
 <h2 id="cómo-crear-una-página-estática-gratuita-utilizando-github-pages-versión-para-niños">¿Cómo crear una página estática gratuita utilizando Github Pages? Versión para niños</h2>
 <p>Esta guía ha sido realizado utilizando como guía <a href="https://es.khanacademy.org/computing/computer-programming/html-css/web-development-tools/a/hosting-your-website-on-github">Hospedar tu sitio web en Github - Khan Academy</a>.</p>
 <h2 id="pasos">Pasos</h2>
@@ -26,7 +28,7 @@
 git config user.name  &quot;NOMBRE-USUARIO&quot;
 git config user.email &quot;NOMBRE-USUARIO@NOMBRE-USUARIO.COM&quot;
 git commit -m &quot;Primer Cambio&quot;</code></pre></li>
-<li><p>Generar un token de acceso (Desde Agosto de 2021 Github requiere que la conexión a través de la línea de ordenes tenga asociado un Token ó :</p>
+<li><p>Generar un token de acceso (Desde Agosto de 2021 Github requiere que la conexión a través de la línea de ordenes tenga asociado un Token ó clave SSH):</p>
 <ul>
 <li><p>En el menú Settings -&gt; Developer Settings -&gt; Personal access tokens, seguir los siguientes pasos:</p>
 <ul>
@@ -46,9 +48,9 @@ git commit -m &quot;Primer Cambio&quot;</code></pre></li>
 </ul>
 <pre><code>git remote remove origin</code></pre></li>
 <li><p>Añadir el origen</p>
-<pre><code>git remote add origin https://&lt;TOKEN&gt;@github.com/NOMBRE-USUARIO/NOMBRE-USUARIO.github.io.git
+<pre><code>git remote add origen https://&lt;TOKEN&gt;@github.com/NOMBRE-USUARIO/NOMBRE-USUARIO.github.io.git
 </code></pre>
-<p>git push -u origin master ```</p></li>
+<p>git push -u origen master ```</p></li>
 </ul></li>
 <li><p>Ahora ya puedes crear la página web en tu PC. Recuerda que debe existir un fichero &quot;index.html&quot;, que sería la página principal.</p></li>
 <li><p>Cuando quieras enviar los cambios a GitHub tendrías que ejecutar los siguientes comandos:</p>
@@ -73,5 +75,8 @@ git push</code></pre></li>
 <li><p>Enviar al repositorio (github)</p>
 <pre><code>git push -f origin master</code></pre></li>
 </ul>
+
+
+</div>
 </body>
 </html>

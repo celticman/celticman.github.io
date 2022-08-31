@@ -1,5 +1,3 @@
-# [Página web de Celticman](./).
-
 ## ¿Cómo verificar la velocidad de descarga de internet desde la línea de ordenes?
 
 ## Verificación rápida
