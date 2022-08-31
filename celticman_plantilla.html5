@@ -21,6 +21,7 @@ $body$
 Estilo: <a href="https://minicss.us">Mini.css</a>
 Generador: <a href="https://pandoc.org/">$pandocversion$</a>
 Fecha: $curdate$
+Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
 </footer>
 </div>
 </body>
