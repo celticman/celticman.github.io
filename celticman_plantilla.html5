@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
-  <link rel="stylesheet" href="mini.css">
+  <link rel="stylesheet" href="/estaticos/mini.css">
 </head>
 <body>
 <div id="wrapper"  class="col-sm-12 col-md-8 col-lg-6 col-md-offset-2  col-lg-offset-3">  
