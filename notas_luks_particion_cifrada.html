@@ -28,10 +28,10 @@
     Comando5:   w   (escribir la nueva partición y salir)</code></pre>
 <ol type="1">
 <li><p>Crear unidad cifrada</p>
-<p>cryptsetup luksFormat --type luks2 --verify-passphrase /dev/sdb1</p></li>
+<p>cryptsetup luksFormat –type luks2 –verify-passphrase /dev/sdb1</p></li>
 <li><p>Descifrar volumen</p>
 <p>cryptsetup luksOpen /dev/sdb1 HD1</p></li>
-<li><p>Formatear volumen con etiqueta &quot;ETIQUETA&quot;</p>
+<li><p>Formatear volumen con etiqueta “ETIQUETA”</p>
 <p>mkfs.ext4 /dev/mapper/HD1 -L ETIQUETA</p></li>
 <li><p>Montar volumen</p>
 <p>mount /dev/mapper/HD1 /mnt/HD1</p></li>
@@ -50,8 +50,8 @@ cryptsetup luksClose HD1</code></pre>
 
 <footer>
 Estilo: <a href="https://minicss.us">Mini.css</a>
-Generador: <a href="https://pandoc.org/">pandoc 1.19.2.4</a>
-Fecha: 2022-09-01
+Generador: <a href="https://pandoc.org/">pandoc 2.9.2.1</a>
+Fecha: 2022-11-01
 Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
 </footer>
 </div>

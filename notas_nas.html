@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <link rel="stylesheet" href="/estaticos/mini.css">
+</head>
+<body>
+<div id="wrapper"  class="col-sm-12 col-md-8 col-lg-6 col-md-offset-2  col-lg-offset-3">  
+<header class="sticky">
+
+
+<a href="https://celticman.github.io/"><h1 class="title">Celticman - notas personales</h1></a>
+
+</header>
+
+
+<h1 id="nas-con-linux-ubuntu">NAS con Linux (Ubuntu)</h1>
+<h2 id="paquetes-necesarios">Paquetes necesarios</h2>
+<p>Usaremos las siguientes utilidades:</p>
+<ul>
+<li>fdisk: (particionado)</li>
+<li>badblocks: contenido en e2fsprogs (comprobación de escritura)</li>
+<li>smartctl: contenido en smartmontools (Lectura estadísticas SMART)</li>
+<li>lsblk: contenido en util-linux</li>
+</ul>
+<p>En Ubunto se instalaría con:</p>
+<pre><code>apt install fdisk e2fsprogs smartmontools util-linux</code></pre>
+<h2 id="comprobar-los-discos-duros-a-utilizar">Comprobar los discos duros a utilizar</h2>
+<ol type="1">
+<li><p>Comprobar que disco duro se quiere probar</p>
+<p>lsblk -o NAME,MAJ:MIN,RM,SIZE,RO,TYPE,MOUNTPOINT,MODEL,SERIAL</p></li>
+<li><p>Leer los datos SMART antes de ejecutar badblocks:</p>
+<p>2.1. Imprime los test disponibles en el disco&gt;</p>
+<pre><code> sudo smartctl -c /dev/sdX</code></pre>
+<p>2.2. Imprime la información del disco:</p>
+<pre><code> sudo smartctl -i /dev/sdX &gt; sdX_smart_informacion.txt</code></pre>
+<p>2.3. Ejecutamos un test corto ó el largo:</p>
+<pre><code> sudo smartctl -t short -C /dev/sdX
+
+ sudo smartctl -t long -C /dev/sdX</code></pre>
+<p>2.4. Visualizamos los resultados del test anterior:</p>
+<pre><code> sudo smartctl -a /dev/sdX &gt; sdX_smart_test.txt</code></pre></li>
+<li><p>Extraer los datos de tamaño de bloque del disco:</p>
+<p>sudo -n blockdev –getbsz /dev/sdX</p></li>
+<li><p>Ejecutar el programa badblocks con lectura y escritura</p>
+<p>sudo badblocks -t random -w -s -b {tamano_bloque} /dev/sdX</p>
+<p>sudo smartctl -i /dev/sdX</p></li>
+</ol>
+
+
+<footer>
+Estilo: <a href="https://minicss.us">Mini.css</a>
+Generador: <a href="https://pandoc.org/">pandoc 2.9.2.1</a>
+Fecha: 2022-11-01
+Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
+</footer>
+</div>
+</body>
+</html>

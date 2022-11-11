@@ -18,27 +18,27 @@
 <h2 id="configuración">Configuración</h2>
 <h3 id="descargar-imágen-máquina-virtual-base">1 - Descargar imágen máquina virtual base</h3>
 <p>Este comando descarga la máquina del registro de vagrant:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">    <span class="ex">vagrant</span> box add ubuntu/focal64</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>    <span class="ex">vagrant</span> box add ubuntu/focal64</span></code></pre></div>
 <h3 id="crear-vagrantfile-con-la-base-anterior">2 - Crear Vagrantfile con la base anterior</h3>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> init ubuntu/focal64</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="ex">vagrant</span> init ubuntu/focal64</span></code></pre></div>
 <h3 id="arrancar-máquina-vagrant">3 - Arrancar máquina vagrant</h3>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> up</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="ex">vagrant</span> up</span></code></pre></div>
 <p>La máquina virtual se crea en el directorio or defecto de VirtualBox.</p>
 <h3 id="parar-máquina-vagrant">4 - Parar máquina vagrant</h3>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> halt</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="ex">vagrant</span> halt</span></code></pre></div>
 <h3 id="suspender-máquina-vagrant">5 - Suspender máquina vagrant</h3>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> suspend</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="ex">vagrant</span> suspend</span></code></pre></div>
 <h3 id="destruir-máquina-vagrant">6 - Destruir máquina vagrant</h3>
 <p>Destruye la máquina virtual de vagrant, que la guarda Virtual Box en el directorio ~/VirtualBox VMs.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> destroy</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="ex">vagrant</span> destroy</span></code></pre></div>
 <h3 id="actualizacion">7 - Actualizacion</h3>
 <p>Actualizar imagen</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> box update</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="ex">vagrant</span> box update</span></code></pre></div>
 <h2 id="conexión-a-máquina-vagrant">Conexión a máquina vagrant</h2>
 <h3 id="conexión-ssh">Conexión SSH</h3>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> ssh</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="ex">vagrant</span> ssh</span></code></pre></div>
 <h3 id="mostar-parámetros-conexión-ssh">Mostar parámetros conexión SSH</h3>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">vagrant</span> ssh-config</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="ex">vagrant</span> ssh-config</span></code></pre></div>
 <h3 id="configurar-máquina-con-ansible">Configurar máquina con Ansible</h3>
 <p>Añadir al fichero Vagrantfile:</p>
 <pre><code>  config.vm.provision &quot;ansible&quot; do |ansible|
@@ -57,39 +57,39 @@
 </ul>
 <h2 id="install-the-vagrant-box">Install the Vagrant box</h2>
 <h3 id="create-the-box">Create the box</h3>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">cd</span> ~/vagrant/vm1
-$ <span class="ex">vagrant</span> box add <span class="dt">{title}</span> <span class="dt">{url}</span>
-$ <span class="ex">vagrant</span> init <span class="dt">{title}</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>$ <span class="bu">cd</span> ~/vagrant/vm1</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a>$ <span class="ex">vagrant</span> box add <span class="dt">{title}</span> <span class="dt">{url}</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a>$ <span class="ex">vagrant</span> init <span class="dt">{title}</span></span></code></pre></div>
 <p>Sample box: <a href="https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box">Ubuntu Server Precise 12.04.4 amd64 (source) Kernel is ready for Docker (Docker not included) Contains Chef, Puppet</a></p>
 <p>For example:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">cd</span> ~/vagrant/vm1
-$ <span class="ex">vagrant</span> box add ubuntu_14_04_basebox https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box
-$ <span class="ex">vagrant</span> init ubuntu_14_04_basebox</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>$ <span class="bu">cd</span> ~/vagrant/vm1</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a>$ <span class="ex">vagrant</span> box add ubuntu_14_04_basebox https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a>$ <span class="ex">vagrant</span> init ubuntu_14_04_basebox</span></code></pre></div>
 <h3 id="config-the-vm">Config the VM</h3>
 <p>Add the following lines in your VagrantFile</p>
-<div class="sourceCode"><pre class="sourceCode ruby"><code class="sourceCode ruby">  config.vm.network <span class="st">&quot;forwarded_port&quot;</span>, <span class="st">guest: </span><span class="dv">20</span>, <span class="st">host: </span><span class="dv">20020</span>
-  config.vm.network <span class="st">&quot;forwarded_port&quot;</span>, <span class="st">guest: </span><span class="dv">21</span>, <span class="st">host: </span><span class="dv">20021</span>
-  config.vm.network <span class="st">&quot;forwarded_port&quot;</span>, <span class="st">guest: </span><span class="dv">22</span>, <span class="st">host: </span><span class="dv">20022</span>
-  config.vm.network <span class="st">&quot;forwarded_port&quot;</span>, <span class="st">guest: </span><span class="dv">80</span>, <span class="st">host: </span><span class="dv">20080</span>
-  <span class="kw">for</span> i <span class="kw">in</span> <span class="dv">1024</span>..<span class="dv">1048</span>
-    config.vm.network <span class="st">:forwarded_port</span>, <span class="st">guest: </span>i, <span class="st">host: </span>i
-  <span class="kw">end</span>
-  config.vm.network <span class="st">&quot;forwarded_port&quot;</span>, <span class="st">guest: </span><span class="dv">3306</span>, <span class="st">host: </span><span class="dv">23306</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a>  config.vm.network <span class="st">&quot;forwarded_port&quot;</span>, <span class="st">guest: </span><span class="dv">20</span>, <span class="st">host: </span><span class="dv">20020</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a>  config.vm.network <span class="st">&quot;forwarded_port&quot;</span>, <span class="st">guest: </span><span class="dv">21</span>, <span class="st">host: </span><span class="dv">20021</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a>  config.vm.network <span class="st">&quot;forwarded_port&quot;</span>, <span class="st">guest: </span><span class="dv">22</span>, <span class="st">host: </span><span class="dv">20022</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a>  config.vm.network <span class="st">&quot;forwarded_port&quot;</span>, <span class="st">guest: </span><span class="dv">80</span>, <span class="st">host: </span><span class="dv">20080</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a>  <span class="kw">for</span> i <span class="kw">in</span> <span class="dv">1024</span>..<span class="dv">1048</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a>    config.vm.network <span class="st">:forwarded_port</span>, <span class="st">guest: </span>i, <span class="st">host: </span>i</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a>  <span class="kw">end</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a>  config.vm.network <span class="st">&quot;forwarded_port&quot;</span>, <span class="st">guest: </span><span class="dv">3306</span>, <span class="st">host: </span><span class="dv">23306</span></span></code></pre></div>
 <h3 id="run-the-vm">Run the VM</h3>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">vagrant</span> up</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>$ <span class="ex">vagrant</span> up</span></code></pre></div>
 <h2 id="ansible-config">Ansible config</h2>
 <h3 id="clone-the-ansible-config">Clone the Ansible config</h3>
 <p>Clone the <a href="https://github.com/Remiii/remiii-ansible-ubuntu-app-simple-symfony">Ansible Ubuntu simple Symfony App</a>.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">cd</span> ~/git
-$ <span class="fu">git</span> clone https://github.com/Remiii/remiii-ansible-ubuntu-app-simple-symfony.git
-$ <span class="bu">cd</span> remiii-ansible-ubuntu-app-simple-symfony</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a>$ <span class="bu">cd</span> ~/git</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a>$ <span class="fu">git</span> clone https://github.com/Remiii/remiii-ansible-ubuntu-app-simple-symfony.git</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a>$ <span class="bu">cd</span> remiii-ansible-ubuntu-app-simple-symfony</span></code></pre></div>
 <h3 id="config-the-ansible-config">Config the Ansible config</h3>
 <p>*** WARNING: is just a sample, please ie. <a href="https://github.com/Remiii/remiii-ansible-ubuntu-app-simple-symfony/blob/master/README.md#setup">remiii-ansible-ubuntu-app-simple-symfony</a> ***</p>
 <p>Setup the vars in <code>vars/myConfig.yml</code> and add <code>ansible_inventory_machinename</code> file: <a href="https://github.com/Remiii/remiii-ansible-ubuntu-app-simple-symfony/blob/master/README.md#setup">More info here</a>.</p>
 <pre><code># ansible_inventory_machinename
 machine ansible_ssh_host=&#39;127.0.0.1&#39; ansible_ssh_port=20022</code></pre>
 <p>Copy the config dist file <code>vars/myConfig.yml.dist</code></p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash">$ <span class="fu">cp</span> vars/myConfig.yml.dist vars/myConfig.yml</code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a>$ <span class="fu">cp</span> vars/myConfig.yml.dist vars/myConfig.yml</span></code></pre></div>
 <pre><code># pathToTheProject/vars/myConfig.yml
     ...
     rootPath: &#39;~/git/remiii-ansible-ubuntu-app-simple-symfony&#39;
@@ -101,23 +101,23 @@ machine ansible_ssh_host=&#39;127.0.0.1&#39; ansible_ssh_port=20022</code></pre>
 <li>myGitUserMachineUserKey</li>
 <li>myGitUserMachineUserKey.pub</li>
 <li>mySSHPublicKey.pub</li>
-<li>...</li>
+<li>…</li>
 </ul>
 <h3 id="run-the-ansible-config">Run the Ansible config</h3>
 <p>Exec the config:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">ansible-playbook</span> -i ansible_inventory_machinename --private-key=pathToYourVagrantPrivateKey -u vagrant ./myConfig.yml</code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a>$ <span class="ex">ansible-playbook</span> -i ansible_inventory_machinename --private-key=pathToYourVagrantPrivateKey -u vagrant ./myConfig.yml</span></code></pre></div>
 <h3 id="update-etchosts-config-on-your-host">Update etc/hosts config on your Host</h3>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash">$ <span class="fu">sudo</span> vi /etc/hosts</code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a>$ <span class="fu">sudo</span> vi /etc/hosts</span></code></pre></div>
 <p>Add the following lines in your hosts <code>/etc/hosts</code> file:</p>
 <pre><code>###
 # VM1
 ###
 127.0.0.1    vm1.local sql.vm1.local apc.vm1.local website-sample.vm1.local website-sample1.vm1.local website-sample2.vm1.local foo.vm1.local</code></pre>
-<h3 id="thats-it">That's it!</h3>
+<h3 id="thats-it">That’s it!</h3>
 <h3 id="restart-and-login-to-the-vm">Restart and login to the VM</h3>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">cd</span> ~/vagrant/vm1
-$ <span class="ex">vagrant</span> reload
-$ <span class="ex">vargant</span> ssh</code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a>$ <span class="bu">cd</span> ~/vagrant/vm1</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a>$ <span class="ex">vagrant</span> reload</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true"></a>$ <span class="ex">vargant</span> ssh</span></code></pre></div>
 <h2 id="license">License</h2>
 <p>MIT</p>
 <h2 id="author">Author</h2>
@@ -128,8 +128,8 @@ $ <span class="ex">vargant</span> ssh</code></pre></div>
 
 <footer>
 Estilo: <a href="https://minicss.us">Mini.css</a>
-Generador: <a href="https://pandoc.org/">pandoc 1.19.2.4</a>
-Fecha: 2022-09-01
+Generador: <a href="https://pandoc.org/">pandoc 2.9.2.1</a>
+Fecha: 2022-11-01
 Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
 </footer>
 </div>
