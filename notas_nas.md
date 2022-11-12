@@ -46,7 +46,15 @@ En Ubuntu se instalarían con:
 	
 4. Ejecutar el programa badblocks con lectura y escritura
 
-	sudo badblocks -t random -w -s -b {tamano_bloque} /dev/sdX
+	** Atención los siguientes test son destructivos **
+
+	4.1. Ejecutar un test completo (con varios tramas de datos):
+
+		sudo badblocks -wsv /dev/sdx
+
+	4.2. Ejecutar un test rápido (con una sola trama de datos):
+
+		sudo badblocks -wsv -t 0xAA /dev/sdx
 
 5. Comprobar el efecto de la escritura y lectura de todos los bloques:
 
@@ -56,7 +64,7 @@ En Ubuntu se instalarían con:
 		
 		sudo smartctl -t long -C /dev/sdX
 
-	5.2. Gernerar los resultados:
+	5.2. Generar los resultados:
 	
 		sudo smartctl -a /dev/sdX > sdX_smart_final.txt
 		
