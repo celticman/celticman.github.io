@@ -77,7 +77,7 @@ El primer fallo se debe a que en el segundo fallo no encuentra la función Media
 
 Para asegurar que en todas las compilaciones de un proyecto se utiliza la misma librería y no puede desaparecer, se recomienda utilizar la función **vendor**. Consiste en que pasamos a tener un directorio **vendor** dentro del proyecto que contiene todas las dependencias externas del proyecto (librerías).
 
-Se define el proyecto a utilizar en el enabezado del fichero:
+Se define el proyecto a utilizar en el enabezado del fichero go en el que se vaya a utilizar (por ejemplo main.go):
 
 	import "github.com/tidwall/gjson"
 	
@@ -86,3 +86,8 @@ Para crear el directorio **vendor** ejecutamos:
 	go mod vendor
 	
 Esto crea el directorio **vendor** en el que se almacena el paquete anterior y todas sus dependencias. Si eliminamos la librería de nuestro proyecto y volvemos a ejecutar el comando anterior, se elimina la librería del directorio vendor.
+
+Si el comando vendor dió un error de que no se encuentra la librería, Para que no nos de error el comando vendor, primero tenemos que descargar la librería:
+
+	go get "github.com/tidwall/gjson"
+	

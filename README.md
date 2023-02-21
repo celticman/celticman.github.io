@@ -54,8 +54,7 @@
         
 - [ocrmypdf - Genera un pdf con reconocimiento de textos y que se puede buscar](https://ocrmypdf.readthedocs.io/en/latest/index.html)
 
-	- Instalar en Ubuntu: "sudo apt install ocrmypdf"
-	- Instalar idioma de Tesseract "sudo apt install tesseract-ocr tesseract-ocr-spa"
+	- Instalar en Ubuntu: "sudo apt install ocrmypdf tesseract-ocr tesseract-ocr-spa jbig2dec"
 	- Uso:	ocrmypdf origen.pdf -l spa destino.pdf 
 	
 - [espeak-ng - Sintetizador de voz a partir de un texto](https://github.com/espeak-ng/espeak-ng)

@@ -55,17 +55,19 @@ go 1.16</code></pre>
 <p>El primer fallo se debe a que en el segundo fallo no encuentra la función Media y por tanto no se está utilizando ninguna función del paquete “calculos_matematicos”.</p>
 <h3 id="para-que-las-librerías-externas-se-integren-en-el-proyecto-vendoring">Para que las librerías externas se integren en el proyecto (Vendoring)</h3>
 <p>Para asegurar que en todas las compilaciones de un proyecto se utiliza la misma librería y no puede desaparecer, se recomienda utilizar la función <strong>vendor</strong>. Consiste en que pasamos a tener un directorio <strong>vendor</strong> dentro del proyecto que contiene todas las dependencias externas del proyecto (librerías).</p>
-<p>Se define el proyecto a utilizar en el enabezado del fichero:</p>
+<p>Se define el proyecto a utilizar en el enabezado del fichero go en el que se vaya a utilizar (por ejemplo main.go):</p>
 <pre><code>import &quot;github.com/tidwall/gjson&quot;</code></pre>
 <p>Para crear el directorio <strong>vendor</strong> ejecutamos:</p>
 <pre><code>go mod vendor</code></pre>
 <p>Esto crea el directorio <strong>vendor</strong> en el que se almacena el paquete anterior y todas sus dependencias. Si eliminamos la librería de nuestro proyecto y volvemos a ejecutar el comando anterior, se elimina la librería del directorio vendor.</p>
+<p>Si el comando vendor dió un error de que no se encuentra la librería, Para que no nos de error el comando vendor, primero tenemos que descargar la librería:</p>
+<pre><code>go get &quot;github.com/tidwall/gjson&quot;</code></pre>
 
 
 <footer>
 Estilo: <a href="https://minicss.us">Mini.css</a>
 Generador: <a href="https://pandoc.org/">pandoc 2.9.2.1</a>
-Fecha: 2022-11-01
+Fecha: 2023-02-21
 Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
 </footer>
 </div>
