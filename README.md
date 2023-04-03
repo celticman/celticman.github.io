@@ -8,6 +8,8 @@
 
 - [Particionamiento disco cifrado con LUKS en Linux](./notas_luks_particion_cifrada.html) 
 
+- [NAS simple con BTRFS](./notas_nas.html) 
+
 - [¿Cómo verificar la velocidad de descarga desde la línea de ordenes?](./notas_velocidad_speedtest.html).
 
 - [Uso de vagrant](./notas_vagrant.html)

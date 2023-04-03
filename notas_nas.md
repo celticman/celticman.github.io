@@ -1,5 +1,31 @@
 # NAS con Linux (Ubuntu)
 
+## Introducción
+
+### Objetivo
+
+El objetivo es tener un NAS con los siguientes objetivos:
+
+1. Fácil de mantener, para lo que ha de cumplir los siguientes requisitos:
+
+    - Cada uno de los discos ha de contener todos los datos.
+    
+    - Ha de ser fácil de montar los discos en otro ordenador: Por ejemplo en caso de fallo del ordenador o del disco de arranque, ha de poder extraerse cualquiera de los discos de datos e insertarlo en otro ordenador.
+
+2. El sistema de archivos ha de tener snapshots, que permita recuperar datos borrados por accidente ó sobreescritos.
+
+3. El sistema de archivos ha de realizar verificaciones de los archivos guardados.
+
+4. Todos los discos han de estar cifrados.
+
+### Descripción del sistema
+
+En el PC que ha de actuar como NAS, el servidor ha de estar formado por los siguientes discos:
+
+- 1 disco duro de arranque: En este disco se instala el sistema operativo con la partición cifrada.
+
+- 2 ó 3 discos duros de datos: En cada disco duro se crea una partición BTRFS (cifrada con LUKS). Hay un disco de datos primario en el que se escriben los datos y uno o dos secundarios en los que se copian los datos del primario.
+
 ## Paquetes necesarios
 
 Usaremos las siguientes utilidades:
@@ -9,7 +35,7 @@ Usaremos las siguientes utilidades:
 - smartctl: contenido en smartmontools (Lectura estadísticas SMART)
 - lsblk: contenido en util-linux
 - utilidades ZFS: zfsutils-linux
-- cryptsetup: PAra usar particiones LUKS
+- cryptsetup: Para usar particiones LUKS
 
 En Ubuntu se instalarían con:
 
@@ -90,7 +116,130 @@ En Ubuntu se instalarían con:
 	
 		smartctl -H /dev/sdX
 		
-## Creación mirror de 3 discos BTRFS (Raid 1C3) con cifrado luks
+## Preparación de los discos
+
+### Identificación de los discos
+
+Los discos identificados antes, se identifican utilizando lsblk con el siguiente comando:
+
+	lsblk -o NAME,MAJ,MIN,RM,SIZE,RO,TYPE,MOUNTPOINTS,FSTYPE,MODEL,SERIAL
+	
+Al figurar el número de serie, podemos identificar el disco duro que se va a preparar.
+
+### Particionamiento con KDE Partition Manager
+
+1. Arrancamos KDE Partition Manager
+
+2. Seleccionamos el disco a particionar (comprobando el número de serie que aparece en la pestaña de datos SMART). 
+
+3. Creamos una nueva tabla de particiones GPT.
+
+4. Creamos una nueva particion con los siguientes datos:
+
+    - Tipo: Primarioa
+    - Sistema de archivos: BTRFS
+    - Cifrar con LUKS: Sí
+    - Etiqueta: Por ejemplo DATOS_MODELO_NUM-SERIE (p.ej. DATOS_ST4000-Y4PC)
+    
+5. Identificamos la el UUID de la particion cifrada.
+
+6. Modificamos el fichero /etc/crypttab añadiendo una nueva línea con el siguiente formato:
+
+	NUMERO-SERIE_crypt UUID="UUID DE LA PARTICIÓN CIFRADA" none luks, discard
+	
+	Por ejemplo sería:
+	
+	qazwsx_crypt UUID="e4d76f43-e510-4b5d-a422-e92d1075d93c" none luks, discard
+	
+7. Creamos los directorios de almacenamiento de los discos 1 y 2:
+
+	mkdir /srv/datos1
+	mkdir /srv/datos2
+	
+	
+8. Montamos la partición automaticamente usando /etc/fstab. Se añade una nueva línea:
+
+	/dev/mapper/qazwsx_crypt /srv/datos1 defaults   0 0
+	mágenes
+
+9. Repetir los pasos 2 a 8 para el segundo disco. Cambiando:
+
+    - /srv/datos1 -> /srv/datos2
+    - "qazwsx" por los 6 últimos caracteres del número de serie del segundo disco.
+
+## Gestión de instantáneas (snapshots)
+
+Basado en [Snapshots con Btrfs de inlab.fib.upc.edu](https://inlab.fib.upc.edu/es/blog/snapshots-con-btrfs).
+
+Para la gestión de imágenes se utilizará Snapper que es una herramienta creda por openSUSE para la gestión de instantáneas del sistema de archivos BTRFS.
+
+1. Instalación Snapper
+
+	sudo apt install snapper
+	
+2. Crear la configuración de Snapper para los dos discos
+
+	sudo snapper -c datos1 create-config /srv/datos1
+	sudo snapper -c datos2 create-config /srv/datos2
+		
+3. Arrancar el servicio de Snapper:
+
+	sudo systemctl enable --now snapper-timeline.timer snapper-cleanup.timer
+	
+4. Crear un subvolumen
+
+    Ejecutar los siguientes comandos:
+
+		cd /srv/datos1
+		sudo btrfs subvolume create datos1-compartir
+		
+	Debe aparecer un nuevo directorio /srv/datos1/datos1-compartir
+	
+5.	Crear la configuración de Snapper
+
+	Se ejecuta:
+		
+		snapper -c datos1 create-config /srv/datos1
+		snapper -c datos2 create-config /srv/datos2
+		
+	Se confirma que se han creado la configuración ejecutando:
+	
+		snapper list-configs
+		
+6. Realizar una instantánea:
+
+	Se ejecuta:
+	
+		snapper -c datos1 create
+		
+	Se listan las instantáneas:
+	
+		snapper -c datos1 list
+		
+7. Creación automática de instantáneas
+
+	Por defecto Snapper debe realizar imágenes automáticamente de los directorios configurados. La configuración de retención de las instantáneas debe ser (que aparece en /etc/snapper/configs/datos1 ) son:
+
+	- TIMELINE_LIMIT_HOURLY="36"
+	- TIMELINE_LIMIT_DAILY="10"
+	- TIMELINE_LIMIT_WEEKLY="6"
+	- TIMELINE_LIMIT_MONTHLY="14"
+	- TIMELINE_LIMIT_YEARLY="10"
+	
+8. Acceso a las instantáneas:
+
+	Se puede acceder a las instant en la siguiente ruta:
+	
+	/srv/datos1/.snapshots
+		
+		
+## Anexo (no usado)
+
+Las siguientes secciones se deja como referencia, pero no se usan por que como se explica anteriormente se prefiere un sistema formado por un disco maestro y un disco esclavo, pero indendientes.
+
+### Creación mirror de 3 discos BTRFS (Raid 1C3) con cifrado luks
+
+** SE DEJA COMO REFERENCIA PERO NO SE USA **
 
 1. Crear las particiones en los discos:
 
@@ -122,7 +271,9 @@ En Ubuntu se instalarían con:
 
 	
 
-## Creación mirror de 3 discos con ZFS con cifrado nativo
+### Creación mirror de 3 discos con ZFS con cifrado nativo
+
+** SE DEJA COMO REFERENCIA PERO NO SE USA **
 
 Basado en (https://bhoey.com/blog/3-way-disk-mirrors-with-zfsonlinux/) y (https://ubuntu.com/tutorials/setup-zfs-storage-pool#1-overview).
 
