@@ -110,9 +110,10 @@
 </ul></li>
 <li><p>Identificamos la el UUID de la particion cifrada.</p></li>
 <li><p>Modificamos el fichero /etc/crypttab añadiendo una nueva línea con el siguiente formato:</p>
-<p>NUMERO-SERIE_crypt UUID=“UUID DE LA PARTICIÓN CIFRADA” none luks, discard</p>
+<pre><code> NUMERO-SERIE_crypt UUID=&quot;UUID DE LA PARTICIÓN CIFRADA&quot; none luks, discard</code></pre>
 <p>Por ejemplo sería:</p>
-<p>qazwsx_crypt UUID=“e4d76f43-e510-4b5d-a422-e92d1075d93c” none luks, discard</p></li>
+<pre><code> qazwsx_crypt UUID=&quot;e4d76f43-e510-4b5d-a422-e92d1075d93c&quot; none luks, discard</code></pre>
+<p>Nota: No es necesario introducir la contraseña utilizando crypttab si se utiliza la misma contraseña que para el disco de arranque.</p></li>
 <li><p>Creamos los directorios de almacenamiento de los discos 1 y 2:</p>
 <p>mkdir /srv/datos1 mkdir /srv/datos2</p></li>
 <li><p>Montamos la partición automaticamente usando /etc/fstab. Se añade una nueva línea:</p>
@@ -163,7 +164,7 @@ snapper -c datos2 create-config /srv/datos2</code></pre>
 <p>/srv/datos1/.snapshots</p></li>
 </ol>
 <h2 id="copia-de-datos-del-disco1-al-disco2">Copia de datos del disco1 al disco2</h2>
-<p>Para copiar los datos del disco 1 al disco2 se puede crear un fichero en el directorio /etc/cron.daily que ejecute el siguiente comando:</p>
+<p>Para copiar los datos del disco 1 al disco2 se puede crear un el fichero <strong>/etc/cron.daily/sincronizar.sh</strong>, que ejecute el siguiente comando:</p>
 <pre><code>ruta1=&quot;/srv/datos1&quot;
 if mountpoint -q &quot;$ruta1&quot;; then
         echo &quot;Montado&quot;
@@ -179,7 +180,11 @@ else
         echo &quot;$ruta2 NO montado&quot;
         exit 1
 fi
-rsync -avh --exclude .snapshots /srv/datos1/ /srv/datos2</code></pre>
+rsync -avh --exclude .snapshots --delete-after /srv/datos1/ /srv/datos2</code></pre>
+<p>Debe ser propiedad de root:</p>
+<pre><code>sudo chown root:root /etc/cron.daily/sincronizar.sh</code></pre>
+<p>Debe tener permiso de ejecución:</p>
+<pre><code>sudo chmod 0700 /etc/cron.daily/sincronizar.sh</code></pre>
 <h2 id="verificación-de-los-datos-almacenados-en-los-discos-scrub">Verificación de los datos almacenados en los discos (Scrub)</h2>
 <p>La verificación de los datos almacenados se realiza del siguiente modo:</p>
 <pre><code>btrfs scrub start /srv/datos1</code></pre>
@@ -217,6 +222,11 @@ rsync -avh --exclude .snapshots /srv/datos1/ /srv/datos2</code></pre>
     </code></pre>
 <p>Aplicar con el comando:</p>
 <pre><code>sudo netplan apply</code></pre>
+<h2 id="arrancar-servidor-ssh">Arrancar servidor SSH</h2>
+<p>Instalar servidor SSH:</p>
+<pre><code>sudo apt install ssh</code></pre>
+<p>Comprobar que se está ejecutando:</p>
+<pre><code>sudo systemctl status ssh</code></pre>
 <h2 id="anexo-no-usado">Anexo (no usado)</h2>
 <p>Las siguientes secciones se deja como referencia, pero no se usan por que como se explica anteriormente se prefiere un sistema formado por un disco maestro y un disco esclavo, pero indendientes.</p>
 <h3 id="creación-mirror-de-3-discos-btrfs-raid-1c3-con-cifrado-luks">Creación mirror de 3 discos BTRFS (Raid 1C3) con cifrado luks</h3>

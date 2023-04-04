@@ -147,11 +147,14 @@ Al figurar el número de serie, podemos identificar el disco duro que se va a pr
 
 6. Modificamos el fichero /etc/crypttab añadiendo una nueva línea con el siguiente formato:
 
-	NUMERO-SERIE_crypt UUID="UUID DE LA PARTICIÓN CIFRADA" none luks, discard
+		NUMERO-SERIE_crypt UUID="UUID DE LA PARTICIÓN CIFRADA" none luks, discard
 	
 	Por ejemplo sería:
 	
-	qazwsx_crypt UUID="e4d76f43-e510-4b5d-a422-e92d1075d93c" none luks, discard
+		qazwsx_crypt UUID="e4d76f43-e510-4b5d-a422-e92d1075d93c" none luks, discard
+	
+    Nota: No es necesario introducir la contraseña utilizando crypttab si se utiliza la misma contraseña que para el disco de arranque.
+
 	
 7. Creamos los directorios de almacenamiento de los discos 1 y 2:
 
@@ -168,6 +171,7 @@ Al figurar el número de serie, podemos identificar el disco duro que se va a pr
 
     - /srv/datos1 -> /srv/datos2
     - "qazwsx" por los 6 últimos caracteres del número de serie del segundo disco.
+    
 
 ## Gestión de instantáneas (snapshots)
 
@@ -236,7 +240,7 @@ Para la gestión de imágenes se utilizará Snapper que es una herramienta creda
 	
 ## Copia de datos del disco1 al disco2
 
-Para copiar los datos del disco 1 al disco2 se puede crear un fichero en el directorio /etc/cron.daily que ejecute el siguiente comando:
+Para copiar los datos del disco 1 al disco2 se puede crear un el fichero **/etc/cron.daily/sincronizar.sh**, que ejecute el siguiente comando:
 
 
 	ruta1="/srv/datos1"
@@ -254,7 +258,15 @@ Para copiar los datos del disco 1 al disco2 se puede crear un fichero en el dire
 			echo "$ruta2 NO montado"
 			exit 1
 	fi
-	rsync -avh --exclude .snapshots /srv/datos1/ /srv/datos2
+	rsync -avh --exclude .snapshots --delete-after /srv/datos1/ /srv/datos2
+	
+Debe ser propiedad de root:
+
+	sudo chown root:root /etc/cron.daily/sincronizar.sh
+	
+Debe tener permiso de ejecución:
+
+	sudo chmod 0700 /etc/cron.daily/sincronizar.sh
 
 ## Verificación de los datos almacenados en los discos (Scrub)
 
@@ -317,6 +329,16 @@ Editar el fichero **/etc/netplan/01-netcfg.yaml** :
 Aplicar con el comando:
 
 	sudo netplan apply
+	
+## Arrancar servidor SSH
+
+Instalar servidor SSH:
+
+	sudo apt install ssh
+	
+Comprobar que se está ejecutando:
+
+	sudo systemctl status ssh
 
 ## Anexo (no usado)
 
