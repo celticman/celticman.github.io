@@ -237,7 +237,23 @@ Para la gestión de imágenes se utilizará Snapper que es una herramienta creda
 
 Para copiar los datos del disco 1 al disco2 se puede crear un fichero en el directorio /etc/cron.daily que ejecute el siguiente comando:
 
-rsync -avh --exclude .snapshot /srv/datos1/ /srv/datos2
+
+	ruta1="/srv/datos1"
+	if mountpoint -q "$ruta1"; then
+			echo "Montado"
+	else
+			echo "$ruta1 NO montado"
+			exit 1
+	fi
+
+	ruta2="/srv/datos2"
+	if mountpoint -q "$ruta2"; then
+			echo "Montado"
+	else
+			echo "$ruta2 NO montado"
+			exit 1
+	fi
+	rsync -avh --exclude .snapshot /srv/datos1/ /srv/datos2
 
 ## Verificación de los datos almacenados en los discos (Scrub)
 

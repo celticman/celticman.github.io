@@ -163,7 +163,22 @@ snapper -c datos2 create-config /srv/datos2</code></pre>
 </ol>
 <h2 id="copia-de-datos-del-disco1-al-disco2">Copia de datos del disco1 al disco2</h2>
 <p>Para copiar los datos del disco 1 al disco2 se puede crear un fichero en el directorio /etc/cron.daily que ejecute el siguiente comando:</p>
-<p>rsync -avh –exclude .snapshot /srv/datos1/ /srv/datos2</p>
+<pre><code>ruta1=&quot;/srv/datos1&quot;
+if mountpoint -q &quot;$ruta1&quot;; then
+        echo &quot;Montado&quot;
+else
+        echo &quot;$ruta1 NO montado&quot;
+        exit 1
+fi
+
+ruta2=&quot;/srv/datos2&quot;
+if mountpoint -q &quot;$ruta2&quot;; then
+        echo &quot;Montado&quot;
+else
+        echo &quot;$ruta2 NO montado&quot;
+        exit 1
+fi
+rsync -avh --exclude .snapshot /srv/datos1/ /srv/datos2</code></pre>
 <h2 id="verificación-de-los-datos-almacenados-en-los-discos-scrub">Verificación de los datos almacenados en los discos (Scrub)</h2>
 <p>La verificación de los datos almacenados se realiza del siguiente modo:</p>
 <pre><code>btrfs scrub start /srv/datos1</code></pre>
