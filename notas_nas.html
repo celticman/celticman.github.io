@@ -43,9 +43,10 @@
 <li>lsblk: contenido en util-linux</li>
 <li>utilidades ZFS: zfsutils-linux</li>
 <li>cryptsetup: Para usar particiones LUKS</li>
+<li>btrfs-progs</li>
 </ul>
 <p>En Ubuntu se instalarían con:</p>
-<pre><code>apt install fdisk e2fsprogs smartmontools util-linux zfsutils-linux cryptsetup-bin</code></pre>
+<pre><code>apt install fdisk e2fsprogs smartmontools util-linux zfsutils-linux cryptsetup-bin btrfs-progs</code></pre>
 <h2 id="comprobar-los-discos-duros-a-utilizar">Comprobar los discos duros a utilizar</h2>
 <ol type="1">
 <li><p>Comprobar que disco duro se quiere probar</p>
@@ -157,9 +158,25 @@ snapper -c datos2 create-config /srv/datos2</code></pre>
 <li>TIMELINE_LIMIT_YEARLY=“10”</li>
 </ul></li>
 <li><p>Acceso a las instantáneas:</p>
-<p>Se puede acceder a las instant en la siguiente ruta:</p>
+<p>Se puede acceder a las instantánea en la siguiente ruta:</p>
 <p>/srv/datos1/.snapshots</p></li>
 </ol>
+<h2 id="copia-de-datos-del-disco1-al-disco2">Copia de datos del disco1 al disco2</h2>
+<p>Para copiar los datos del disco 1 al disco2 se puede crear un fichero en el directorio /etc/cron.daily que ejecute el siguiente comando:</p>
+<p>rsync -avh –exclude .snapshot /srv/datos1/ /srv/datos2</p>
+<h2 id="verificación-de-los-datos-almacenados-en-los-discos-scrub">Verificación de los datos almacenados en los discos (Scrub)</h2>
+<p>La verificación de los datos almacenados se realiza del siguiente modo:</p>
+<pre><code>btrfs scrub start /srv/datos1</code></pre>
+<p>Se puede consultar el resultado de la verificación con el siguiente comando:</p>
+<pre><code>btrfs scrub status /srv/datos1</code></pre>
+<h2 id="recuperar-datos">Recuperar datos</h2>
+<p>Se puede recuperar los datos desde una determinada instantánea (snapshot).</p>
+<p>Listado de instantáneas:</p>
+<pre><code>snapper -c datos2 list</code></pre>
+<p>De la lista anterior extraemos el número de instantánea</p>
+<pre><code>snapper -c datos2 -v undochange NUMERO-INSTANTANEA..0 FICHERO</code></pre>
+<p>Si se quiere restaurar todo el sistema de archivos bastaría con:</p>
+<pre><code>snapper -c datos2 -v undochange NUMERO-INSTANTANEA..0</code></pre>
 <h2 id="anexo-no-usado">Anexo (no usado)</h2>
 <p>Las siguientes secciones se deja como referencia, pero no se usan por que como se explica anteriormente se prefiere un sistema formado por un disco maestro y un disco esclavo, pero indendientes.</p>
 <h3 id="creación-mirror-de-3-discos-btrfs-raid-1c3-con-cifrado-luks">Creación mirror de 3 discos BTRFS (Raid 1C3) con cifrado luks</h3>
@@ -214,7 +231,7 @@ snapper -c datos2 create-config /srv/datos2</code></pre>
 <footer>
 Estilo: <a href="https://minicss.us">Mini.css</a>
 Generador: <a href="https://pandoc.org/">pandoc 2.9.2.1</a>
-Fecha: 2023-04-03
+Fecha: 2023-04-04
 Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
 </footer>
 </div>

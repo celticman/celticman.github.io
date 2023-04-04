@@ -36,10 +36,11 @@ Usaremos las siguientes utilidades:
 - lsblk: contenido en util-linux
 - utilidades ZFS: zfsutils-linux
 - cryptsetup: Para usar particiones LUKS
+- btrfs-progs
 
 En Ubuntu se instalarían con:
 
-	apt install fdisk e2fsprogs smartmontools util-linux zfsutils-linux cryptsetup-bin
+	apt install fdisk e2fsprogs smartmontools util-linux zfsutils-linux cryptsetup-bin btrfs-progs
 
 
 ## Comprobar los discos duros a utilizar
@@ -228,10 +229,42 @@ Para la gestión de imágenes se utilizará Snapper que es una herramienta creda
 	
 8. Acceso a las instantáneas:
 
-	Se puede acceder a las instant en la siguiente ruta:
+	Se puede acceder a las instantánea en la siguiente ruta:
 	
 	/srv/datos1/.snapshots
-		
+	
+## Copia de datos del disco1 al disco2
+
+Para copiar los datos del disco 1 al disco2 se puede crear un fichero en el directorio /etc/cron.daily que ejecute el siguiente comando:
+
+rsync -avh --exclude .snapshot /srv/datos1/ /srv/datos2
+
+## Verificación de los datos almacenados en los discos (Scrub)
+
+La verificación de los datos almacenados se realiza del siguiente modo:
+
+	btrfs scrub start /srv/datos1
+	
+Se puede consultar el resultado de la verificación con el siguiente comando:
+
+	btrfs scrub status /srv/datos1
+	
+## Recuperar datos
+
+Se puede recuperar los datos desde una determinada instantánea (snapshot).
+
+Listado de instantáneas:
+
+	snapper -c datos2 list
+	
+De la lista anterior extraemos el número de instantánea
+
+	snapper -c datos2 -v undochange NUMERO-INSTANTANEA..0 FICHERO
+	
+Si se quiere restaurar todo el sistema de archivos bastaría con:
+
+	snapper -c datos2 -v undochange NUMERO-INSTANTANEA..0
+
 		
 ## Anexo (no usado)
 
