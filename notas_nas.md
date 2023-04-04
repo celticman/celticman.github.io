@@ -303,16 +303,16 @@ Una vez conectado el cable de red, podemos identificar la tarjeta de red con el 
 Editar el fichero **/etc/netplan/01-netcfg.yaml** :
 
 	network:
-	version: 2
-	renderer: networkd
-	ethernets:
-		NOMBRE-TARJETA-RED:
-			dhcp4: no
-			addresses:
-				- 192.168.0.2/24
-			gateway4: 192.168.0.1
-			nameservers:
-				addresses: [8.8.8.8, 1.1.1.1]
+		version: 2
+		renderer: networkd
+		ethernets:
+			NOMBRE-TARJETA-RED:
+				dhcp4: no
+				addresses:
+					- 192.168.0.2/24
+				gateway4: 192.168.0.1
+				nameservers:
+					addresses: [8.8.8.8, 1.1.1.1]
 		
 Aplicar con el comando:
 
