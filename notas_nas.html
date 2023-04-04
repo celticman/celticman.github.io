@@ -174,9 +174,13 @@ snapper -c datos2 create-config /srv/datos2</code></pre>
 <p>Listado de instantáneas:</p>
 <pre><code>snapper -c datos2 list</code></pre>
 <p>De la lista anterior extraemos el número de instantánea</p>
+<p>Se puede navegar por las diferentes instantáneas en la siguiente ruta</p>
+<pre><code>/srv/datos1/.snapshots</code></pre>
+<p>De la lista anterior extraemos el número de instantánea y podemos recuperar un fichero con el siguiente comando.</p>
 <pre><code>snapper -c datos2 -v undochange NUMERO-INSTANTANEA..0 FICHERO</code></pre>
 <p>Si se quiere restaurar todo el sistema de archivos bastaría con:</p>
-<pre><code>snapper -c datos2 -v undochange NUMERO-INSTANTANEA..0</code></pre>
+<pre><code>snapper -c datos2 -v undochange NUMERO-INSTANTANEA..0
+    </code></pre>
 <h2 id="anexo-no-usado">Anexo (no usado)</h2>
 <p>Las siguientes secciones se deja como referencia, pero no se usan por que como se explica anteriormente se prefiere un sistema formado por un disco maestro y un disco esclavo, pero indendientes.</p>
 <h3 id="creación-mirror-de-3-discos-btrfs-raid-1c3-con-cifrado-luks">Creación mirror de 3 discos BTRFS (Raid 1C3) con cifrado luks</h3>

@@ -259,12 +259,17 @@ Listado de instantáneas:
 	
 De la lista anterior extraemos el número de instantánea
 
+Se puede navegar por las diferentes instantáneas en la siguiente ruta
+
+	/srv/datos1/.snapshots
+
+De la lista anterior extraemos el número de instantánea y podemos recuperar un fichero con el siguiente comando.
+
 	snapper -c datos2 -v undochange NUMERO-INSTANTANEA..0 FICHERO
 	
 Si se quiere restaurar todo el sistema de archivos bastaría con:
 
 	snapper -c datos2 -v undochange NUMERO-INSTANTANEA..0
-
 		
 ## Anexo (no usado)
 
