@@ -36,11 +36,12 @@ Usaremos las siguientes utilidades:
 - lsblk: contenido en util-linux
 - utilidades ZFS: zfsutils-linux
 - cryptsetup: Para usar particiones LUKS
-- btrfs-progs
+- btrfs-progs: Herramientas gestión BTRFS
+- duperemove: Dedupliación
 
 En Ubuntu se instalarían con:
 
-	apt install fdisk e2fsprogs smartmontools util-linux zfsutils-linux cryptsetup-bin btrfs-progs
+	apt install fdisk e2fsprogs smartmontools util-linux zfsutils-linux cryptsetup-bin btrfs-progs duperemove
 
 
 ## Comprobar los discos duros a utilizar
@@ -253,7 +254,7 @@ Para copiar los datos del disco 1 al disco2 se puede crear un fichero en el dire
 			echo "$ruta2 NO montado"
 			exit 1
 	fi
-	rsync -avh --exclude .snapshot /srv/datos1/ /srv/datos2
+	rsync -avh --exclude .snapshots /srv/datos1/ /srv/datos2
 
 ## Verificación de los datos almacenados en los discos (Scrub)
 
@@ -286,7 +287,37 @@ De la lista anterior extraemos el número de instantánea y podemos recuperar un
 Si se quiere restaurar todo el sistema de archivos bastaría con:
 
 	snapper -c datos2 -v undochange NUMERO-INSTANTANEA..0
+	
+## Deduplicación
+
+Para realizar la Deduplicación se puede utilizar la siguiente herramienta:
+
+duperemove -r -d /srv/datos1/compartido
+
+## Asignar una dirección IP fija
+
+Una vez conectado el cable de red, podemos identificar la tarjeta de red con el comando:
+
+	ip link
+
+Editar el fichero **/etc/netplan/01-netcfg.yaml** :
+
+	network:
+	version: 2
+	renderer: networkd
+	ethernets:
+		NOMBRE-TARJETA-RED:
+			dhcp4: no
+			addresses:
+				- 192.168.0.2/24
+			gateway4: 192.168.0.1
+			nameservers:
+				addresses: [8.8.8.8, 1.1.1.1]
 		
+Aplicar con el comando:
+
+	sudo netplan apply
+
 ## Anexo (no usado)
 
 Las siguientes secciones se deja como referencia, pero no se usan por que como se explica anteriormente se prefiere un sistema formado por un disco maestro y un disco esclavo, pero indendientes.
