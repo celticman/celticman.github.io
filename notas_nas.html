@@ -193,7 +193,7 @@ echo &quot;    fin $(date --rfc-3339=seconds)&quot; &gt;&gt; /srv/scripts/sincro
 <p>La ejecución del script anterior se hace utilizando crontab, se crea un fichero <strong>/srv/scripts/sincronizar_datos1-datos2.crontab</strong> con el siguiente contenido (lo ejecuta todos los días a las 23:50):</p>
 <pre><code>50 23 * * * /srv/scripts/sincronizar_datos1-datos2.sh</code></pre>
 <p>Se añade a la ejecución de crontab con la siguiente orden:</p>
-<pre><code>sudo crontab -e /srv/scripts/sincronizar_datos1-datos2.crontab</code></pre>
+<pre><code>sudo crontab /srv/scripts/sincronizar_datos1-datos2.crontab</code></pre>
 <p>Comprobamos que se ha añadido con:</p>
 <pre><code>sudo crontab -l</code></pre>
 <p>Se puede eliminar con:</p>
