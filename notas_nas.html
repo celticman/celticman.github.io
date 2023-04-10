@@ -164,12 +164,14 @@ snapper -c datos2 create-config /srv/datos2</code></pre>
 <p>/srv/datos1/.snapshots</p></li>
 </ol>
 <h2 id="copia-de-datos-del-disco1-al-disco2">Copia de datos del disco1 al disco2</h2>
-<p>Para copiar los datos del disco 1 al disco2 se puede crear un el fichero <strong>/etc/cron.daily/sincronizar.sh</strong>, que ejecute el siguiente comando:</p>
-<pre><code>ruta1=&quot;/srv/datos1&quot;
+<p>Crear un el fichero <strong>/srv/scripts/sincronizar_datos1-datos2.sh</strong>, que contiene los siguientes comandos:</p>
+<pre><code>echo &quot;sincronizar_datos1_datos2.sh inicio $dato --rfc-3339=seconds)&quot;  &gt;&gt; /srv/scripts/sincronizar.log
+
+ruta1=&quot;/srv/datos1&quot;
 if mountpoint -q &quot;$ruta1&quot;; then
         echo &quot;Montado&quot;
 else
-        echo &quot;$ruta1 NO montado&quot;
+        echo &quot;    $ruta1 NO montado&quot; &gt;&gt; /srv/scripts/sincronizar.log
         exit 1
 fi
 
@@ -177,14 +179,25 @@ ruta2=&quot;/srv/datos2&quot;
 if mountpoint -q &quot;$ruta2&quot;; then
         echo &quot;Montado&quot;
 else
-        echo &quot;$ruta2 NO montado&quot;
+        echo &quot;    $ruta2 NO montado&quot; &gt;&gt; /srv/scripts/sincronizar.log
         exit 1
 fi
-rsync -avh --exclude .snapshots --delete-after /srv/datos1/ /srv/datos2</code></pre>
+
+rsync -avh --exclude .snapshots --delete-after /srv/datos1/ /srv/datos2
+
+echo &quot;    fin $(date --rfc-3339=seconds)&quot; &gt;&gt; /srv/scripts/sincronizar.log </code></pre>
 <p>Debe ser propiedad de root:</p>
-<pre><code>sudo chown root:root /etc/cron.daily/sincronizar.sh</code></pre>
+<pre><code>sudo chown root:root /etc/cron.daily/sincronizar_datos1-datos2.sh</code></pre>
 <p>Debe tener permiso de ejecución:</p>
-<pre><code>sudo chmod 0700 /etc/cron.daily/sincronizar.sh</code></pre>
+<pre><code>sudo chmod 0700 /etc/cron.daily/sincronizar_datos1-datos2.sh</code></pre>
+<p>La ejecución del script anterior se hace utilizando crontab, se crea un fichero <strong>/srv/scripts/sincronizar_datos1-datos2.crontab</strong> con el siguiente contenido:</p>
+<pre><code>10 01 * * * /srv/scripts/sincronizar_datos1-datos2.sh</code></pre>
+<p>Se añade a la ejecución de crontab con la siguiente orden:</p>
+<pre><code>sudo crontab -e /srv/scripts/sincronizar_datos1-datos2.crontab</code></pre>
+<p>Comprobamos que se ha añadido con:</p>
+<pre><code>sudo crontab -l</code></pre>
+<p>Se puede eliminar con:</p>
+<pre><code>sudo crontab -r</code></pre>
 <h2 id="verificación-de-los-datos-almacenados-en-los-discos-scrub">Verificación de los datos almacenados en los discos (Scrub)</h2>
 <p>La verificación de los datos almacenados se realiza del siguiente modo:</p>
 <pre><code>btrfs scrub start /srv/datos1</code></pre>
@@ -281,7 +294,7 @@ rsync -avh --exclude .snapshots --delete-after /srv/datos1/ /srv/datos2</code></
 <footer>
 Estilo: <a href="https://minicss.us">Mini.css</a>
 Generador: <a href="https://pandoc.org/">pandoc 2.9.2.1</a>
-Fecha: 2023-04-04
+Fecha: 2023-04-10
 Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
 </footer>
 </div>

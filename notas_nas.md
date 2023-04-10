@@ -240,14 +240,15 @@ Para la gestión de imágenes se utilizará Snapper que es una herramienta creda
 	
 ## Copia de datos del disco1 al disco2
 
-Para copiar los datos del disco 1 al disco2 se puede crear un el fichero **/etc/cron.daily/sincronizar.sh**, que ejecute el siguiente comando:
+Crear un el fichero **/srv/scripts/sincronizar_datos1-datos2.sh**, que contiene los siguientes comandos:
 
+	echo "sincronizar_datos1_datos2.sh inicio $dato --rfc-3339=seconds)"  >> /srv/scripts/sincronizar.log
 
 	ruta1="/srv/datos1"
 	if mountpoint -q "$ruta1"; then
 			echo "Montado"
 	else
-			echo "$ruta1 NO montado"
+			echo "    $ruta1 NO montado" >> /srv/scripts/sincronizar.log
 			exit 1
 	fi
 
@@ -255,18 +256,37 @@ Para copiar los datos del disco 1 al disco2 se puede crear un el fichero **/etc/
 	if mountpoint -q "$ruta2"; then
 			echo "Montado"
 	else
-			echo "$ruta2 NO montado"
+			echo "    $ruta2 NO montado" >> /srv/scripts/sincronizar.log
 			exit 1
 	fi
+	
 	rsync -avh --exclude .snapshots --delete-after /srv/datos1/ /srv/datos2
+	
+	echo "    fin $(date --rfc-3339=seconds)" >> /srv/scripts/sincronizar.log 
 	
 Debe ser propiedad de root:
 
-	sudo chown root:root /etc/cron.daily/sincronizar.sh
+	sudo chown root:root /etc/cron.daily/sincronizar_datos1-datos2.sh
 	
 Debe tener permiso de ejecución:
 
-	sudo chmod 0700 /etc/cron.daily/sincronizar.sh
+	sudo chmod 0700 /etc/cron.daily/sincronizar_datos1-datos2.sh
+	
+La ejecución del script anterior se hace utilizando crontab, se crea un fichero **/srv/scripts/sincronizar_datos1-datos2.crontab** con el siguiente contenido:
+
+	10 01 * * * /srv/scripts/sincronizar_datos1-datos2.sh
+	
+Se añade a la ejecución de crontab con la siguiente orden:
+
+	sudo crontab -e /srv/scripts/sincronizar_datos1-datos2.crontab
+	
+Comprobamos que se ha añadido con:
+
+	sudo crontab -l
+	
+Se puede eliminar con:
+
+	sudo crontab -r
 
 ## Verificación de los datos almacenados en los discos (Scrub)
 
