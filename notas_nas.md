@@ -272,9 +272,9 @@ Debe tener permiso de ejecución:
 
 	sudo chmod 0700 /etc/cron.daily/sincronizar_datos1-datos2.sh
 	
-La ejecución del script anterior se hace utilizando crontab, se crea un fichero **/srv/scripts/sincronizar_datos1-datos2.crontab** con el siguiente contenido:
+La ejecución del script anterior se hace utilizando crontab, se crea un fichero **/srv/scripts/sincronizar_datos1-datos2.crontab** con el siguiente contenido (lo ejecuta todos los días a las 23:50):
 
-	10 01 * * * /srv/scripts/sincronizar_datos1-datos2.sh
+	50 23 * * * /srv/scripts/sincronizar_datos1-datos2.sh
 	
 Se añade a la ejecución de crontab con la siguiente orden:
 
