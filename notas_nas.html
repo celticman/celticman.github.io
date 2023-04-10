@@ -190,8 +190,8 @@ echo &quot;    fin $(date --rfc-3339=seconds)&quot; &gt;&gt; /srv/scripts/sincro
 <pre><code>sudo chown root:root /etc/cron.daily/sincronizar_datos1-datos2.sh</code></pre>
 <p>Debe tener permiso de ejecución:</p>
 <pre><code>sudo chmod 0700 /etc/cron.daily/sincronizar_datos1-datos2.sh</code></pre>
-<p>La ejecución del script anterior se hace utilizando crontab, se crea un fichero <strong>/srv/scripts/sincronizar_datos1-datos2.crontab</strong> con el siguiente contenido:</p>
-<pre><code>10 01 * * * /srv/scripts/sincronizar_datos1-datos2.sh</code></pre>
+<p>La ejecución del script anterior se hace utilizando crontab, se crea un fichero <strong>/srv/scripts/sincronizar_datos1-datos2.crontab</strong> con el siguiente contenido (lo ejecuta todos los días a las 23:50):</p>
+<pre><code>50 23 * * * /srv/scripts/sincronizar_datos1-datos2.sh</code></pre>
 <p>Se añade a la ejecución de crontab con la siguiente orden:</p>
 <pre><code>sudo crontab -e /srv/scripts/sincronizar_datos1-datos2.crontab</code></pre>
 <p>Comprobamos que se ha añadido con:</p>
