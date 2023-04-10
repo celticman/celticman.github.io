@@ -278,7 +278,7 @@ La ejecución del script anterior se hace utilizando crontab, se crea un fichero
 	
 Se añade a la ejecución de crontab con la siguiente orden:
 
-	sudo crontab -e /srv/scripts/sincronizar_datos1-datos2.crontab
+	sudo crontab /srv/scripts/sincronizar_datos1-datos2.crontab
 	
 Comprobamos que se ha añadido con:
 
