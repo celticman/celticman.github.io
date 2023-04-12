@@ -19,21 +19,24 @@
 <h3 id="objetivo">Objetivo</h3>
 <p>El objetivo es tener un NAS con los siguientes objetivos:</p>
 <ol type="1">
-<li><p>Fácil de mantener, para lo que ha de cumplir los siguientes requisitos:</p>
+<li><p><strong>Fácil de mantener</strong>, para lo que ha de cumplir los siguientes requisitos:</p>
 <ul>
 <li><p>Cada uno de los discos ha de contener todos los datos.</p></li>
 <li><p>Ha de ser fácil de montar los discos en otro ordenador: Por ejemplo en caso de fallo del ordenador o del disco de arranque, ha de poder extraerse cualquiera de los discos de datos e insertarlo en otro ordenador.</p></li>
 </ul></li>
-<li><p>El sistema de archivos ha de tener snapshots, que permita recuperar datos borrados por accidente ó sobreescritos.</p></li>
-<li><p>El sistema de archivos ha de realizar verificaciones de los archivos guardados.</p></li>
-<li><p>Todos los discos han de estar cifrados.</p></li>
+<li><p><strong>Instantáneas (snapshots)</strong> soportadas por el sistema de archivos, que permita recuperar datos borrados por accidente ó sobreescritos.</p></li>
+<li><p><strong>Verificación (scrub)</strong> de los datos almacenados..</p></li>
+<li><p><strong>Cifrado</strong> de todos los discos.</p></li>
 </ol>
 <h3 id="descripción-del-sistema">Descripción del sistema</h3>
 <p>En el PC que ha de actuar como NAS, el servidor ha de estar formado por los siguientes discos:</p>
 <ul>
 <li><p>1 disco duro de arranque: En este disco se instala el sistema operativo con la partición cifrada.</p></li>
-<li><p>2 ó 3 discos duros de datos: En cada disco duro se crea una partición BTRFS (cifrada con LUKS). Hay un disco de datos primario en el que se escriben los datos y uno o dos secundarios en los que se copian los datos del primario.</p></li>
+<li><p>2 ó 3 discos duros de datos: En cada disco duro se crea una partición BTRFS (cifrada con LUKS). Hay un disco de datos primario en el que se escriben los datos y uno o dos secundarios.</p></li>
+<li><p>Mediante un comando rsync se copian los datos del dispco primario (disco1) a los discos secundarios. Este script se ha de ejecutar de forma periódica.</p></li>
 </ul>
+<h2 id="sistema-operativo">Sistema operativo</h2>
+<p>Se instala KUbuntu LTS en el disco duro de arranque, con cifrado LUKS.</p>
 <h2 id="paquetes-necesarios">Paquetes necesarios</h2>
 <p>Usaremos las siguientes utilidades:</p>
 <ul>
@@ -103,7 +106,7 @@
 <li><p>Creamos una nueva tabla de particiones GPT.</p></li>
 <li><p>Creamos una nueva particion con los siguientes datos:</p>
 <ul>
-<li>Tipo: Primarioa</li>
+<li>Tipo: Primario</li>
 <li>Sistema de archivos: BTRFS</li>
 <li>Cifrar con LUKS: Sí</li>
 <li>Etiqueta: Por ejemplo DATOS_MODELO_NUM-SERIE (p.ej. DATOS_ST4000-Y4PC)</li>
@@ -240,6 +243,31 @@ echo &quot;    fin $(date --rfc-3339=seconds)&quot; &gt;&gt; /srv/scripts/sincro
 <pre><code>sudo apt install ssh</code></pre>
 <p>Comprobar que se está ejecutando:</p>
 <pre><code>sudo systemctl status ssh</code></pre>
+<h2 id="funciones-pendientes">FUNCIONES PENDIENTES</h2>
+<ol type="1">
+<li><p>Ejecución Automática de Scrub automático (p.ej. cada mes), con notificación.</p></li>
+<li><p>Notificación copia de disco1 a disco2.</p></li>
+<li><p>Ejecución Automática de Deduplicación de datos, con notificación.</p></li>
+<li><p>Compartir los ficheros snapshot</p></li>
+<li><p>Acceso a ficheros vía web:</p>
+<ul>
+<li><a href="https://filebrowser.org/">filebrowser - Crear tu cloud, accediendo a los ficheros con una interfaz web</a></li>
+<li><a href="https://www.seafile.com/en/home/">Seafile - Reliable and Performant File Sync and Share Solution</a>: Puede almacenar los ficheros cifrados (encriptados antes de subirlos al servidor).</li>
+<li><a href="https://pydio.com">Pydio - Document Sharing At Scale, Cells V4 now provides secure, cloud-native, scalable, self-hosted, open-core document sharing and collaboration</a></li>
+</ul></li>
+<li><p>Acceso remoto con VPN (Wireguard)</p></li>
+<li><p>Sincronización ficheros con syncthing</p></li>
+<li><p>Sincronización de contactos y calendario:</p>
+<ul>
+<li>Radicale</li>
+</ul></li>
+<li><p>Backup de servidor:</p>
+<ul>
+<li><p>A discos externos</p></li>
+<li><p>A otro NAS Simple</p></li>
+<li><p>A un servicio en la nube</p></li>
+</ul></li>
+</ol>
 <h2 id="anexo-no-usado">Anexo (no usado)</h2>
 <p>Las siguientes secciones se deja como referencia, pero no se usan por que como se explica anteriormente se prefiere un sistema formado por un disco maestro y un disco esclavo, pero indendientes.</p>
 <h3 id="creación-mirror-de-3-discos-btrfs-raid-1c3-con-cifrado-luks">Creación mirror de 3 discos BTRFS (Raid 1C3) con cifrado luks</h3>
@@ -294,7 +322,7 @@ echo &quot;    fin $(date --rfc-3339=seconds)&quot; &gt;&gt; /srv/scripts/sincro
 <footer>
 Estilo: <a href="https://minicss.us">Mini.css</a>
 Generador: <a href="https://pandoc.org/">pandoc 2.9.2.1</a>
-Fecha: 2023-04-10
+Fecha: 2023-04-12
 Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
 </footer>
 </div>

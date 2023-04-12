@@ -2,21 +2,21 @@
 
 ## Introducción
 
-### Objetivo
+### Objetivos
 
 El objetivo es tener un NAS con los siguientes objetivos:
 
-1. Fácil de mantener, para lo que ha de cumplir los siguientes requisitos:
+1. **Fácil de mantener**, para lo que ha de cumplir los siguientes requisitos:
 
     - Cada uno de los discos ha de contener todos los datos.
     
     - Ha de ser fácil de montar los discos en otro ordenador: Por ejemplo en caso de fallo del ordenador o del disco de arranque, ha de poder extraerse cualquiera de los discos de datos e insertarlo en otro ordenador.
 
-2. El sistema de archivos ha de tener snapshots, que permita recuperar datos borrados por accidente ó sobreescritos.
+2. **Instantáneas  (snapshots)** soportadas por el sistema de archivos, que permita recuperar datos borrados por accidente ó sobreescritos.
 
-3. El sistema de archivos ha de realizar verificaciones de los archivos guardados.
+3. **Verificación (scrub)** de los datos almacenados..
 
-4. Todos los discos han de estar cifrados.
+4. **Cifrado** de todos los discos.
 
 ### Descripción del sistema
 
@@ -24,7 +24,13 @@ En el PC que ha de actuar como NAS, el servidor ha de estar formado por los sigu
 
 - 1 disco duro de arranque: En este disco se instala el sistema operativo con la partición cifrada.
 
-- 2 ó 3 discos duros de datos: En cada disco duro se crea una partición BTRFS (cifrada con LUKS). Hay un disco de datos primario en el que se escriben los datos y uno o dos secundarios en los que se copian los datos del primario.
+- 2 ó 3 discos duros de datos: En cada disco duro se crea una partición BTRFS (cifrada con LUKS). Hay un disco de datos primario en el que se escriben los datos y uno o dos secundarios.
+
+- Mediante un comando rsync se copian los datos del dispco primario (disco1) a los discos secundarios. Este script se ha de ejecutar de forma periódica.
+
+## Sistema operativo
+
+Se instala KUbuntu LTS en el disco duro de arranque, con cifrado LUKS.
 
 ## Paquetes necesarios
 
@@ -138,7 +144,7 @@ Al figurar el número de serie, podemos identificar el disco duro que se va a pr
 
 4. Creamos una nueva particion con los siguientes datos:
 
-    - Tipo: Primarioa
+    - Tipo: Primario
     - Sistema de archivos: BTRFS
     - Cifrar con LUKS: Sí
     - Etiqueta: Por ejemplo DATOS_MODELO_NUM-SERIE (p.ej. DATOS_ST4000-Y4PC)
@@ -359,6 +365,38 @@ Instalar servidor SSH:
 Comprobar que se está ejecutando:
 
 	sudo systemctl status ssh
+	
+## FUNCIONES PENDIENTES 
+
+1. Ejecución Automática de Scrub automático (p.ej. cada mes), con notificación.
+
+2. Notificación copia de disco1 a disco2.
+
+3. Ejecución Automática de Deduplicación de datos, con notificación.
+
+4. Compartir los ficheros snapshot
+
+5. Acceso a ficheros vía web:
+
+    - [filebrowser - Crear tu cloud, accediendo a los ficheros con una interfaz web](https://filebrowser.org/)
+    - [Seafile - Reliable and Performant File Sync and Share Solution](https://www.seafile.com/en/home/): Puede almacenar los ficheros cifrados (encriptados antes de subirlos al servidor).
+    - [Pydio - Document Sharing At Scale, Cells V4 now provides secure, cloud-native, scalable, self-hosted, open-core document sharing and collaboration](https://pydio.com)
+
+7. Acceso remoto con VPN (Wireguard)
+
+8. Sincronización ficheros con syncthing
+
+9. Sincronización de contactos y calendario:
+
+	- Radicale
+	
+10. Backup de servidor:
+
+	- A discos externos
+	
+	- A otro NAS Simple
+	
+	- A un servicio en la nube
 
 ## Anexo (no usado)
 
