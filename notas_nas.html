@@ -16,33 +16,52 @@
 
 <h1 id="nas-con-linux-ubuntu">NAS con Linux (Ubuntu)</h1>
 <h2 id="introducción">Introducción</h2>
-<h3 id="objetivo">Objetivo</h3>
+<h3 id="objetivos">Objetivos</h3>
 <p>El objetivo es tener un NAS con los siguientes objetivos:</p>
 <ol type="1">
-<li><p><strong>Fácil de mantener</strong>, para lo que ha de cumplir los siguientes requisitos:</p>
+<li><p><strong>Fácil de mantener</strong>, para lo que ha de cumplir los
+siguientes requisitos:</p>
 <ul>
 <li><p>Cada uno de los discos ha de contener todos los datos.</p></li>
-<li><p>Ha de ser fácil de montar los discos en otro ordenador: Por ejemplo en caso de fallo del ordenador o del disco de arranque, ha de poder extraerse cualquiera de los discos de datos e insertarlo en otro ordenador.</p></li>
+<li><p>Ha de ser fácil de montar los discos en otro ordenador: Por
+ejemplo en caso de fallo del ordenador o del disco de arranque, ha de
+poder extraerse cualquiera de los discos de datos e insertarlo en otro
+ordenador.</p></li>
 </ul></li>
-<li><p><strong>Instantáneas (snapshots)</strong> soportadas por el sistema de archivos, que permita recuperar datos borrados por accidente ó sobreescritos.</p></li>
-<li><p><strong>Verificación (scrub)</strong> de los datos almacenados..</p></li>
+<li><p><strong>Instantáneas (snapshots)</strong> soportadas por el
+sistema de archivos, que permita recuperar datos borrados por accidente
+ó sobreescritos.</p></li>
+<li><p><strong>Verificación (scrub)</strong> de los datos
+almacenados..</p></li>
 <li><p><strong>Cifrado</strong> de todos los discos.</p></li>
 </ol>
 <h3 id="descripción-del-sistema">Descripción del sistema</h3>
-<p>En el PC que ha de actuar como NAS, el servidor ha de estar formado por los siguientes discos:</p>
+<p>En el PC que ha de actuar como NAS, el servidor ha de estar formado
+por los siguientes discos:</p>
 <ul>
-<li><p>1 disco duro de arranque: En este disco se instala el sistema operativo con la partición cifrada.</p></li>
-<li><p>2 ó 3 discos duros de datos: En cada disco duro se crea una partición BTRFS (cifrada con LUKS). Hay un disco de datos primario en el que se escriben los datos y uno o dos secundarios.</p></li>
-<li><p>Mediante un comando rsync se copian los datos del dispco primario (disco1) a los discos secundarios. Este script se ha de ejecutar de forma periódica.</p></li>
+<li><p><strong>1 disco duro de arranque</strong>: En este disco se
+instala el sistema operativo con la partición cifrada.</p></li>
+<li><p><strong>2 ó 3 discos duros de datos</strong>: En cada disco duro
+se crea una partición BTRFS (cifrada con LUKS):</p>
+<ul>
+<li>Un disco primario en el que se escriben los datos.</li>
+<li>Uno o dos discos secundarios.</li>
+</ul></li>
+<li><p><strong>Copia de los datos del disco primario al
+secundario</strong>: Mediante un comando rsync se copian los datos del
+dispco primario (disco1) a los discos secundarios. Este script se ha de
+ejecutar de forma periódica.</p></li>
 </ul>
 <h2 id="sistema-operativo">Sistema operativo</h2>
-<p>Se instala KUbuntu LTS en el disco duro de arranque, con cifrado LUKS.</p>
+<p>Se instala KUbuntu LTS en el disco duro de arranque, con cifrado
+LUKS.</p>
 <h2 id="paquetes-necesarios">Paquetes necesarios</h2>
 <p>Usaremos las siguientes utilidades:</p>
 <ul>
 <li>fdisk: (particionado)</li>
 <li>badblocks: contenido en e2fsprogs (comprobación de escritura)</li>
-<li>smartctl: contenido en smartmontools (Lectura estadísticas SMART)</li>
+<li>smartctl: contenido en smartmontools (Lectura estadísticas
+SMART)</li>
 <li>lsblk: contenido en util-linux</li>
 <li>utilidades ZFS: zfsutils-linux</li>
 <li>cryptsetup: Para usar particiones LUKS</li>
@@ -51,10 +70,17 @@
 </ul>
 <p>En Ubuntu se instalarían con:</p>
 <pre><code>apt install fdisk e2fsprogs smartmontools util-linux zfsutils-linux cryptsetup-bin btrfs-progs duperemove</code></pre>
-<h2 id="comprobar-los-discos-duros-a-utilizar">Comprobar los discos duros a utilizar</h2>
+<h2 id="comprobación-de-la-memoria-del-pcnas">Comprobación de la memoria
+del PC/NAS</h2>
+<p>Verificar que la memoria del PC es correcta, para evitar que errores
+en la memoria provoquen fallos en los datos almacenados. Se puede
+utiliza <a href="https://memtest.org/">Memtest86+</a></p>
+<h2 id="comprobar-los-discos-duros-a-utilizar">Comprobar los discos
+duros a utilizar</h2>
 <ol type="1">
 <li><p>Comprobar que disco duro se quiere probar</p>
-<p>lsblk -o NAME,MAJ:MIN,RM,SIZE,RO,TYPE,MOUNTPOINT,MODEL,SERIAL</p></li>
+<p>lsblk -o
+NAME,MAJ:MIN,RM,SIZE,RO,TYPE,MOUNTPOINT,MODEL,SERIAL</p></li>
 <li><p>Leer los datos SMART antes de ejecutar badblocks:</p>
 <p>2.1. Imprime los test disponibles en el disco&gt;</p>
 <pre><code> sudo smartctl -c /dev/sdX</code></pre>
@@ -74,15 +100,18 @@
 <pre><code> sudo badblocks -wsv /dev/sdx</code></pre>
 <p>4.2. Ejecutar un test rápido (con una sola trama de datos):</p>
 <pre><code> sudo badblocks -wsv -t 0xAA /dev/sdx</code></pre></li>
-<li><p>Comprobar el efecto de la escritura y lectura de todos los bloques:</p>
+<li><p>Comprobar el efecto de la escritura y lectura de todos los
+bloques:</p>
 <p>5.1. Volver a ejecutar el test SMART (corto o largo):</p>
 <pre><code> sudo smartctl -t short -C /dev/sdX
 
  sudo smartctl -t long -C /dev/sdX</code></pre>
 <p>5.2. Generar los resultados:</p>
 <pre><code> sudo smartctl -a /dev/sdX &gt; sdX_smart_final.txt</code></pre></li>
-<li><p>Comparar los dados iniciales (sdX_smart_inicial.txt) y finales (sdX_smart_final.txt):</p>
-<p>Según del artículo: https://www.backblaze.com/blog/hard-drive-smart-stats/</p>
+<li><p>Comparar los dados iniciales (sdX_smart_inicial.txt) y finales
+(sdX_smart_final.txt):</p>
+<p>Según del artículo:
+https://www.backblaze.com/blog/hard-drive-smart-stats/</p>
 <p>Ejecutar el siguiente comando para comparar los dos resultados:</p>
 <pre><code> cat sdX_smart*.txt | grep &#39;Reallocated\|Reported\|Command_Ti\|Current\|Offline_Un&#39;</code></pre>
 <p>Por orden de importantancia:</p>
@@ -93,55 +122,75 @@
  - Uncorrectable Sector Count</code></pre>
 <p>Según el disco hay fallo ó no ejecutando:</p>
 <pre><code> smartctl -H /dev/sdX</code></pre></li>
+<li><p>Spinrite</p></li>
 </ol>
 <h2 id="preparación-de-los-discos">Preparación de los discos</h2>
 <h3 id="identificación-de-los-discos">Identificación de los discos</h3>
-<p>Los discos identificados antes, se identifican utilizando lsblk con el siguiente comando:</p>
+<p>Los discos identificados antes, se identifican utilizando lsblk con
+el siguiente comando:</p>
 <pre><code>lsblk -o NAME,MAJ,MIN,RM,SIZE,RO,TYPE,MOUNTPOINTS,FSTYPE,MODEL,SERIAL</code></pre>
-<p>Al figurar el número de serie, podemos identificar el disco duro que se va a preparar.</p>
-<h3 id="particionamiento-con-kde-partition-manager">Particionamiento con KDE Partition Manager</h3>
+<p>Al figurar el número de serie, podemos identificar el disco duro que
+se va a preparar.</p>
+<h3 id="particionamiento-con-kde-partition-manager">Particionamiento con
+KDE Partition Manager</h3>
 <ol type="1">
 <li><p>Arrancamos KDE Partition Manager</p></li>
-<li><p>Seleccionamos el disco a particionar (comprobando el número de serie que aparece en la pestaña de datos SMART).</p></li>
+<li><p>Seleccionamos el disco a particionar (comprobando el número de
+serie que aparece en la pestaña de datos SMART).</p></li>
 <li><p>Creamos una nueva tabla de particiones GPT.</p></li>
 <li><p>Creamos una nueva particion con los siguientes datos:</p>
 <ul>
 <li>Tipo: Primario</li>
 <li>Sistema de archivos: BTRFS</li>
-<li>Cifrar con LUKS: Sí</li>
-<li>Etiqueta: Por ejemplo DATOS_MODELO_NUM-SERIE (p.ej. DATOS_ST4000-Y4PC)</li>
+<li>Cifrar con LUKS: Sí (Usado la misma contraseña que el disco de
+arranque)</li>
+<li>Etiqueta: Por ejemplo DATOS_MODELO_NUM-SERIE (p.ej.
+DATOS_ST4000-Y4PC)</li>
 </ul></li>
 <li><p>Identificamos la el UUID de la particion cifrada.</p></li>
-<li><p>Modificamos el fichero /etc/crypttab añadiendo una nueva línea con el siguiente formato:</p>
+<li><p>Modificamos el fichero /etc/crypttab añadiendo una nueva línea
+con el siguiente formato:</p>
 <pre><code> NUMERO-SERIE_crypt UUID=&quot;UUID DE LA PARTICIÓN CIFRADA&quot; none luks, discard</code></pre>
 <p>Por ejemplo sería:</p>
 <pre><code> qazwsx_crypt UUID=&quot;e4d76f43-e510-4b5d-a422-e92d1075d93c&quot; none luks, discard</code></pre>
-<p>Nota: No es necesario introducir la contraseña utilizando crypttab si se utiliza la misma contraseña que para el disco de arranque.</p></li>
-<li><p>Creamos los directorios de almacenamiento de los discos 1 y 2:</p>
+<p>Nota: No es necesario introducir la contraseña utilizando crypttab si
+se utiliza la misma contraseña que para el disco de arranque.</p></li>
+<li><p>Creamos los directorios de almacenamiento de los discos 1 y
+2:</p>
 <p>mkdir /srv/datos1 mkdir /srv/datos2</p></li>
-<li><p>Montamos la partición automaticamente usando /etc/fstab. Se añade una nueva línea:</p>
+<li><p>Montamos la partición automaticamente usando /etc/fstab. Se añade
+una nueva línea:</p>
 <p>/dev/mapper/qazwsx_crypt /srv/datos1 defaults 0 0 mágenes</p></li>
 <li><p>Repetir los pasos 2 a 8 para el segundo disco. Cambiando:</p>
 <ul>
 <li>/srv/datos1 -&gt; /srv/datos2</li>
-<li>“qazwsx” por los 6 últimos caracteres del número de serie del segundo disco.</li>
+<li>“qazwsx” por los 6 últimos caracteres del número de serie del
+segundo disco.</li>
 </ul></li>
 </ol>
-<h2 id="gestión-de-instantáneas-snapshots">Gestión de instantáneas (snapshots)</h2>
-<p>Basado en <a href="https://inlab.fib.upc.edu/es/blog/snapshots-con-btrfs">Snapshots con Btrfs de inlab.fib.upc.edu</a>.</p>
-<p>Para la gestión de imágenes se utilizará Snapper que es una herramienta creda por openSUSE para la gestión de instantáneas del sistema de archivos BTRFS.</p>
+<h2 id="gestión-de-instantáneas-snapshots">Gestión de instantáneas
+(snapshots)</h2>
+<p>Basado en <a
+href="https://inlab.fib.upc.edu/es/blog/snapshots-con-btrfs">Snapshots
+con Btrfs de inlab.fib.upc.edu</a>.</p>
+<p>Para la gestión de imágenes se utilizará Snapper que es una
+herramienta creda por openSUSE para la gestión de instantáneas del
+sistema de archivos BTRFS.</p>
 <ol type="1">
 <li><p>Instalación Snapper</p>
 <p>sudo apt install snapper</p></li>
 <li><p>Crear la configuración de Snapper para los dos discos</p>
-<p>sudo snapper -c datos1 create-config /srv/datos1 sudo snapper -c datos2 create-config /srv/datos2</p></li>
+<p>sudo snapper -c datos1 create-config /srv/datos1 sudo snapper -c
+datos2 create-config /srv/datos2</p></li>
 <li><p>Arrancar el servicio de Snapper:</p>
-<p>sudo systemctl enable –now snapper-timeline.timer snapper-cleanup.timer</p></li>
+<p>sudo systemctl enable –now snapper-timeline.timer
+snapper-cleanup.timer</p></li>
 <li><p>Crear un subvolumen</p>
 <p>Ejecutar los siguientes comandos:</p>
 <pre><code> cd /srv/datos1
  sudo btrfs subvolume create datos1-compartir</code></pre>
-<p>Debe aparecer un nuevo directorio /srv/datos1/datos1-compartir</p></li>
+<p>Debe aparecer un nuevo directorio
+/srv/datos1/datos1-compartir</p></li>
 <li><p>Crear la configuración de Snapper</p>
 <p>Se ejecuta:</p>
 <pre><code>snapper -c datos1 create-config /srv/datos1
@@ -154,7 +203,10 @@ snapper -c datos2 create-config /srv/datos2</code></pre>
 <p>Se listan las instantáneas:</p>
 <pre><code> snapper -c datos1 list</code></pre></li>
 <li><p>Creación automática de instantáneas</p>
-<p>Por defecto Snapper debe realizar imágenes automáticamente de los directorios configurados. La configuración de retención de las instantáneas debe ser (que aparece en /etc/snapper/configs/datos1 ) son:</p>
+<p>Por defecto Snapper debe realizar imágenes automáticamente de los
+directorios configurados. La configuración de retención de las
+instantáneas debe ser (que aparece en /etc/snapper/configs/datos1 )
+son:</p>
 <ul>
 <li>TIMELINE_LIMIT_HOURLY=“36”</li>
 <li>TIMELINE_LIMIT_DAILY=“10”</li>
@@ -164,10 +216,15 @@ snapper -c datos2 create-config /srv/datos2</code></pre>
 </ul></li>
 <li><p>Acceso a las instantáneas:</p>
 <p>Se puede acceder a las instantánea en la siguiente ruta:</p>
-<p>/srv/datos1/.snapshots</p></li>
+<pre><code> /srv/datos1/.snapshots</code></pre>
+<p>Dentro del directorio anterior aparecerán las instantáneas por su
+número (en el subdirectorio snapchot).</p></li>
 </ol>
-<h2 id="copia-de-datos-del-disco1-al-disco2">Copia de datos del disco1 al disco2</h2>
-<p>Crear un el fichero <strong>/srv/scripts/sincronizar_datos1-datos2.sh</strong>, que contiene los siguientes comandos:</p>
+<h2 id="copia-de-datos-del-disco1-al-disco2">Copia de datos del disco1
+al disco2</h2>
+<p>Crear un el fichero
+<strong>/srv/scripts/sincronizar_datos1-datos2.sh</strong>, que contiene
+los siguientes comandos:</p>
 <pre><code>echo &quot;sincronizar_datos1_datos2.sh inicio $dato --rfc-3339=seconds)&quot;  &gt;&gt; /srv/scripts/sincronizar.log
 
 ruta1=&quot;/srv/datos1&quot;
@@ -193,7 +250,10 @@ echo &quot;    fin $(date --rfc-3339=seconds)&quot; &gt;&gt; /srv/scripts/sincro
 <pre><code>sudo chown root:root /etc/cron.daily/sincronizar_datos1-datos2.sh</code></pre>
 <p>Debe tener permiso de ejecución:</p>
 <pre><code>sudo chmod 0700 /etc/cron.daily/sincronizar_datos1-datos2.sh</code></pre>
-<p>La ejecución del script anterior se hace utilizando crontab, se crea un fichero <strong>/srv/scripts/sincronizar_datos1-datos2.crontab</strong> con el siguiente contenido (lo ejecuta todos los días a las 23:50):</p>
+<p>La ejecución del script anterior se hace utilizando crontab, se crea
+un fichero
+<strong>/srv/scripts/sincronizar_datos1-datos2.crontab</strong> con el
+siguiente contenido (lo ejecuta todos los días a las 23:50):</p>
 <pre><code>50 23 * * * /srv/scripts/sincronizar_datos1-datos2.sh</code></pre>
 <p>Se añade a la ejecución de crontab con la siguiente orden:</p>
 <pre><code>sudo crontab /srv/scripts/sincronizar_datos1-datos2.crontab</code></pre>
@@ -201,27 +261,37 @@ echo &quot;    fin $(date --rfc-3339=seconds)&quot; &gt;&gt; /srv/scripts/sincro
 <pre><code>sudo crontab -l</code></pre>
 <p>Se puede eliminar con:</p>
 <pre><code>sudo crontab -r</code></pre>
-<h2 id="verificación-de-los-datos-almacenados-en-los-discos-scrub">Verificación de los datos almacenados en los discos (Scrub)</h2>
-<p>La verificación de los datos almacenados se realiza del siguiente modo:</p>
+<h2
+id="verificación-de-los-datos-almacenados-en-los-discos-scrub">Verificación
+de los datos almacenados en los discos (Scrub)</h2>
+<p>La verificación de los datos almacenados se realiza del siguiente
+modo:</p>
 <pre><code>btrfs scrub start /srv/datos1</code></pre>
-<p>Se puede consultar el resultado de la verificación con el siguiente comando:</p>
+<p>Se puede consultar el resultado de la verificación con el siguiente
+comando:</p>
 <pre><code>btrfs scrub status /srv/datos1</code></pre>
 <h2 id="recuperar-datos">Recuperar datos</h2>
-<p>Se puede recuperar los datos desde una determinada instantánea (snapshot).</p>
+<p>Se puede recuperar los datos desde una determinada instantánea
+(snapshot).</p>
 <p>Listado de instantáneas:</p>
 <pre><code>snapper -c datos2 list</code></pre>
 <p>De la lista anterior extraemos el número de instantánea</p>
-<p>Se puede navegar por las diferentes instantáneas en la siguiente ruta</p>
+<p>Se puede navegar por las diferentes instantáneas en la siguiente
+ruta</p>
 <pre><code>/srv/datos1/.snapshots</code></pre>
-<p>De la lista anterior extraemos el número de instantánea y podemos recuperar un fichero con el siguiente comando.</p>
+<p>De la lista anterior extraemos el número de instantánea y podemos
+recuperar un fichero con el siguiente comando.</p>
 <pre><code>snapper -c datos2 -v undochange NUMERO-INSTANTANEA..0 FICHERO</code></pre>
 <p>Si se quiere restaurar todo el sistema de archivos bastaría con:</p>
 <pre><code>snapper -c datos2 -v undochange NUMERO-INSTANTANEA..0</code></pre>
 <h2 id="deduplicación">Deduplicación</h2>
-<p>Para realizar la Deduplicación se puede utilizar la siguiente herramienta:</p>
+<p>Para realizar la Deduplicación se puede utilizar la siguiente
+herramienta:</p>
 <p>duperemove -r -d /srv/datos1/compartido</p>
-<h2 id="asignar-una-dirección-ip-fija">Asignar una dirección IP fija</h2>
-<p>Una vez conectado el cable de red, podemos identificar la tarjeta de red con el comando:</p>
+<h2 id="asignar-una-dirección-ip-fija">Asignar una dirección IP
+fija</h2>
+<p>Una vez conectado el cable de red, podemos identificar la tarjeta de
+red con el comando:</p>
 <pre><code>ip link</code></pre>
 <p>Editar el fichero <strong>/etc/netplan/01-netcfg.yaml</strong> :</p>
 <pre><code>network:
@@ -245,15 +315,24 @@ echo &quot;    fin $(date --rfc-3339=seconds)&quot; &gt;&gt; /srv/scripts/sincro
 <pre><code>sudo systemctl status ssh</code></pre>
 <h2 id="funciones-pendientes">FUNCIONES PENDIENTES</h2>
 <ol type="1">
-<li><p>Ejecución Automática de Scrub automático (p.ej. cada mes), con notificación.</p></li>
+<li><p>Ejecución Automática de Scrub automático (p.ej. cada mes), con
+notificación.</p></li>
 <li><p>Notificación copia de disco1 a disco2.</p></li>
-<li><p>Ejecución Automática de Deduplicación de datos, con notificación.</p></li>
+<li><p>Ejecución Automática de Deduplicación de datos, con
+notificación.</p></li>
 <li><p>Compartir los ficheros snapshot</p></li>
 <li><p>Acceso a ficheros vía web:</p>
 <ul>
-<li><a href="https://filebrowser.org/">filebrowser - Crear tu cloud, accediendo a los ficheros con una interfaz web</a></li>
-<li><a href="https://www.seafile.com/en/home/">Seafile - Reliable and Performant File Sync and Share Solution</a>: Puede almacenar los ficheros cifrados (encriptados antes de subirlos al servidor).</li>
-<li><a href="https://pydio.com">Pydio - Document Sharing At Scale, Cells V4 now provides secure, cloud-native, scalable, self-hosted, open-core document sharing and collaboration</a></li>
+<li><a href="https://github.com/drakkan/sftpgo">sftpgo - Fully featured
+and highly configurable SFTP server</a></li>
+<li><a href="https://filebrowser.org/">filebrowser - Crear tu cloud,
+accediendo a los ficheros con una interfaz web</a></li>
+<li><a href="https://www.seafile.com/en/home/">Seafile - Reliable and
+Performant File Sync and Share Solution</a>: Puede almacenar los
+ficheros cifrados (encriptados antes de subirlos al servidor).</li>
+<li><a href="https://pydio.com">Pydio - Document Sharing At Scale, Cells
+V4 now provides secure, cloud-native, scalable, self-hosted, open-core
+document sharing and collaboration</a></li>
 </ul></li>
 <li><p>Acceso remoto con VPN (Wireguard)</p></li>
 <li><p>Sincronización ficheros con syncthing</p></li>
@@ -269,8 +348,12 @@ echo &quot;    fin $(date --rfc-3339=seconds)&quot; &gt;&gt; /srv/scripts/sincro
 </ul></li>
 </ol>
 <h2 id="anexo-no-usado">Anexo (no usado)</h2>
-<p>Las siguientes secciones se deja como referencia, pero no se usan por que como se explica anteriormente se prefiere un sistema formado por un disco maestro y un disco esclavo, pero indendientes.</p>
-<h3 id="creación-mirror-de-3-discos-btrfs-raid-1c3-con-cifrado-luks">Creación mirror de 3 discos BTRFS (Raid 1C3) con cifrado luks</h3>
+<p>Las siguientes secciones se deja como referencia, pero no se usan por
+que como se explica anteriormente se prefiere un sistema formado por un
+disco maestro y un disco esclavo, pero indendientes.</p>
+<h3
+id="creación-mirror-de-3-discos-btrfs-raid-1c3-con-cifrado-luks">Creación
+mirror de 3 discos BTRFS (Raid 1C3) con cifrado luks</h3>
 <p>** SE DEJA COMO REFERENCIA PERO NO SE USA **</p>
 <ol type="1">
 <li><p>Crear las particiones en los discos:</p>
@@ -281,22 +364,30 @@ echo &quot;    fin $(date --rfc-3339=seconds)&quot; &gt;&gt; /srv/scripts/sincro
  Comando4:   (valor predeterminado)
  Comando5:   w   (escribir la nueva partición y salir)</code></pre></li>
 <li><p>Crear fichero con clave cifrado</p>
-<p>sudo touch /etc/btrfs_clave_cifrado sudo chmod 600 /etc/btrfs_clave_cifrado</p></li>
+<p>sudo touch /etc/btrfs_clave_cifrado sudo chmod 600
+/etc/btrfs_clave_cifrado</p></li>
 <li><p>Escribir la clave en el fichero</p>
 <p>sudo vim /etc/btrfs_clave_cifrado</p></li>
-<li><p>Cifrado de las particiones a utilizar, para todas las particiones creadas (p.ej.: /dev/sdb1 /dev/sdc1 /dev/sdd1).</p>
-<p>cryptsetup luksFormat –type luks2 /dev/sdX1 /etc/btrfs_clave_cifrado</p></li>
+<li><p>Cifrado de las particiones a utilizar, para todas las particiones
+creadas (p.ej.: /dev/sdb1 /dev/sdc1 /dev/sdd1).</p>
+<p>cryptsetup luksFormat –type luks2 /dev/sdX1
+/etc/btrfs_clave_cifrado</p></li>
 <li><p>Extraer los UUID de las particiones cifradas con LUKS:</p>
 <p>sudo cryptsetup luksDump /dev/sdX | grep UUID</p></li>
 </ol>
-<h3 id="creación-mirror-de-3-discos-con-zfs-con-cifrado-nativo">Creación mirror de 3 discos con ZFS con cifrado nativo</h3>
+<h3 id="creación-mirror-de-3-discos-con-zfs-con-cifrado-nativo">Creación
+mirror de 3 discos con ZFS con cifrado nativo</h3>
 <p>** SE DEJA COMO REFERENCIA PERO NO SE USA **</p>
-<p>Basado en (https://bhoey.com/blog/3-way-disk-mirrors-with-zfsonlinux/) y (https://ubuntu.com/tutorials/setup-zfs-storage-pool#1-overview).</p>
+<p>Basado en
+(https://bhoey.com/blog/3-way-disk-mirrors-with-zfsonlinux/) y
+(https://ubuntu.com/tutorials/setup-zfs-storage-pool#1-overview).</p>
 <ol type="1">
-<li><p>Verificar los discos sobre los que se quiere crear la partición</p>
+<li><p>Verificar los discos sobre los que se quiere crear la
+partición</p>
 <ul>
 <li><p>Listado del disco:</p>
-<p>lsblk -o NAME,MAJ:MIN,RM,SIZE,RO,TYPE,MOUNTPOINTS,UUID,PARTUUID</p></li>
+<p>lsblk -o
+NAME,MAJ:MIN,RM,SIZE,RO,TYPE,MOUNTPOINTS,UUID,PARTUUID</p></li>
 <li><p>Listado particiones:</p>
 <p>sudo fdisk -l</p></li>
 </ul></li>
@@ -304,12 +395,16 @@ echo &quot;    fin $(date --rfc-3339=seconds)&quot; &gt;&gt; /srv/scripts/sincro
 <ul>
 <li><p>Se usaran /dev/sdb /deb/sdc /deb/sdd</p></li>
 <li><p>Crear agrupacion de ZFS (Pool):</p>
-<p>sudo zpool create -m /srv/espejo espejo mirror /dev/sdb /dev/sdc /dev/sdd</p></li>
+<p>sudo zpool create -m /srv/espejo espejo mirror /dev/sdb /dev/sdc
+/dev/sdd</p></li>
 <li><p>Habilitar el cifrado en la agrupación de ZFS (Pool):</p>
 <p>sudo zpool set feature@encryption=enabled espejo</p></li>
 <li><p>Activar el cifrado del conjunto de datos:</p>
-<p>zfs create -o encryption=on -o keylocation=prompt -o keyformat=passphrase espejo/compartir</p>
-<p>zfs create -o encryption=on -o keylocation=file:///etc/zfs_clave_cifrado -o keyformat=passphrase espejo/compartir</p></li>
+<p>zfs create -o encryption=on -o keylocation=prompt -o
+keyformat=passphrase espejo/compartir</p>
+<p>zfs create -o encryption=on -o
+keylocation=file:///etc/zfs_clave_cifrado -o keyformat=passphrase
+espejo/compartir</p></li>
 </ul>
 <p>El disco está montado en /srv/espejo</p></li>
 <li><p>Comprobación estado online</p>
@@ -321,8 +416,8 @@ echo &quot;    fin $(date --rfc-3339=seconds)&quot; &gt;&gt; /srv/scripts/sincro
 
 <footer>
 Estilo: <a href="https://minicss.us">Mini.css</a>
-Generador: <a href="https://pandoc.org/">pandoc 2.9.2.1</a>
-Fecha: 2023-04-12
+Generador: <a href="https://pandoc.org/">pandoc 2.17.1.1</a>
+Fecha: 2023-06-06
 Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
 </footer>
 </div>

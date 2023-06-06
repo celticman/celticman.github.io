@@ -14,8 +14,10 @@
 </header>
 
 
-<h2 id="uso-de-particiones-cifradas-en-linux">Uso de particiones cifradas en Linux</h2>
-<h3 id="instrucciones-creación-de-volumen-cifrado">Instrucciones creación de volumen CIFRADO</h3>
+<h2 id="uso-de-particiones-cifradas-en-linux">Uso de particiones
+cifradas en Linux</h2>
+<h3 id="instrucciones-creación-de-volumen-cifrado">Instrucciones
+creación de volumen CIFRADO</h3>
 <p>0.0) Verificar si existen particiones en el disco duro externo</p>
 <pre><code>fdisk -l /dev/sdb</code></pre>
 <p>0.1) Si no existen hay que crearla con:</p>
@@ -28,7 +30,8 @@
     Comando5:   w   (escribir la nueva partición y salir)</code></pre>
 <ol type="1">
 <li><p>Crear unidad cifrada</p>
-<p>cryptsetup luksFormat –type luks2 –verify-passphrase /dev/sdb1</p></li>
+<p>cryptsetup luksFormat –type luks2 –verify-passphrase
+/dev/sdb1</p></li>
 <li><p>Descifrar volumen</p>
 <p>cryptsetup luksOpen /dev/sdb1 HD1</p></li>
 <li><p>Formatear volumen con etiqueta “ETIQUETA”</p>
@@ -50,8 +53,8 @@ cryptsetup luksClose HD1</code></pre>
 
 <footer>
 Estilo: <a href="https://minicss.us">Mini.css</a>
-Generador: <a href="https://pandoc.org/">pandoc 2.9.2.1</a>
-Fecha: 2023-04-12
+Generador: <a href="https://pandoc.org/">pandoc 2.17.1.1</a>
+Fecha: 2023-06-06
 Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
 </footer>
 </div>

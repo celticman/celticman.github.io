@@ -14,28 +14,47 @@
 </header>
 
 
-<h2 id="cómo-crear-una-página-estática-gratuita-utilizando-github-pages-versión-para-niños">¿Cómo crear una página estática gratuita utilizando Github Pages? Versión para niños</h2>
-<p>Esta guía ha sido realizado utilizando como guía <a href="https://es.khanacademy.org/computing/computer-programming/html-css/web-development-tools/a/hosting-your-website-on-github">Hospedar tu sitio web en Github - Khan Academy</a>.</p>
+<h2
+id="cómo-crear-una-página-estática-gratuita-utilizando-github-pages-versión-para-niños">¿Cómo
+crear una página estática gratuita utilizando Github Pages? Versión para
+niños</h2>
+<p>Esta guía ha sido realizado utilizando como guía <a
+href="https://es.khanacademy.org/computing/computer-programming/html-css/web-development-tools/a/hosting-your-website-on-github">Hospedar
+tu sitio web en Github - Khan Academy</a>.</p>
 <h2 id="pasos">Pasos</h2>
 <ul>
 <li><p>Visitar <a href="https://github.com">GitHub</a>.</p></li>
-<li><p>Crear una cuenta, como nombre de usuario hay que inventar un nombre. El nombre es importante, ya que la página tendrá este nombre. <strong>Dado que se trata de un niño y deseamos que tenga la máxima privacidad, este nombre no debe ser usado en ninguna otra cuenta ni corresponderse con el nombre real</strong>.</p></li>
-<li><p>Crear un repositorio dentro de la cuenta de GitHub, con el siguiente nombre: NOMBRE-USUARIO.github.io (sustituyendo NOMBRE-USUARIO por el nombre real utilizado).</p></li>
-<li><p>En el PC hay que instalar Git. Si es un sitema operativo Linux Ubuntu: La instalación se hace con el siguiente comando:</p>
+<li><p>Crear una cuenta, como nombre de usuario hay que inventar un
+nombre. El nombre es importante, ya que la página tendrá este nombre.
+<strong>Dado que se trata de un niño y deseamos que tenga la máxima
+privacidad, este nombre no debe ser usado en ninguna otra cuenta ni
+corresponderse con el nombre real</strong>.</p></li>
+<li><p>Crear un repositorio dentro de la cuenta de GitHub, con el
+siguiente nombre: NOMBRE-USUARIO.github.io (sustituyendo NOMBRE-USUARIO
+por el nombre real utilizado).</p></li>
+<li><p>En el PC hay que instalar Git. Si es un sitema operativo Linux
+Ubuntu: La instalación se hace con el siguiente comando:</p>
 <pre><code>sudo apt install git</code></pre></li>
-<li><p>Una vez instalado vamos al directorio que va a tener la pagina web y ejecutamos los siguientes comandos:</p>
+<li><p>Una vez instalado vamos al directorio que va a tener la pagina
+web y ejecutamos los siguientes comandos:</p>
 <pre><code>git init
 git config user.name  &quot;NOMBRE-USUARIO&quot;
 git config user.email &quot;NOMBRE-USUARIO@NOMBRE-USUARIO.COM&quot;
 git commit -m &quot;Primer Cambio&quot;</code></pre></li>
-<li><p>Generar un token de acceso (Desde Agosto de 2021 Github requiere que la conexión a través de la línea de ordenes tenga asociado un Token ó clave SSH):</p>
+<li><p>Generar un token de acceso (Desde Agosto de 2021 Github requiere
+que la conexión a través de la línea de ordenes tenga asociado un Token
+ó clave SSH):</p>
 <ul>
-<li><p>En el menú Settings -&gt; Developer Settings -&gt; Personal access tokens, seguir los siguientes pasos:</p>
+<li><p>En el menú Settings -&gt; Developer Settings -&gt; Personal
+access tokens, seguir los siguientes pasos:</p>
 <ul>
 <li><p>Pulsar “Generate new token”.</p></li>
-<li><p>En <strong>Note</strong> dar un nombre al Token, p.ej. “Token linea ordenes”.</p></li>
-<li><p>En <strong>Expiration</strong> indicar la fecha de caducidad del token, p.ej. 1 año menos un día ó No expiracion</p></li>
-<li><p>En <strong>Select scopes</strong> seleccionar <strong>repo</strong>.</p></li>
+<li><p>En <strong>Note</strong> dar un nombre al Token, p.ej. “Token
+linea ordenes”.</p></li>
+<li><p>En <strong>Expiration</strong> indicar la fecha de caducidad del
+token, p.ej. 1 año menos un día ó No expiracion</p></li>
+<li><p>En <strong>Select scopes</strong> seleccionar
+<strong>repo</strong>.</p></li>
 <li><p>Pulsar el boton verde <strong>Generate token</strong>.</p></li>
 </ul></li>
 <li><p>Si ya se había creado el remote hay que borrarlo:</p>
@@ -51,14 +70,19 @@ git commit -m &quot;Primer Cambio&quot;</code></pre></li>
 <pre><code>git remote add origen https://&lt;TOKEN&gt;@github.com/NOMBRE-USUARIO/NOMBRE-USUARIO.github.io.git
 git push -u origen master</code></pre></li>
 </ul></li>
-<li><p>Ahora ya puedes crear la página web en tu PC. Recuerda que debe existir un fichero “index.html”, que sería la página principal.</p></li>
-<li><p>Cuando quieras enviar los cambios a GitHub tendrías que ejecutar los siguientes comandos:</p>
+<li><p>Ahora ya puedes crear la página web en tu PC. Recuerda que debe
+existir un fichero “index.html”, que sería la página principal.</p></li>
+<li><p>Cuando quieras enviar los cambios a GitHub tendrías que ejecutar
+los siguientes comandos:</p>
 <pre><code>git add . --all
 git commit -m &quot;DESCRIPCION-DEL-CAMBIO&quot;
 git push</code></pre></li>
 </ul>
-<h2 id="cómo-eliminar-el-registro-de-cambios-de-github">¿Cómo eliminar el registro de cambios de github?</h2>
-<p>Si el niño publica información que no debe estar en internet, además de cambiar la informacion tenemos que eliminar la historia de los cambios.</p>
+<h2 id="cómo-eliminar-el-registro-de-cambios-de-github">¿Cómo eliminar
+el registro de cambios de github?</h2>
+<p>Si el niño publica información que no debe estar en internet, además
+de cambiar la informacion tenemos que eliminar la historia de los
+cambios.</p>
 <h3 id="pasos-1">Pasos</h3>
 <ul>
 <li><p>Crear una nueva rama</p>
@@ -78,8 +102,8 @@ git push</code></pre></li>
 
 <footer>
 Estilo: <a href="https://minicss.us">Mini.css</a>
-Generador: <a href="https://pandoc.org/">pandoc 2.9.2.1</a>
-Fecha: 2023-04-12
+Generador: <a href="https://pandoc.org/">pandoc 2.17.1.1</a>
+Fecha: 2023-06-06
 Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
 </footer>
 </div>

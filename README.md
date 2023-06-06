@@ -65,6 +65,12 @@
 	- Uso para que lea la voz de forma directa en Español: espeak-ng -f fichero.txt -v es -s 145 -p 50
 	- Uso para que genere un fichero wav en Español: espeak-ng -f fichero.txt -v es -s 145 -p 50 -w fichero-salida.wav
 	- Convertir el fichero anterior a mp3: ffmpeg -i fichero-salida.wav -acodec mp3 fichero-salida.mp3
+	
+- [fdupes - Buscar y borrar ficheros duplicados](https://github.com/adrianlopezroche/fdupes)
+
+	- Instalar en Ubuntu: "sudo apt install fdupes"
+	- Buscar ficheros duplicados en el directorio actual: fdupes ./
+	- Buscar y eliminar los ficheros duplicados en el directorio actual: fdupes ./ --delete
 
 ### Utilidades web
 

@@ -14,60 +14,101 @@
 </header>
 
 
-<h1 id="programa-ejemplo-utilización-paquetes-en-go">Programa ejemplo utilización paquetes en Go</h1>
+<h1 id="programa-ejemplo-utilización-paquetes-en-go">Programa ejemplo
+utilización paquetes en Go</h1>
 <h2 id="pasos">Pasos:</h2>
 <h3 id="crear-el-fichero-go.mod">1. Crear el fichero go.mod</h3>
-<p>Se crea el fichero go.mod, usando el comando go mod. El nombre que se le da no tiene que ver con el directorio en el que está ubicado el projecto. Se ha de ejecutar en el directorio raiz del proyecto:</p>
+<p>Se crea el fichero go.mod, usando el comando go mod. El nombre que se
+le da no tiene que ver con el directorio en el que está ubicado el
+projecto. Se ha de ejecutar en el directorio raiz del proyecto:</p>
 <pre><code>go mod init &quot;celticman/mis-ejercicios/uso-paquetes&quot;</code></pre>
 <p>Esto crea un fichero go.mod, con el siguiente contenido:</p>
 <pre><code>module celticman/mis-ejercicios/uso-paquetes
 
 go 1.16</code></pre>
-<h3 id="crear-el-fichero-main.go-en-el-directorio-raiz">2. Crear el fichero “main.go” en el directorio raiz</h3>
-<p>En el programa principal “main.go” llamamos a la librería ( de cálculos matemáticos usando la siguiente línea. Las librerías en términos de GO se llaman paquetes.</p>
+<h3 id="crear-el-fichero-main.go-en-el-directorio-raiz">2. Crear el
+fichero “main.go” en el directorio raiz</h3>
+<p>En el programa principal “main.go” llamamos a la librería ( de
+cálculos matemáticos usando la siguiente línea. Las librerías en
+términos de GO se llaman paquetes.</p>
 <pre><code>import &quot;celticman/mis-ejercicios/uso-paquetes/matematicas&quot;</code></pre>
-<p>La ruta consiste en añadir la ruta del paquete al nombre del proyeto. El nombre del paquete es su ruta dentro del proyecto, es básicamente un directorio.</p>
-<h3 id="creamos-el-paquete-de-matemáticas">3. Creamos el paquete de matemáticas</h3>
-<p>Creamos un directorio “matematicas” y en el fichero GO que no tiene por que tener el mismo nombre. Por ejemplo “mates.go”. La cabecera del fichero sería solo:</p>
+<p>La ruta consiste en añadir la ruta del paquete al nombre del proyeto.
+El nombre del paquete es su ruta dentro del proyecto, es básicamente un
+directorio.</p>
+<h3 id="creamos-el-paquete-de-matemáticas">3. Creamos el paquete de
+matemáticas</h3>
+<p>Creamos un directorio “matematicas” y en el fichero GO que no tiene
+por que tener el mismo nombre. Por ejemplo “mates.go”. La cabecera del
+fichero sería solo:</p>
 <pre><code>package matematicas</code></pre>
-<p>El paquete ó librería puede contener un único fichero <strong>.go</strong> ó varios. En este caso podríamos tener un fichero <strong>estadistica.go</strong> y otro <strong>matrices.go</strong>.</p>
+<p>El paquete ó librería puede contener un único fichero
+<strong>.go</strong> ó varios. En este caso podríamos tener un fichero
+<strong>estadistica.go</strong> y otro <strong>matrices.go</strong>.</p>
 <h3 id="compilamos-el-proyecto">4. Compilamos el proyecto</h3>
 <p>En el directorio principal compilamos del siguiente modo:</p>
 <pre><code>go build uso-paquetes.go</code></pre>
 <h2 id="comentarios">Comentarios</h2>
-<h3 id="primera-letra-de-las-funciones">Primera letra de las funciones</h3>
-<p>Si la primera letra de las funciones es Mayúscula, esa función se exporta y se puede usar donde se importa ese paquete.</p>
+<h3 id="primera-letra-de-las-funciones">Primera letra de las
+funciones</h3>
+<p>Si la primera letra de las funciones es Mayúscula, esa función se
+exporta y se puede usar donde se importa ese paquete.</p>
 <p>Se exportaría la siguiente:</p>
 <pre><code>func Media(numeros []float64) float64 {</code></pre>
 <p>No se exportaría la siguiente:</p>
 <pre><code>func media(numeros []float64) float64 {</code></pre>
 <h3 id="instalar-versión-1.16-de-go">Instalar versión 1.16 de GO</h3>
-<p>La gestión de paquetes se actualizó en las versiones anteriores a la versión 1.16. Para actualizar a esta versión es necesario seguir los pasos indicados en el siguiente enlace:</p>
-<p><a href="https://golang.org/doc/install">Descarga e Instalación de la última versión de GO</a></p>
-<h3 id="el-nombre-del-paquete-no-puede-incluir-un--">El nombre del paquete no puede incluir un “-”</h3>
-<p>No se puede incluir un guión medio como nombre del paquete, p.ej. no es válido “calculos-matematicos”. En su lugar puede usarse un "_" (p.ej. calculos_matematicos) ó que la primera letra de las segunda palabra sea mayúscula (p.ej. calculosMatematicos).</p>
-<h3 id="al-llamar-la-función-hay-que-poner-en-primer-lugar-el-nombre-del-paquete.">Al llamar la función hay que poner en primer lugar el nombre del paquete.</h3>
-<p>Si el paquete a llamar se llama “calculos_matematicos” y se utiliza una funcion pública (p.ej. Media), la llamada a la función debe ser del siguiente modo:</p>
+<p>La gestión de paquetes se actualizó en las versiones anteriores a la
+versión 1.16. Para actualizar a esta versión es necesario seguir los
+pasos indicados en el siguiente enlace:</p>
+<p><a href="https://golang.org/doc/install">Descarga e Instalación de la
+última versión de GO</a></p>
+<h3 id="el-nombre-del-paquete-no-puede-incluir-un--">El nombre del
+paquete no puede incluir un “-”</h3>
+<p>No se puede incluir un guión medio como nombre del paquete, p.ej. no
+es válido “calculos-matematicos”. En su lugar puede usarse un “_” (p.ej.
+calculos_matematicos) ó que la primera letra de las segunda palabra sea
+mayúscula (p.ej. calculosMatematicos).</p>
+<h3
+id="al-llamar-la-función-hay-que-poner-en-primer-lugar-el-nombre-del-paquete.">Al
+llamar la función hay que poner en primer lugar el nombre del
+paquete.</h3>
+<p>Si el paquete a llamar se llama “calculos_matematicos” y se utiliza
+una funcion pública (p.ej. Media), la llamada a la función debe ser del
+siguiente modo:</p>
 <pre><code>calculos_matematicos.Media( numeros )</code></pre>
 <p>Si se llama solo a la función el resultado es el siguiente:</p>
 <pre><code>./uso-paquetes.go:4:8: imported and not used: &quot;aprendiendo-go/ejercicios/trabajar-con-paquetes/calculos_matematicos&quot;
 ./uso-paquetes.go:8:12: undefined: Media</code></pre>
-<p>El primer fallo se debe a que en el segundo fallo no encuentra la función Media y por tanto no se está utilizando ninguna función del paquete “calculos_matematicos”.</p>
-<h3 id="para-que-las-librerías-externas-se-integren-en-el-proyecto-vendoring">Para que las librerías externas se integren en el proyecto (Vendoring)</h3>
-<p>Para asegurar que en todas las compilaciones de un proyecto se utiliza la misma librería y no puede desaparecer, se recomienda utilizar la función <strong>vendor</strong>. Consiste en que pasamos a tener un directorio <strong>vendor</strong> dentro del proyecto que contiene todas las dependencias externas del proyecto (librerías).</p>
-<p>Se define el proyecto a utilizar en el enabezado del fichero go en el que se vaya a utilizar (por ejemplo main.go):</p>
+<p>El primer fallo se debe a que en el segundo fallo no encuentra la
+función Media y por tanto no se está utilizando ninguna función del
+paquete “calculos_matematicos”.</p>
+<h3
+id="para-que-las-librerías-externas-se-integren-en-el-proyecto-vendoring">Para
+que las librerías externas se integren en el proyecto (Vendoring)</h3>
+<p>Para asegurar que en todas las compilaciones de un proyecto se
+utiliza la misma librería y no puede desaparecer, se recomienda utilizar
+la función <strong>vendor</strong>. Consiste en que pasamos a tener un
+directorio <strong>vendor</strong> dentro del proyecto que contiene
+todas las dependencias externas del proyecto (librerías).</p>
+<p>Se define el proyecto a utilizar en el enabezado del fichero go en el
+que se vaya a utilizar (por ejemplo main.go):</p>
 <pre><code>import &quot;github.com/tidwall/gjson&quot;</code></pre>
 <p>Para crear el directorio <strong>vendor</strong> ejecutamos:</p>
 <pre><code>go mod vendor</code></pre>
-<p>Esto crea el directorio <strong>vendor</strong> en el que se almacena el paquete anterior y todas sus dependencias. Si eliminamos la librería de nuestro proyecto y volvemos a ejecutar el comando anterior, se elimina la librería del directorio vendor.</p>
-<p>Si el comando vendor dió un error de que no se encuentra la librería, Para que no nos de error el comando vendor, primero tenemos que descargar la librería:</p>
+<p>Esto crea el directorio <strong>vendor</strong> en el que se almacena
+el paquete anterior y todas sus dependencias. Si eliminamos la librería
+de nuestro proyecto y volvemos a ejecutar el comando anterior, se
+elimina la librería del directorio vendor.</p>
+<p>Si el comando vendor dió un error de que no se encuentra la librería,
+Para que no nos de error el comando vendor, primero tenemos que
+descargar la librería:</p>
 <pre><code>go get &quot;github.com/tidwall/gjson&quot;</code></pre>
 
 
 <footer>
 Estilo: <a href="https://minicss.us">Mini.css</a>
-Generador: <a href="https://pandoc.org/">pandoc 2.9.2.1</a>
-Fecha: 2023-04-12
+Generador: <a href="https://pandoc.org/">pandoc 2.17.1.1</a>
+Fecha: 2023-06-06
 Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
 </footer>
 </div>

@@ -22,11 +22,14 @@ El objetivo es tener un NAS con los siguientes objetivos:
 
 En el PC que ha de actuar como NAS, el servidor ha de estar formado por los siguientes discos:
 
-- 1 disco duro de arranque: En este disco se instala el sistema operativo con la partición cifrada.
+- **1 disco duro de arranque**: En este disco se instala el sistema operativo con la partición cifrada.
 
-- 2 ó 3 discos duros de datos: En cada disco duro se crea una partición BTRFS (cifrada con LUKS). Hay un disco de datos primario en el que se escriben los datos y uno o dos secundarios.
+- **2 ó 3 discos duros de datos**: En cada disco duro se crea una partición BTRFS (cifrada con LUKS):
 
-- Mediante un comando rsync se copian los datos del dispco primario (disco1) a los discos secundarios. Este script se ha de ejecutar de forma periódica.
+    - Un disco primario en el que se escriben los datos.
+    - Uno o dos discos secundarios.
+
+- **Copia de los datos del disco primario al secundario**: Mediante un comando rsync se copian los datos del dispco primario (disco1) a los discos secundarios. Este script se ha de ejecutar de forma periódica.
 
 ## Sistema operativo
 
@@ -48,6 +51,10 @@ Usaremos las siguientes utilidades:
 En Ubuntu se instalarían con:
 
 	apt install fdisk e2fsprogs smartmontools util-linux zfsutils-linux cryptsetup-bin btrfs-progs duperemove
+	
+## Comprobación de la memoria del PC/NAS
+
+Verificar que la memoria del PC es correcta, para evitar que errores en la memoria provoquen fallos en los datos almacenados. Se puede utiliza [Memtest86+](https://memtest.org/)
 
 
 ## Comprobar los discos duros a utilizar
@@ -124,6 +131,8 @@ En Ubuntu se instalarían con:
 	
 		smartctl -H /dev/sdX
 		
+7. Spinrite
+		
 ## Preparación de los discos
 
 ### Identificación de los discos
@@ -146,7 +155,7 @@ Al figurar el número de serie, podemos identificar el disco duro que se va a pr
 
     - Tipo: Primario
     - Sistema de archivos: BTRFS
-    - Cifrar con LUKS: Sí
+    - Cifrar con LUKS: Sí (Usado la misma contraseña que el disco de arranque)
     - Etiqueta: Por ejemplo DATOS_MODELO_NUM-SERIE (p.ej. DATOS_ST4000-Y4PC)
     
 5. Identificamos la el UUID de la particion cifrada.
@@ -240,9 +249,11 @@ Para la gestión de imágenes se utilizará Snapper que es una herramienta creda
 	
 8. Acceso a las instantáneas:
 
-	Se puede acceder a las instantánea en la siguiente ruta:
+    Se puede acceder a las instantánea en la siguiente ruta:
 	
-	/srv/datos1/.snapshots
+    	/srv/datos1/.snapshots
+	
+    Dentro del directorio anterior aparecerán las instantáneas por su número (en el subdirectorio snapchot).
 	
 ## Copia de datos del disco1 al disco2
 
@@ -378,6 +389,7 @@ Comprobar que se está ejecutando:
 
 5. Acceso a ficheros vía web:
 
+	- [sftpgo - Fully featured and highly configurable SFTP server](https://github.com/drakkan/sftpgo)
     - [filebrowser - Crear tu cloud, accediendo a los ficheros con una interfaz web](https://filebrowser.org/)
     - [Seafile - Reliable and Performant File Sync and Share Solution](https://www.seafile.com/en/home/): Puede almacenar los ficheros cifrados (encriptados antes de subirlos al servidor).
     - [Pydio - Document Sharing At Scale, Cells V4 now provides secure, cloud-native, scalable, self-hosted, open-core document sharing and collaboration](https://pydio.com)
