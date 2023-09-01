@@ -29,7 +29,7 @@ En el PC que ha de actuar como NAS, el servidor ha de estar formado por los sigu
     - Un disco primario en el que se escriben los datos.
     - Uno o dos discos secundarios.
 
-- **Copia de los datos del disco primario al secundario**: Mediante un comando rsync se copian los datos del dispco primario (disco1) a los discos secundarios. Este script se ha de ejecutar de forma periódica.
+- **Copia de los datos del disco primario al secundario**: Mediante un comando rsync se copian los datos del disco primario (disco1) a los discos secundarios. Este script se ha de ejecutar de forma periódica.
 
 ## Sistema operativo
 

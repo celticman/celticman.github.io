@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <link rel="stylesheet" href="/estaticos/mini.css">
+</head>
+<body>
+<div id="wrapper"  class="col-sm-12 col-md-8 col-lg-6 col-md-offset-2  col-lg-offset-3">  
+<header class="sticky">
+
+
+<a href="https://celticman.github.io/"><h1 class="title">Celticman - notas personales</h1></a>
+
+</header>
+
+
+<h1 id="uso-restic">Uso RESTIC</h1>
+<p>Se utilizara RESTIC contra un servidor STFP</p>
+<p>Iniciando repositorio:</p>
+<pre><code>./restic init -r sftp://usuario@192.168.0.2:2222//srv/backups/mi-backup</code></pre>
+<p>Haciendo copia de seguridad</p>
+<pre><code>./restic -r sftp://usuario@192.168.0.2:2222//srv/backups/mi-backup --verbose backup ~/trabajo</code></pre>
+<p>Comprobación backup</p>
+<pre><code>./restic -r sftp://usuario@192.168.0.2:2222//srv/backups/mi-backup --verbose check</code></pre>
+<p>Comprobación completa de todos los datos (para verificar que no están
+corruptos)</p>
+<pre><code>./restic -r sftp://usuario@192.168.0.2:2222//srv/backups/mi-backup --verbose check --read-data</code></pre>
+<p>Listado de las instantáneas (snapshots)</p>
+<pre><code>./restic -r sftp://usuario@192.168.0.2:2222//srv/backups/mi-backup  --verbose list snapshots</code></pre>
+<p>Borrar las instantáneas (snapshots)</p>
+<pre><code>./restic -r sftp://usuario@192.168.0.2:2222//srv/backups/mi-backup   --verbose forget --keep-monthly 6 --keep-daily 7 --keep-weekly 5</code></pre>
+<p>Borrar los datos que ya no están asociados a ninguna instantánea</p>
+<pre><code>./restic -r sftp://usuario@192.168.0.2:2222//srv/backups/mi-backup   --verbose prune</code></pre>
+<p>Borrar las instantáneas y los datos asociados añadiendo:</p>
+<pre><code>&quot;--prune&quot;</code></pre>
+<p>Backup a un servidor compatible S3:</p>
+<pre><code>export AWS_ACCESS_KEY_ID=&quot;AKIAJNFRE7YAHGDUMD&quot;
+export AWS_SECRET_ACCESS_KEY=&quot;EtE7mGPqcbjyPT4KLXX1qVDUkAVhA&quot;
+./restic -r s3:https://s3.amazonaws.com/BUCKET_NAME --verbose backup  ~/trabajo </code></pre>
+
+
+<footer>
+Estilo: <a href="https://minicss.us">Mini.css</a>
+Generador: <a href="https://pandoc.org/">pandoc 2.17.1.1</a>
+Fecha: 2023-09-01
+Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
+</footer>
+</div>
+</body>
+</html>

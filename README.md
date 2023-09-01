@@ -10,8 +10,6 @@
 
 - [NAS simple con BTRFS](./notas_nas.html) 
 
-- [¿Cómo verificar la velocidad de descarga desde la línea de ordenes?](./notas_velocidad_speedtest.html).
-
 - [Uso de vagrant](./notas_vagrant.html)
 
 - [Go - Golang](./notas_golang.html)
@@ -69,8 +67,18 @@
 - [fdupes - Buscar y borrar ficheros duplicados](https://github.com/adrianlopezroche/fdupes)
 
 	- Instalar en Ubuntu: "sudo apt install fdupes"
-	- Buscar ficheros duplicados en el directorio actual: fdupes ./
-	- Buscar y eliminar los ficheros duplicados en el directorio actual: fdupes ./ --delete
+	- Buscar ficheros duplicados en el directorio actual: fdupes -r ./
+	- Buscar y eliminar los ficheros duplicados en el directorio actual: fdupes -r ./ --delete
+	
+- [lpadmin - Añadir y quitar impresoras desde línea de ordenes (para impresoras que soporten IPP)]
+
+    - Instalar en Ubuntu: "sudo apt install cups"
+    - Añadir impresora:
+        sudo lpadmin -p NOMBRE_IMPRESORA -E -v ipp://DIRECCION_IP/ipp/print -m everywhere
+    - Quitar impresora:
+        sudo lpadmin -x NOMBRE_IMPRESORA
+    - Listar impresoras disponibles:
+        sudo lpinfo -lv
 
 ### Utilidades web
 

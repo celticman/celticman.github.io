@@ -25,8 +25,6 @@ niño?</a>.</li>
 <li><p><a href="./notas_luks_particion_cifrada.html">Particionamiento
 disco cifrado con LUKS en Linux</a></p></li>
 <li><p><a href="./notas_nas.html">NAS simple con BTRFS</a></p></li>
-<li><p><a href="./notas_velocidad_speedtest.html">¿Cómo verificar la
-velocidad de descarga desde la línea de ordenes?</a>.</p></li>
 <li><p><a href="./notas_vagrant.html">Uso de vagrant</a></p></li>
 <li><p><a href="./notas_golang.html">Go - Golang</a></p></li>
 </ul>
@@ -102,9 +100,19 @@ fichero.txt -v es -s 145 -p 50 -w fichero-salida.wav</li>
 Buscar y borrar ficheros duplicados</a></p>
 <ul>
 <li>Instalar en Ubuntu: “sudo apt install fdupes”</li>
-<li>Buscar ficheros duplicados en el directorio actual: fdupes ./</li>
+<li>Buscar ficheros duplicados en el directorio actual: fdupes -r
+./</li>
 <li>Buscar y eliminar los ficheros duplicados en el directorio actual:
-fdupes ./ –delete</li>
+fdupes -r ./ –delete</li>
+</ul></li>
+<li><p>[lpadmin - Añadir y quitar impresoras desde línea de ordenes
+(para impresoras que soporten IPP)]</p>
+<ul>
+<li>Instalar en Ubuntu: “sudo apt install cups”</li>
+<li>Añadir impresora: sudo lpadmin -p NOMBRE_IMPRESORA -E -v
+ipp://DIRECCION_IP/ipp/print -m everywhere</li>
+<li>Quitar impresora: sudo lpadmin -x NOMBRE_IMPRESORA</li>
+<li>Listar impresoras disponibles: sudo lpinfo -lv</li>
 </ul></li>
 </ul>
 <h3 id="utilidades-web">Utilidades web</h3>
@@ -126,7 +134,7 @@ datos</a></li>
 <footer>
 Estilo: <a href="https://minicss.us">Mini.css</a>
 Generador: <a href="https://pandoc.org/">pandoc 2.17.1.1</a>
-Fecha: 2023-06-06
+Fecha: 2023-09-01
 Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
 </footer>
 </div>
