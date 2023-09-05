@@ -39,6 +39,8 @@ Esta guía ha sido realizado utilizando como guía [Hospedar tu sitio web en Git
 		
 		- Pulsar el boton verde **Generate token**.
 		
+		- Se genera un nuevo token **hay que copiarlo** y al ejecutar **git push** nos pide una contraseña y **pegamos el token**. Ya debe funcionar.
+		
 	- Si ya se había creado el remote hay que borrarlo:
 	
 		- Se listan los repositorios remotos con:
