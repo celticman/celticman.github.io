@@ -70,7 +70,7 @@
 	- Buscar ficheros duplicados en el directorio actual: fdupes -r ./
 	- Buscar y eliminar los ficheros duplicados en el directorio actual: fdupes -r ./ --delete
 	
-- [lpadmin - Añadir y quitar impresoras desde línea de ordenes (para impresoras que soporten IPP)](https://www.cups.org/doc/man-lpadmin.html)
+- [lpadmin - Añadir y quitar impresoras desde línea de ordenes (para impresoras que soporten IPP](https://www.cups.org/doc/man-lpadmin.html)
 
     - Instalar en Ubuntu: "sudo apt install cups"
     - Añadir impresora:
