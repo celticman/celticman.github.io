@@ -43,14 +43,13 @@ Usaremos las siguientes utilidades:
 - badblocks: contenido en e2fsprogs (comprobación de escritura)
 - smartctl: contenido en smartmontools (Lectura estadísticas SMART)
 - lsblk: contenido en util-linux
-- utilidades ZFS: zfsutils-linux
 - cryptsetup: Para usar particiones LUKS
 - btrfs-progs: Herramientas gestión BTRFS
 - duperemove: Dedupliación
 
 En Ubuntu se instalarían con:
 
-	apt install fdisk e2fsprogs smartmontools util-linux zfsutils-linux cryptsetup-bin btrfs-progs duperemove
+	apt install fdisk e2fsprogs smartmontools util-linux cryptsetup-bin btrfs-progs duperemove
 	
 ## Comprobación de la memoria del PC/NAS
 
@@ -65,7 +64,7 @@ Verificar que la memoria del PC es correcta, para evitar que errores en la memor
 	
 2. Leer los datos SMART antes de ejecutar badblocks:
 
-	2.1. Imprime los test disponibles en el disco>
+	2.1. Imprime los test disponibles en el disco:
 	
 		sudo smartctl -c /dev/sdX
 		

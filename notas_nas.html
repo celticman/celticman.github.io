@@ -63,13 +63,12 @@ LUKS.</p>
 <li>smartctl: contenido en smartmontools (Lectura estadísticas
 SMART)</li>
 <li>lsblk: contenido en util-linux</li>
-<li>utilidades ZFS: zfsutils-linux</li>
 <li>cryptsetup: Para usar particiones LUKS</li>
 <li>btrfs-progs: Herramientas gestión BTRFS</li>
 <li>duperemove: Dedupliación</li>
 </ul>
 <p>En Ubuntu se instalarían con:</p>
-<pre><code>apt install fdisk e2fsprogs smartmontools util-linux zfsutils-linux cryptsetup-bin btrfs-progs duperemove</code></pre>
+<pre><code>apt install fdisk e2fsprogs smartmontools util-linux cryptsetup-bin btrfs-progs duperemove</code></pre>
 <h2 id="comprobación-de-la-memoria-del-pcnas">Comprobación de la memoria
 del PC/NAS</h2>
 <p>Verificar que la memoria del PC es correcta, para evitar que errores
@@ -82,7 +81,7 @@ duros a utilizar</h2>
 <p>lsblk -o
 NAME,MAJ:MIN,RM,SIZE,RO,TYPE,MOUNTPOINT,MODEL,SERIAL</p></li>
 <li><p>Leer los datos SMART antes de ejecutar badblocks:</p>
-<p>2.1. Imprime los test disponibles en el disco&gt;</p>
+<p>2.1. Imprime los test disponibles en el disco:</p>
 <pre><code> sudo smartctl -c /dev/sdX</code></pre>
 <p>2.2. Imprime la información del disco:</p>
 <pre><code> sudo smartctl -i /dev/sdX &gt; sdX_smart_informacion.txt</code></pre>

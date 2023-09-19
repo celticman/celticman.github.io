@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <link rel="stylesheet" href="/estaticos/mini.css">
+</head>
+<body>
+<div id="wrapper"  class="col-sm-12 col-md-8 col-lg-6 col-md-offset-2  col-lg-offset-3">  
+<header class="sticky">
+
+
+<a href="https://celticman.github.io/"><h1 class="title">Celticman - notas personales</h1></a>
+
+</header>
+
+
+<h1 id="notas-qemu">Notas QEMU</h1>
+<h2 id="portapapeles-con-una-máquina-virtual-linux-ubuntu">Portapapeles
+con una máquina virtual Linux (Ubuntu)</h2>
+<h3 id="desde-la-máquina-virtual-al-host">Desde la máquina virtual al
+host</h3>
+<p>Para habilitar la función de portapapeles de <strong>Maquina
+Virtual</strong> -&gt; <strong>Host</strong> se debe instalar el
+siguiente paquete:</p>
+<pre><code>    sudo apt install spice-vdagent
+    </code></pre>
+<p>Es necesario habilitarlo:</p>
+<pre><code>    sudo systemctl enable spice-vdagent
+    sudo systemctl start spice-vdagent</code></pre>
+<h3 id="desde-el-host-a-la-máquina-virtual">Desde el host a la máquina
+virtual</h3>
+<p>Para habilitar la función de portapapeles de <strong>Host</strong>
+-&gt; <strong>Maquina Virtual</strong> se debe instalar el siguiente
+paquete:</p>
+<pre><code>    sudo apt install qemu-guest-agent</code></pre>
+<p>Es necesario habilitarlo:</p>
+<pre><code>    sudo systemctl enable qemu-guest-agent
+    systemctl start qemu-guest-agent
+    </code></pre>
+
+
+<footer>
+Estilo: <a href="https://minicss.us">Mini.css</a>
+Generador: <a href="https://pandoc.org/">pandoc 2.17.1.1</a>
+Fecha: 2023-09-19
+Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
+</footer>
+</div>
+</body>
+</html>
