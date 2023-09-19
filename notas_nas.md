@@ -415,7 +415,7 @@ Las siguientes secciones se deja como referencia, pero no se usan por que como s
 
 ### Creación mirror de 3 discos BTRFS (Raid 1C3) con cifrado luks
 
-** SE DEJA COMO REFERENCIA PERO NO SE USA **
+**SE DEJA COMO REFERENCIA PERO NO SE USA**
 
 1. Crear las particiones en los discos:
 
@@ -449,7 +449,7 @@ Las siguientes secciones se deja como referencia, pero no se usan por que como s
 
 ### Creación mirror de 3 discos con ZFS con cifrado nativo
 
-** SE DEJA COMO REFERENCIA PERO NO SE USA **
+**SE DEJA COMO REFERENCIA PERO NO SE USA**
 
 Basado en (https://bhoey.com/blog/3-way-disk-mirrors-with-zfsonlinux/) y (https://ubuntu.com/tutorials/setup-zfs-storage-pool#1-overview).
 
