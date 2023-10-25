@@ -60,72 +60,112 @@ regular), añadir “–literal”.</li>
 <li><p><a href="https://httpie.org/">httpie - Línea de ordenes para
 interaccionar con API HTTP</a></p>
 <ul>
-<li><p>Instalar en ubuntu: “sudo apt install httpie”</p></li>
-<li><p>Uso:</p>
-<ul>
-<li>http https://ifconfig.me/all.json -p HBhb</li>
-<li>http https://api.weather.gov/points/40,-116 -p HBhb</li>
-<li>http http://worldtimeapi.org/api/ip -p HBhb</li>
-</ul></li>
-</ul></li>
+<li>Instalar en ubuntu: “sudo apt install httpie”</li>
+<li>Uso:</li>
+</ul>
+<pre><code>    http https://ifconfig.me/all.json -p HBhb
+    http https://api.weather.gov/points/40,-116 -p HBhb
+    http http://worldtimeapi.org/api/ip -p HBhb</code></pre></li>
 <li><p><a href="https://www.visidata.org">visidata - Visor y editor de
 hojas de calculo en línea de ordenes</a></p>
 <ul>
-<li>Instalar en Ubuntu: “sudo apt install visidata”</li>
+<li>Instalar en Ubuntu:</li>
+</ul>
+<pre><code>        sudo apt install visidata</code></pre>
+<ul>
 <li>Uso:
 <ul>
-<li>Ver un fichero CSV con separador “;”: vd input.csv</li>
-<li>Ver un fichero CSV con separador “ð”: vd input.csv –csv-delimiter
-ð</li>
-</ul></li>
+<li>Ver un fichero CSV con separador “;”:</li>
+</ul>
+<pre><code>    vd input.csv</code></pre>
+<ul>
+<li>Ver un fichero CSV con separador “ð”:</li>
+</ul>
+<pre><code>    vd input.csv --csv-delimiter ð</code></pre></li>
 </ul></li>
 <li><p><a
 href="https://ocrmypdf.readthedocs.io/en/latest/index.html">ocrmypdf -
 Genera un pdf con reconocimiento de textos y que se puede buscar</a></p>
 <ul>
-<li>Instalar en Ubuntu: “sudo apt install ocrmypdf tesseract-ocr
-tesseract-ocr-spa jbig2dec”</li>
-<li>Uso: ocrmypdf origen.pdf -l spa destino.pdf</li>
-</ul></li>
+<li>Instalar en Ubuntu:</li>
+</ul>
+<pre><code>        sudo apt install ocrmypdf tesseract-ocr tesseract-ocr-spa jbig2dec</code></pre>
+<ul>
+<li>Uso:<br />
+</li>
+</ul>
+<pre><code>        ocrmypdf origen.pdf -l spa destino.pdf </code></pre></li>
 <li><p><a href="https://github.com/espeak-ng/espeak-ng">espeak-ng -
 Sintetizador de voz a partir de un texto</a></p>
 <ul>
-<li>Instalar en Ubuntu: “sudo apt install espeak-ng”</li>
-<li>Uso para que lea la voz de forma directa en Español: espeak-ng -f
-fichero.txt -v es -s 145 -p 50</li>
-<li>Uso para que genere un fichero wav en Español: espeak-ng -f
-fichero.txt -v es -s 145 -p 50 -w fichero-salida.wav</li>
-<li>Convertir el fichero anterior a mp3: ffmpeg -i fichero-salida.wav
--acodec mp3 fichero-salida.mp3</li>
-</ul></li>
+<li>Instalar en Ubuntu:</li>
+</ul>
+<pre><code>        sudo apt install espeak-ng</code></pre>
+<ul>
+<li>Uso para que lea la voz de forma directa en Español:</li>
+</ul>
+<pre><code>        espeak-ng -f fichero.txt -v es -s 145 -p 50</code></pre>
+<ul>
+<li>Uso para que genere un fichero wav en Español:</li>
+</ul>
+<pre><code>        espeak-ng -f fichero.txt -v es -s 145 -p 50 -w fichero-salida.wav</code></pre>
+<ul>
+<li>Convertir el fichero anterior a mp3:</li>
+</ul>
+<pre><code>        ffmpeg -i fichero-salida.wav -acodec mp3 fichero-salida.mp3</code></pre></li>
 <li><p><a href="https://github.com/adrianlopezroche/fdupes">fdupes -
 Buscar y borrar ficheros duplicados</a></p>
 <ul>
-<li>Instalar en Ubuntu: “sudo apt install fdupes”</li>
-<li>Buscar ficheros duplicados en el directorio actual: fdupes -r
-./</li>
-<li>Buscar y eliminar los ficheros duplicados en el directorio actual:
-fdupes -r ./ –delete</li>
-</ul></li>
+<li>Instalar en Ubuntu:</li>
+</ul>
+<pre><code>        sudo apt install fdupes&quot;</code></pre>
+<ul>
+<li>Buscar ficheros duplicados en el directorio actual:</li>
+</ul>
+<pre><code>        fdupes -r ./</code></pre>
+<ul>
+<li>Buscar y eliminar los ficheros duplicados en el directorio
+actual:</li>
+</ul>
+<pre><code>        fdupes -r ./ --delete</code></pre></li>
 <li><p><a href="https://www.cups.org/doc/man-lpadmin.html">lpadmin -
 Añadir y quitar impresoras desde línea de ordenes (para impresoras que
 soporten IPP</a></p>
 <ul>
-<li>Instalar en Ubuntu: “sudo apt install cups”</li>
-<li>Añadir impresora: sudo lpadmin -p NOMBRE_IMPRESORA -E -v
-ipp://DIRECCION_IP/ipp/print -m everywhere</li>
-<li>Quitar impresora: sudo lpadmin -x NOMBRE_IMPRESORA</li>
-<li>Listar impresoras disponibles: sudo lpinfo -lv</li>
-</ul></li>
+<li>Instalar en Ubuntu:</li>
+</ul>
+<pre><code>        sudo apt install cups</code></pre>
+<ul>
+<li>Añadir impresora:</li>
+</ul>
+<pre><code>        sudo lpadmin -p NOMBRE_IMPRESORA -E -v ipp://DIRECCION_IP/ipp/print -m everywhere</code></pre>
+<ul>
+<li>Quitar impresora:</li>
+</ul>
+<pre><code>        sudo lpadmin -x NOMBRE_IMPRESORA</code></pre>
+<ul>
+<li>Listar impresoras disponibles:</li>
+</ul>
+<pre><code>        sudo lpinfo -lv</code></pre></li>
 <li><p><a href="https://github.com/facebook/zstd">zstd - Compresión de
 alta velocidad</a></p>
 <ul>
-<li>Instalar en Ubuntu: “sudo apt install zstd”</li>
-<li>Comprimir: tar –zstd -cf dat.tar.zst ./dat</li>
-<li>Descomprimir: tar -I zstd -xvf dat.tar.zst</li>
-<li>Descomprimir en un directorio diferente: tar -I zstd -xvf
-dat.tar.zst -C ./otro-directorio</li>
-</ul></li>
+<li>Instalar en Ubuntu:</li>
+</ul>
+<pre><code>        sudo apt install zstd</code></pre>
+<ul>
+<li>Comprimir:</li>
+</ul>
+<pre><code>        tar --zstd -cf dat.tar.zst ./dat</code></pre>
+<ul>
+<li>Descomprimir:</li>
+</ul>
+<pre><code>        tar -I zstd -xvf dat.tar.zst</code></pre>
+<ul>
+<li>Descomprimir en un directorio diferente:<br />
+</li>
+</ul>
+<pre><code>        tar -I zstd -xvf dat.tar.zst -C ./otro-directorio</code></pre></li>
 </ul>
 <h3 id="utilidades-web">Utilidades web</h3>
 <ul>

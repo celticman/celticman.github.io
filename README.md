@@ -43,51 +43,111 @@
     - Instalar en ubuntu: "sudo apt install httpie"
     - Uso:
 
-        - http https://ifconfig.me/all.json -p HBhb
-        - http https://api.weather.gov/points/40,-116 -p HBhb
-        - http http://worldtimeapi.org/api/ip -p HBhb
+    ```
+            http https://ifconfig.me/all.json -p HBhb
+            http https://api.weather.gov/points/40,-116 -p HBhb
+            http http://worldtimeapi.org/api/ip -p HBhb
+    ```
         
 - [visidata - Visor y editor de hojas de calculo en línea de ordenes](https://www.visidata.org)
 
-    - Instalar en Ubuntu: "sudo apt install visidata"
+    - Instalar en Ubuntu: 
+    ```
+            sudo apt install visidata
+    ```
     - Uso:
-        - Ver un fichero CSV con separador ";": vd input.csv
-        - Ver un fichero CSV con separador "ð": vd input.csv --csv-delimiter ð
+        - Ver un fichero CSV con separador ";": 
+    ```
+            vd input.csv
+    ```
+        - Ver un fichero CSV con separador "ð": 
+    ```
+            vd input.csv --csv-delimiter ð
+    ```
         
 - [ocrmypdf - Genera un pdf con reconocimiento de textos y que se puede buscar](https://ocrmypdf.readthedocs.io/en/latest/index.html)
 
-	- Instalar en Ubuntu: "sudo apt install ocrmypdf tesseract-ocr tesseract-ocr-spa jbig2dec"
-	- Uso:	ocrmypdf origen.pdf -l spa destino.pdf 
+	- Instalar en Ubuntu: 
+    ```
+            sudo apt install ocrmypdf tesseract-ocr tesseract-ocr-spa jbig2dec
+    ```
+
+	- Uso:	
+    ```
+            ocrmypdf origen.pdf -l spa destino.pdf 
+    ```
 	
 - [espeak-ng - Sintetizador de voz a partir de un texto](https://github.com/espeak-ng/espeak-ng)
 
-	- Instalar en Ubuntu: "sudo apt install espeak-ng"
-	- Uso para que lea la voz de forma directa en Español: espeak-ng -f fichero.txt -v es -s 145 -p 50
-	- Uso para que genere un fichero wav en Español: espeak-ng -f fichero.txt -v es -s 145 -p 50 -w fichero-salida.wav
-	- Convertir el fichero anterior a mp3: ffmpeg -i fichero-salida.wav -acodec mp3 fichero-salida.mp3
-	
+	- Instalar en Ubuntu: 
+    ```
+            sudo apt install espeak-ng
+    ```
+	- Uso para que lea la voz de forma directa en Español: 
+    ```
+            espeak-ng -f fichero.txt -v es -s 145 -p 50
+    ```
+	- Uso para que genere un fichero wav en Español: 
+    ```
+            espeak-ng -f fichero.txt -v es -s 145 -p 50 -w fichero-salida.wav
+    ```
+	- Convertir el fichero anterior a mp3: 
+    ```
+            ffmpeg -i fichero-salida.wav -acodec mp3 fichero-salida.mp3
+    ```
+
 - [fdupes - Buscar y borrar ficheros duplicados](https://github.com/adrianlopezroche/fdupes)
 
-	- Instalar en Ubuntu: "sudo apt install fdupes"
-	- Buscar ficheros duplicados en el directorio actual: fdupes -r ./
-	- Buscar y eliminar los ficheros duplicados en el directorio actual: fdupes -r ./ --delete
+	- Instalar en Ubuntu:
+    ```
+            sudo apt install fdupes"
+    ```
+	- Buscar ficheros duplicados en el directorio actual: 
+    ```
+            fdupes -r ./
+    ```
+	- Buscar y eliminar los ficheros duplicados en el directorio actual: 
+    ```
+            fdupes -r ./ --delete
+    ```
 	
 - [lpadmin - Añadir y quitar impresoras desde línea de ordenes (para impresoras que soporten IPP](https://www.cups.org/doc/man-lpadmin.html)
 
-    - Instalar en Ubuntu: "sudo apt install cups"
+    - Instalar en Ubuntu: 
+    ```
+            sudo apt install cups
+    ```
     - Añadir impresora:
-        sudo lpadmin -p NOMBRE_IMPRESORA -E -v ipp://DIRECCION_IP/ipp/print -m everywhere
+    ```
+            sudo lpadmin -p NOMBRE_IMPRESORA -E -v ipp://DIRECCION_IP/ipp/print -m everywhere
+    ```
     - Quitar impresora:
-        sudo lpadmin -x NOMBRE_IMPRESORA
+    ```
+            sudo lpadmin -x NOMBRE_IMPRESORA
+    ```
     - Listar impresoras disponibles:
-        sudo lpinfo -lv
+    ```
+            sudo lpinfo -lv
+    ```
         
 - [zstd - Compresión de alta velocidad](https://github.com/facebook/zstd)
 
-    - Instalar en Ubuntu: "sudo apt install zstd"
-    - Comprimir: tar --zstd -cf dat.tar.zst ./dat
-    - Descomprimir: tar -I zstd -xvf dat.tar.zst
-    - Descomprimir en un directorio diferente: tar -I zstd -xvf dat.tar.zst -C ./otro-directorio
+    - Instalar en Ubuntu: 
+    ```
+            sudo apt install zstd
+    ```
+    - Comprimir: 
+    ```
+            tar --zstd -cf dat.tar.zst ./dat
+    ```
+    - Descomprimir: 
+    ```
+            tar -I zstd -xvf dat.tar.zst
+    ```
+    - Descomprimir en un directorio diferente:    
+    ```
+            tar -I zstd -xvf dat.tar.zst -C ./otro-directorio
+    ```
 
 ### Utilidades web
 
