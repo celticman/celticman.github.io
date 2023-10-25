@@ -132,6 +132,15 @@
         
 - [zstd - Compresión de alta velocidad](https://github.com/facebook/zstd)
 
+Compresion mas eficiente en tiempo que Gzip
+
+| Algoritmo  | Tiempo (mm:ss) | Tamaño final |
+| ------------- | ------------- | ------------- |
+| Gzip  | 02:56  | 1.4 GB  |
+| 7-zip  | 02:43  | 1.1 GB  |
+| LZ4  | 00:22  | 2.2 GB  |
+| ZSTD  | 00:24  | 1.4 GB  |
+
     - Instalar en Ubuntu: 
     ```
             sudo apt install zstd
