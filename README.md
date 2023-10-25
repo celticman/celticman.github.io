@@ -144,18 +144,25 @@ Compresion mas eficiente en tiempo que Gzip
 Uso:
 
     - Instalar en Ubuntu: 
+
     ```
             sudo apt install zstd
     ```
+
     - Comprimir: 
+
     ```
             tar --zstd -cf dat.tar.zst ./dat
     ```
+
     - Descomprimir: 
+
     ```
             tar -I zstd -xvf dat.tar.zst
     ```
+
     - Descomprimir en un directorio diferente:    
+
     ```
             tar -I zstd -xvf dat.tar.zst -C ./otro-directorio
     ```
