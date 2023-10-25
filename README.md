@@ -141,6 +141,8 @@ Compresion mas eficiente en tiempo que Gzip
 | LZ4  | 00:22  | 2.2 GB  |
 | ZSTD  | 00:24  | 1.4 GB  |
 
+Uso:
+
     - Instalar en Ubuntu: 
     ```
             sudo apt install zstd
