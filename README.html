@@ -117,6 +117,15 @@ ipp://DIRECCION_IP/ipp/print -m everywhere</li>
 <li>Quitar impresora: sudo lpadmin -x NOMBRE_IMPRESORA</li>
 <li>Listar impresoras disponibles: sudo lpinfo -lv</li>
 </ul></li>
+<li><p><a href="https://github.com/facebook/zstd">zstd - Compresión de
+alta velocidad</a></p>
+<ul>
+<li>Instalar en Ubuntu: “sudo apt install zstd”</li>
+<li>Comprimir: tar –zstd -cf dat.tar.zst ./dat</li>
+<li>Descomprimir: tar -I zstd -xvf dat.tar.zst</li>
+<li>Descomprimir en un directorio diferente: tar -I zstd -xvf
+dat.tar.zst -C ./otro-directorio</li>
+</ul></li>
 </ul>
 <h3 id="utilidades-web">Utilidades web</h3>
 <ul>
@@ -137,7 +146,7 @@ datos</a></li>
 <footer>
 Estilo: <a href="https://minicss.us">Mini.css</a>
 Generador: <a href="https://pandoc.org/">pandoc 2.17.1.1</a>
-Fecha: 2023-09-19
+Fecha: 2023-10-25
 Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
 </footer>
 </div>

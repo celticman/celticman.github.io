@@ -81,6 +81,13 @@
         sudo lpadmin -x NOMBRE_IMPRESORA
     - Listar impresoras disponibles:
         sudo lpinfo -lv
+        
+- [zstd - Compresión de alta velocidad](https://github.com/facebook/zstd)
+
+    - Instalar en Ubuntu: "sudo apt install zstd"
+    - Comprimir: tar --zstd -cf dat.tar.zst ./dat
+    - Descomprimir: tar -I zstd -xvf dat.tar.zst
+    - Descomprimir en un directorio diferente: tar -I zstd -xvf dat.tar.zst -C ./otro-directorio
 
 ### Utilidades web
 
