@@ -248,11 +248,20 @@ Para la gestión de imágenes se utilizará Snapper que es una herramienta creda
 	
 8. Acceso a las instantáneas:
 
+
     Se puede acceder a las instantánea en la siguiente ruta:
 	
     	/srv/datos1/.snapshots
 	
     Dentro del directorio anterior aparecerán las instantáneas por su número (en el subdirectorio snapchot).
+    
+
+				
+9. Borrar instantáneas
+
+				snapper -c datos1 delete NUMERO-INSTANTANEA
+
+
 	
 ## Copia de datos del disco1 al disco2
 
@@ -409,7 +418,13 @@ Comprobar que se está ejecutando:
 	
 	- A un servicio en la nube
 
-## Anexo (no usado)
+## Anexo 1 (Enlaces)
+
+- [Encrypted Btrfs Array with LUKS - Kenneth Jørgensen](https://kennethjorgensen.com/blog/2022/encrypted-btrfs-array-with-luks/).
+
+- [Comprobación de discos usando badblocks - Hard Drive Validation or Destructive Wipe with Badblocks - Calomel](https://calomel.org/badblocks_wipe.html)
+
+## Anexo 2 (no usado)
 
 Las siguientes secciones se deja como referencia, pero no se usan por que como se explica anteriormente se prefiere un sistema formado por un disco maestro y un disco esclavo, pero indendientes.
 

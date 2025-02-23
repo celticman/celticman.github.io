@@ -105,11 +105,19 @@ Buscar y borrar ficheros duplicados</a></p>
 <ul>
 <li><p>Instalar en Ubuntu:</p>
 <pre><code>  sudo apt install fdupes&quot;</code></pre></li>
-<li><p>Buscar ficheros duplicados en el directorio actual:</p>
+<li><p>Buscar ficheros duplicados en el directorio actual (y sus
+subdirectorios con la opción -r):</p>
 <pre><code>  fdupes -r ./</code></pre></li>
 <li><p>Buscar y eliminar los ficheros duplicados en el directorio
 actual:</p>
 <pre><code>  fdupes -r ./ --delete</code></pre></li>
+<li><p>Buscar y eliminar los ficheros duplicados en el directorio actual
+de forma automática (no pregunta y conserva aquel que tiene la fecha de
+modificación más antigua)</p>
+<pre><code>  fdupes -r ./ -d -N
+
+  -d = borrar (delete)
+  -N = No preguntar (no prompt)</code></pre></li>
 </ul></li>
 <li><p><a href="https://www.cups.org/doc/man-lpadmin.html">lpadmin -
 Añadir y quitar impresoras desde línea de ordenes (para impresoras que
@@ -127,7 +135,10 @@ soporten IPP</a></p>
 <li><p><a href="https://github.com/facebook/zstd">zstd - Compresión de
 alta velocidad</a></p>
 <ul>
-<li><p>DescripcionCompresion mas eficiente en tiempo que Gzip</p>
+<li><p>Descripcion: Compresion mas eficiente en tiempo que Gzip y tamaño
+final igual a gzip y cercano a 7-zip. Los tiempos siguientes son el
+resultado de comprimir un mismo directorio con muchos ficheros de texto
+de pequeño tamaño.</p>
 <table>
 <thead>
 <tr class="header">
@@ -161,12 +172,105 @@ alta velocidad</a></p>
 </table></li>
 <li><p>Instalar en Ubuntu:</p>
 <pre><code>  sudo apt install zstd</code></pre></li>
-<li><p>Comprimir:</p>
+<li><p>Comprimir un fichero:</p>
+<pre><code>  zstd fichero-entrada -o fichero-comprimido.zst</code></pre></li>
+<li><p>Comprimir con tar un directorio entero:</p>
 <pre><code>  tar --zstd -cf dat.tar.zst ./dat</code></pre></li>
 <li><p>Descomprimir:</p>
 <pre><code>  tar -I zstd -xvf dat.tar.zst</code></pre></li>
 <li><p>Descomprimir en un directorio diferente:</p>
 <pre><code>  tar -I zstd -xvf dat.tar.zst -C ./otro-directorio</code></pre></li>
+</ul></li>
+<li><p><a href="https://github.com/facebook/zstd">ncdu - NCurses Disk
+Usage - Herramienta análisis uso de disco</a></p>
+<ul>
+<li><p>Descripción: Esta herramienta permite un análisis <strong>MUY
+RÁPIDO</strong> del tamaño ocupado por cada directorio y acceder a cada
+directorio para ver el tamaño ocupado por los subdirectorios y
+archivos.</p></li>
+<li><p>Instalar en Ubuntu:</p>
+<pre><code>  sudo apt install ncdu</code></pre></li>
+</ul></li>
+<li><p><a href="https://github.com/zxcvbn-ts/zxcvbn">zxcvbn - Cálculo
+complejidad contraseñas</a></p>
+<ul>
+<li><p>Descripción: Esta herramienta permite hacer un cálculo de la
+complejidad de la contraseña.</p></li>
+<li><p>Instalar en Ubuntu:</p>
+<pre><code>  sudo apt install python3-zxcvbn</code></pre></li>
+<li><p>Uso (ya pide el la contraseña):</p>
+<pre><code>  zxcvbn</code></pre></li>
+</ul></li>
+<li><p><a href="https://github.com/robertdavidgraham/masscan">masscan -
+Escaneo de puertos abiertos</a></p>
+<ul>
+<li><p>Descripción: Masscan permite la busqueda de puertos abiertos en
+un equipo ó red. Es muy rápido y de uso sencillo.</p></li>
+<li><p>Instalar en Ubuntu:</p>
+<pre><code>  sudo apt install masscan</code></pre></li>
+<li><p>Uso para buscar puertos abiertos en un equipo (p.ej.
+192.168.0.50):</p></li>
+</ul></li>
+<li><p><a
+href="https://www.gnu.org/software/coreutils/manual/html_node/shred-invocation.html">shred
+- Eliminación segura de datos de archivos ó discos</a></p>
+<ul>
+<li><p>Descripción: Shred elimina de forma segura los datos contenidos
+en los archivos ó discos. Por defecto sobreecribe los datos en tres
+pasadas con datos aleatorios:</p></li>
+<li><p>Instalar: Debe estar siempre instalado, ya que pertenece al
+paquete coreutils.</p></li>
+<li><p>Eliminación de datos ficheros:</p>
+<pre><code>  shred nombre-fichero</code></pre></li>
+<li><p>Eliminación de datos ficheros y borrado del fichero</p>
+<pre><code>  shred -u nombre-fichero</code></pre></li>
+<li><p>Eliminación de datos de un disco duro completo</p>
+<pre><code>  sudo shred -v /dev/XXX</code></pre></li>
+</ul></li>
+<li><p><a href="https://github.com/rakyll/hey">hey - Herramienta carga
+servidor web</a></p>
+<ul>
+<li><p>Descripción: Es una herramienta que envía carga a un servidor
+web.</p></li>
+<li><p>Instalación:</p>
+<p>apt install hey</p></li>
+<li><p>Uso:</p>
+<p>hey http://localhost:8000</p></li>
+</ul></li>
+<li><p>[mtr - My traceroute - gráfico]</p>
+<ul>
+<li><p>Descrición: Herramienta para sustituir a ping y traceroute. En
+Ubuntu por defecto se instala mtr-tiny (en modo texto).</p></li>
+<li><p>Instalación de la versión completa:</p>
+<p>apt install mtr</p></li>
+<li><p>Uso:</p>
+<p>mtr 8.8.8.8</p></li>
+</ul></li>
+<li><p>[yt-dlp - Descarga de videos y audios de videos de Youtube]</p>
+<ul>
+<li><p>Descripción: Herramienta para descargar videos de
+youtube</p></li>
+<li><p>Instalación:</p>
+<p>apt install yt-dlp</p></li>
+<li><p>Uso:</p>
+<ul>
+<li><p>Descargar un video</p>
+<p>yt-dlp https://www.youtube.com/watch?v=zZzZzZzZzZz</p></li>
+<li><p>Descargar un video en formato mp3</p>
+<p>yt-dlp https://www.youtube.com/watch?v=zZzZzZzZzZz -x –audio-format
+mp3</p></li>
+<li><p>Descargar una lista de reproducción a mp3</p>
+<p>yt-dlp https://www.youtube.com/<span class="citation"
+data-cites="ZzzzzZzzzzZzzzz/videos">@ZzzzzZzzzzZzzzz/videos</span> -x
+–audio-format mp3</p></li>
+<li><p>Descargar una lista de reproducción a mp3 con una antiguedad
+máxima</p>
+<p>yt-dlp https://www.youtube.com/<span class="citation"
+data-cites="ZzzzzZzzzzZzzzz/videos">@ZzzzzZzzzzZzzzz/videos</span> -x
+–audio-format mp3 –dateafter YYYYMMDD</p></li>
+<li><p>Opciones útiles</p>
+<p>–restrict-filenames –windows-filenames</p></li>
+</ul></li>
 </ul></li>
 </ul>
 <h3 id="utilidades-web">Utilidades web</h3>
@@ -176,7 +280,25 @@ Videoconferencia</a></p></li>
 <li><p><a href="https://talky.io">Talky.io -
 Videoconferencia</a></p></li>
 <li><p><a href="https://wormhole.app/">Wormhole - Envío de ficheros -
-alternativa a firefox Send</a></p></li>
+alternativa a firefox Send</a>: Hay que compartir un enlace, pero la
+transferencia puede ser offline.</p></li>
+<li><p><a href="https://blaze.vercel.app/">Vercel - Blaze - Compartir
+ficheros</a>: Funciona incluso en una red local (los equipos se conectan
+automáticamente sin tener que compartir un enlace).</p></li>
+<li><p>[ntfy - Envío notificaciones PUSH a móvil]</p>
+<ul>
+<li><p>Descripción: Servicio para que el envío de notificaciones PUSH a
+un teléfono móvil sea muy sencillo</p></li>
+<li><p>Paso 1: Instalar en el teléfono móvil (iOS ó Android) la
+aplicación <strong>ntfy</strong>.</p></li>
+<li><p>Paso 2: Crear un “asunto” ó “topic” con una cadena (si se desea
+que sea privada, debe ser larga y/o aleatoria). P.ej.
+MIS-NOTIFICACIONES</p></li>
+<li><p>Paso 3: Enviar mediante línea de órdenes la notificación del
+siguiente modo:</p>
+<p>curl -d “mensaje de la notificacion”
+ntfy.sh/MIS-NOTIFICACIONES</p></li>
+</ul></li>
 </ul>
 <h3 id="utilidades-escritorio">Utilidades escritorio</h3>
 <ul>
@@ -187,8 +309,8 @@ datos</a></li>
 
 <footer>
 Estilo: <a href="https://minicss.us">Mini.css</a>
-Generador: <a href="https://pandoc.org/">pandoc 2.17.1.1</a>
-Fecha: 2023-10-25
+Generador: <a href="https://pandoc.org/">pandoc 3.1.3</a>
+Fecha: 2025-02-23
 Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
 </footer>
 </div>

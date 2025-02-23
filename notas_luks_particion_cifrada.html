@@ -18,9 +18,11 @@
 cifradas en Linux</h2>
 <h3 id="instrucciones-creación-de-volumen-cifrado">Instrucciones
 creación de volumen CIFRADO</h3>
-<p>0.0) Verificar si existen particiones en el disco duro externo</p>
+<p>0.0) Identifica la partición ó disco a utilizar</p>
+<pre><code>lsblk</code></pre>
+<p>0.1) Verificar si existen particiones en el disco duro externo</p>
 <pre><code>fdisk -l /dev/sdb</code></pre>
-<p>0.1) Si no existen hay que crearla con:</p>
+<p>0.2) Si no existen hay que crearla con:</p>
 <pre><code>fdisk /dev/sdb
 
     Comando1:   n (nueva particion)
@@ -30,8 +32,8 @@ creación de volumen CIFRADO</h3>
     Comando5:   w   (escribir la nueva partición y salir)</code></pre>
 <ol type="1">
 <li><p>Crear unidad cifrada</p>
-<p>cryptsetup luksFormat –type luks2 –verify-passphrase
-/dev/sdb1</p></li>
+<p>cryptsetup luksFormat /dev/sdb1 –type luks2
+–verify-passphrase</p></li>
 <li><p>Descifrar volumen</p>
 <p>cryptsetup luksOpen /dev/sdb1 HD1</p></li>
 <li><p>Formatear volumen con etiqueta “ETIQUETA”</p>
@@ -49,12 +51,45 @@ mount /dev/mapper/HD1 /mnt/HD1</code></pre>
 <pre><code>#!/bin/sh
 umount /dev/mapper/HD1
 cryptsetup luksClose HD1</code></pre>
+<h3 id="destrucción-de-datos-en-discos-duros">Destrucción de datos en
+discos duros</h3>
+<h4 id="dban---herramienta-destrucción-de-datos-en-discos-duros">DBAN -
+Herramienta destrucción de datos en discos duros</h4>
+<p><a href="https://sourceforge.net/projects/dban/">DBAN - Darik’s Boot
+and Nuke</a> - Es una utilidad que se puede arrancar desde un CD ó USB y
+que borra los datos de todos los discos insertados en un PC, es posibe
+eleir entre el procedimiento de 7 escrituras ó el corto de 3 escrituras
+(que para los sistemas actuales de almacenamiento debe ser
+suficiente).</p>
+<h4 id="borrado-de-datos-con-shred">Borrado de datos con shred</h4>
+<p>Este comando borra un disco con 3 pasadas de datos aleatorios</p>
+<pre><code>    sudo shred -v /dev/sdX</code></pre>
+<h4 id="otras-alternativas-con-la-línea-de-ordenes-de-linux">Otras
+alternativas con la línea de ordenes de linux:</h4>
+<p><strong>El siguiente texto es un resumen de
+https://askubuntu.com/questions/1344289/how-to-securely-delete-wipe-out-a-hard-disk-so-its-hard-to-recover-data</strong>:</p>
+<h4
+id="eliminación-de-datos-de-ssd-y-hdd-conectados-vía-sata-o-nvme">Eliminación
+de datos de SSD (y HDD) conectados vía SATA o NVME</h4>
+<p>En los discos duros HDD y los de estado sólido es muy recomendable
+que el borrado se realice con las funciones SMART. El propio SSD debe
+borrar la clave de descifrado y poner todos los bloques a cero, así como
+marcarlos como que no tienen datos.</p>
+<ol type="1">
+<li><p>Bloquee la unidad con hdparm y la opción
+–security-set-pass</p></li>
+<li><p>Borre la unidad con hdparm y la opción –security-erase</p></li>
+<li><p>Desbloquee la unidad con hdparm y la opción
+–security-unlock</p></li>
+</ol>
+<p><strong>Importante: hdparm solo se debe usar en discos conectados día
+SATA ó NVMe</strong>.</p>
 
 
 <footer>
 Estilo: <a href="https://minicss.us">Mini.css</a>
-Generador: <a href="https://pandoc.org/">pandoc 2.17.1.1</a>
-Fecha: 2023-10-25
+Generador: <a href="https://pandoc.org/">pandoc 3.1.3</a>
+Fecha: 2025-02-23
 Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
 </footer>
 </div>
