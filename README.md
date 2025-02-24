@@ -226,7 +226,7 @@
     
         hey http://localhost:8000
         
-- [mtr - My traceroute - gráfico]
+- [mtr - My traceroute - gráfico](https://www.bitwizard.nl/mtr/)
 
     - Descrición: Herramienta para sustituir a ping y traceroute. En Ubuntu por defecto se instala mtr-tiny (en modo texto).
     
@@ -238,7 +238,7 @@
     
         mtr 8.8.8.8
         
-- [yt-dlp - Descarga de videos y audios de videos de Youtube]
+- [yt-dlp - Descarga de videos y audios de videos de Youtube](https://github.com/yt-dlp/yt-dlp)
 
     - Descripción: Herramienta para descargar videos de youtube
     
@@ -282,7 +282,7 @@
 
 - [Vercel - Blaze - Compartir ficheros](https://blaze.vercel.app/): Funciona incluso en una red local (los equipos se conectan automáticamente sin tener que compartir un enlace).
 
-- [ntfy - Envío notificaciones PUSH a móvil]
+- [ntfy - Envío notificaciones PUSH a móvil](https://ntfy.sh/)
 
     - Descripción: Servicio para que el envío de notificaciones PUSH a un teléfono móvil sea muy sencillo
     
