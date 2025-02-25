@@ -238,6 +238,8 @@
     
         mtr 8.8.8.8
         
+- [SmokePing - Vigilador de latencia con visualizacion gráfica (basada en CGI ejecutado por Apache), requiere instalar Apache](https://oss.oetiker.ch/smokeping/)
+        
 - [yt-dlp - Descarga de videos y audios de videos de Youtube](https://github.com/yt-dlp/yt-dlp)
 
     - Descripción: Herramienta para descargar videos de youtube
