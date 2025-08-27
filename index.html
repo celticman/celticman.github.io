@@ -29,6 +29,8 @@ disco cifrado con LUKS en Linux</a></p></li>
 <li><p><a href="./notas_golang.html">Go - Golang</a></p></li>
 <li><p><a href="./notas_qemu.html">QEMU y Virt Manager-
 Golang</a></p></li>
+<li><p><a href="./notas_gimp_documentos.html">Limpiar fotos de
+documentos con GIMP</a></p></li>
 </ul>
 <h2 id="utilidades">Utilidades</h2>
 <h3 id="utilidades-línea-de-órdenes">Utilidades Línea de órdenes</h3>
@@ -250,6 +252,21 @@ Ubuntu por defecto se instala mtr-tiny (en modo texto).</p></li>
 <li><p><a href="https://oss.oetiker.ch/smokeping/">SmokePing - Vigilador
 de latencia con visualizacion gráfica (basada en CGI ejecutado por
 Apache), requiere instalar Apache</a></p></li>
+<li><p><a href="https://github.com/tealdeer-rs/tealdeer">tealdeer -
+Implementación de tldr muy rápida</a></p>
+<ul>
+<li><p>Descripción: TLDR (resumen de como se utilizan comandos de línea
+de ordenes), programada en Rust.</p></li>
+<li><p>Instalación:</p>
+<p>apt install tealdeer</p></li>
+<li><p>Uso:</p>
+<ul>
+<li><p>Actualizar cache (hay que ejecutarlo al empezar a usarlo)</p>
+<p>tldr –update</p></li>
+<li><p>Mostrar resumen de un comando</p>
+<p>tldr COMANDO</p></li>
+</ul></li>
+</ul></li>
 <li><p><a href="https://github.com/yt-dlp/yt-dlp">yt-dlp - Descarga de
 videos y audios de videos de Youtube</a></p>
 <ul>
@@ -264,6 +281,9 @@ youtube</p></li>
 <li><p>Descargar un video en formato mp3</p>
 <p>yt-dlp https://www.youtube.com/watch?v=zZzZzZzZzZz -x –audio-format
 mp3</p></li>
+<li><p>Descargar solo los subtítulos</p>
+<p>yt-dlp https://www.youtube.com/watch?v=zZzZzZzZzZz–write-auto-subs
+–write-subs –sub-lang en –convert-subs srt –sub-format txt</p></li>
 <li><p>Descargar una lista de reproducción a mp3</p>
 <p>yt-dlp https://www.youtube.com/<span class="citation"
 data-cites="ZzzzzZzzzzZzzzz/videos">@ZzzzzZzzzzZzzzz/videos</span> -x
@@ -275,6 +295,37 @@ data-cites="ZzzzzZzzzzZzzzz/videos">@ZzzzzZzzzzZzzzz/videos</span> -x
 –audio-format mp3 –dateafter YYYYMMDD</p></li>
 <li><p>Opciones útiles</p>
 <p>–restrict-filenames –windows-filenames</p></li>
+</ul></li>
+</ul></li>
+<li><p><a href="https://imagemagick.org/script/convert.php">convert -
+Conversion de ficheros de imágenes desde línea de órdenes</a></p>
+<ul>
+<li><p>Descripción: Programa para conversión de imágenes, escalado ó
+tamaño. Pertenece al paquete Image Magik. Convierte también las imágenes
+a PDF. Hay otra función <strong>mogrify</strong> que realiza las mismas
+funciones pero sobrescribiendo el fichero original.</p></li>
+<li><p>Instalación:</p>
+<p>apt install graphicsmagick-imagemagick-compat</p></li>
+<li><p>Uso:</p>
+<ul>
+<li><p>Convertir de .png a .jpg:</p>
+<pre><code>  convert FICHERO-ENTRADA.PNG FICHERO-SALIDA.JPG</code></pre></li>
+<li><p>Redimensionar una imágen a un % del tamao original (pueden ser de
+diferentes tipos p.ej. .png y .jpg):</p>
+<pre><code>  convert FICHERO-ENTRADA -resize 40% -quality 75% FICHERO-SALIDA</code></pre></li>
+<li><p>Redimensionar una imágen a un tamaño máximo (manteniento la
+relación entre alto y ancho):</p>
+<pre><code>  convert FICHERO-ENTRADA -resize 400x500 FICHERO-SALIDA</code></pre></li>
+<li><p>Redimensionar todos los archivos .jpg que hay en un
+directorio:</p>
+<pre><code>echo &quot;ATENCION: Se va a borrar el subdirectorio salida y generar los ficheros de tamaño reducido&quot;
+read -r -p &quot;¿Estas seguro? [s/N] &quot; response
+if [[ &quot;$response&quot; =~ ^([sS])$ ]]
+then
+    mkdir -p ./reducidas
+    rm -Rf ./reducidas/*
+    for nombre_fichero in *.jpg; do echo &quot;$nombre_fichero&quot;;nombre_sin_extension=&quot;${nombre_fichero%.jpg}&quot;; convert &quot;$nombre_fichero&quot; -resize 40% -quality 75% &quot;./reducidas/$nombre_sin_extension&quot;_reducida.jpg; done
+fi</code></pre></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -316,7 +367,7 @@ datos</a></li>
 <footer>
 Estilo: <a href="https://minicss.us">Mini.css</a>
 Generador: <a href="https://pandoc.org/">pandoc 3.1.3</a>
-Fecha: 2025-02-25
+Fecha: 2025-08-27
 Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
 </footer>
 </div>

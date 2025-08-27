@@ -16,6 +16,8 @@
 
 - [QEMU y Virt Manager- Golang](./notas_qemu.html)
 
+- [Limpiar fotos de documentos con GIMP](./notas_gimp_documentos.html)
+
 ## Utilidades
 
 ### Utilidades Línea de órdenes
@@ -239,7 +241,25 @@
         mtr 8.8.8.8
         
 - [SmokePing - Vigilador de latencia con visualizacion gráfica (basada en CGI ejecutado por Apache), requiere instalar Apache](https://oss.oetiker.ch/smokeping/)
+
+- [tealdeer - Implementación de tldr muy rápida](https://github.com/tealdeer-rs/tealdeer)
         
+    - Descripción: TLDR (resumen de como se utilizan comandos de línea de ordenes), programada en Rust.
+    
+    - Instalación:
+    
+        apt install tealdeer
+        
+    - Uso:
+
+        - Actualizar cache (hay que ejecutarlo al empezar a usarlo)
+
+            tldr --update
+
+        - Mostrar resumen de un comando
+
+            tldr COMANDO
+            
 - [yt-dlp - Descarga de videos y audios de videos de Youtube](https://github.com/yt-dlp/yt-dlp)
 
     - Descripción: Herramienta para descargar videos de youtube
@@ -257,6 +277,10 @@
         - Descargar un video en formato mp3
 
             yt-dlp https://www.youtube.com/watch?v=zZzZzZzZzZz -x --audio-format mp3
+            
+        - Descargar solo los subtítulos
+        
+            yt-dlp https://www.youtube.com/watch?v=zZzZzZzZzZz--write-auto-subs --write-subs --sub-lang en --convert-subs srt --sub-format txt 
 
         - Descargar una lista de reproducción a mp3
 
@@ -270,8 +294,41 @@
 
             --restrict-filenames  --windows-filenames
 
+-  [convert - Conversion de ficheros de imágenes desde línea de órdenes](https://imagemagick.org/script/convert.php)
 
+    - Descripción: Programa para conversión de imágenes, escalado ó tamaño. Pertenece al paquete Image Magik. Convierte también las imágenes a PDF. Hay otra función **mogrify** que realiza las mismas funciones pero sobrescribiendo el fichero original.
+    
+    - Instalación:
+    
+        apt install graphicsmagick-imagemagick-compat
         
+    - Uso:
+    
+        - Convertir de .png a .jpg:
+        
+             	convert FICHERO-ENTRADA.PNG FICHERO-SALIDA.JPG
+             	
+        - Redimensionar una imágen a un % del tamao original (pueden ser de diferentes tipos p.ej. .png y .jpg):
+        
+             	convert FICHERO-ENTRADA -resize 40% -quality 75% FICHERO-SALIDA
+             	
+        - Redimensionar una imágen a un tamaño máximo (manteniento la relación entre alto y ancho):
+        
+             	convert FICHERO-ENTRADA -resize 400x500 FICHERO-SALIDA
+             	
+        - Redimensionar todos los archivos .jpg que hay en un directorio:
+        
+            ```
+            echo "ATENCION: Se va a borrar el subdirectorio salida y generar los ficheros de tamaño reducido"
+            read -r -p "¿Estas seguro? [s/N] " response
+            if [[ "$response" =~ ^([sS])$ ]]
+            then
+                mkdir -p ./reducidas
+                rm -Rf ./reducidas/*
+                for nombre_fichero in *.jpg; do echo "$nombre_fichero";nombre_sin_extension="${nombre_fichero%.jpg}"; convert "$nombre_fichero" -resize 40% -quality 75% "./reducidas/$nombre_sin_extension"_reducida.jpg; done
+            fi
+            ```
+
     
 
 ### Utilidades web

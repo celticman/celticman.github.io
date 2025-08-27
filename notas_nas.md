@@ -397,7 +397,7 @@ Comprobar que se está ejecutando:
 
 5. Acceso a ficheros vía web:
 
-	- [sftpgo - Fully featured and highly configurable SFTP server](https://github.com/drakkan/sftpgo)
+    - [sftpgo - Fully featured and highly configurable SFTP server](https://github.com/drakkan/sftpgo)
     - [filebrowser - Crear tu cloud, accediendo a los ficheros con una interfaz web](https://filebrowser.org/)
     - [Seafile - Reliable and Performant File Sync and Share Solution](https://www.seafile.com/en/home/): Puede almacenar los ficheros cifrados (encriptados antes de subirlos al servidor).
     - [Pydio - Document Sharing At Scale, Cells V4 now provides secure, cloud-native, scalable, self-hosted, open-core document sharing and collaboration](https://pydio.com)
@@ -408,21 +408,28 @@ Comprobar que se está ejecutando:
 
 9. Sincronización de contactos y calendario:
 
-	- Radicale
+    - Radicale
 	
 10. Backup de servidor:
 
-	- A discos externos
-	
-	- A otro NAS Simple
-	
-	- A un servicio en la nube
+    - A discos externos	
+    - A otro NAS Simple
+    - A un servicio en la nube
+    
+11. Probar los siguienetes paquetes:
+
+    - [btrbk herramienta de backup para BTRFS](https://digint.ch/btrbk/).
+    - Sustituir rsync por [**btrfs send** y **btrfs receive**](https://btrfs.readthedocs.io/en/latest/Send-receive.html).
+
+
 
 ## Anexo 1 (Enlaces)
 
 - [Encrypted Btrfs Array with LUKS - Kenneth Jørgensen](https://kennethjorgensen.com/blog/2022/encrypted-btrfs-array-with-luks/).
 
 - [Comprobación de discos usando badblocks - Hard Drive Validation or Destructive Wipe with Badblocks - Calomel](https://calomel.org/badblocks_wipe.html)
+
+
 
 ## Anexo 2 (no usado)
 
