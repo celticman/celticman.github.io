@@ -318,15 +318,36 @@
              	
         - Redimensionar todos los archivos .jpg que hay en un directorio:
         
-            ```
+            ```bash
+            # Muestra un mensaje de advertencia al usuario sobre la acción que se va a realizar
             echo "ATENCION: Se va a borrar el subdirectorio salida y generar los ficheros de tamaño reducido"
+
+            # Solicita confirmación al usuario antes de proceder
             read -r -p "¿Estas seguro? [s/N] " response
+
+            # Verifica si la respuesta del usuario es 's' o 'S' (sí)
             if [[ "$response" =~ ^([sS])$ ]]
             then
+                # Crea el directorio 'reducidas' si no existe
                 mkdir -p ./reducidas
+                
+                # Elimina todos los archivos en el directorio 'reducidas'
                 rm -Rf ./reducidas/*
-                for nombre_fichero in *.jpg; do echo "$nombre_fichero";nombre_sin_extension="${nombre_fichero%.jpg}"; convert "$nombre_fichero" -resize 40% -quality 75% "./reducidas/$nombre_sin_extension"_reducida.jpg; done
+                
+                # Itera sobre todos los archivos .jpg en el directorio actual
+                for nombre_fichero in *.jpg; do 
+                    # Muestra el nombre del archivo actual
+                    echo "$nombre_fichero"
+                    
+                    # Extrae el nombre del archivo sin la extensión .jpg
+                    nombre_sin_extension="${nombre_fichero%.jpg}"
+                    
+                    # Utiliza el comando 'convert' para redimensionar la imagen al 40% de su tamaño original
+                    # y establece la calidad de la imagen en 75%, guardando el nuevo archivo en el directorio 'reducidas'
+                    convert "$nombre_fichero" -resize 40% -quality 75% "./reducidas/$nombre_sin_extension"_reducida.jpg
+                done
             fi
+
             ```
 
     
