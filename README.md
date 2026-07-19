@@ -51,7 +51,7 @@
             http http://worldtimeapi.org/api/ip -p HBhb
 
         
-- [visidata - Visor y editor de hojas de calculo en línea de ordenes](https://www.visidata.org)
+- [visidata - Visor y editor de hojas de calculo (csv, json, sqlite y otros) en línea de ordenes](https://www.visidata.org)
 
     - Instalar en Ubuntu: 
 
@@ -66,6 +66,63 @@
 
             vd input.csv --csv-delimiter ð
 
+- [csvkit - Paquete de herramientas para trabajar con difhceros CSV](https://csvkit.readthedocs.io/en/latest/index.html)
+
+    - Instalar en Ubuntu:
+    
+            sudo apt install csvkit
+            
+    - Herramietas que integra:
+    
+        - Entrada
+
+            - in2csv
+
+            - sql2csv
+
+        - Procesamiento
+
+            - csvclean
+
+            - csvcut
+
+            - csvgrep
+
+            - csvjoin
+
+            - csvsort
+
+            - csvstack
+
+            - Ver también: 
+
+                - Para eliminar duplicados y combinar archivos CSV, considera csvdedupe.
+
+                - Para cambiar los valores de los campos (es decir, ejecutar comandos tipo sed o awk en archivos CSV), considera el comando replace de qsv o miller (mlr put).
+
+                - Para transponer archivos CSV, considera el comando flatten de qsv o la compatibilidad con XTAB de miller (mlr --oxtab).
+
+        - Salida y análisis
+
+            - csvformat
+
+            - csvjson
+
+            - csvlook
+
+            - csvpy
+
+            - csvsql
+
+            - csvstat
+
+            - Para crear gráficos, considera jp.
+
+            - Para comparar (diff) archivos CSV, considera daff.
+
+            - Para explorar archivos CSV de forma interactiva, considera VisiData.
+
+            - Las alternativas a csvsql son q y textql.
         
 - [ocrmypdf - Genera un pdf con reconocimiento de textos y que se puede buscar](https://ocrmypdf.readthedocs.io/en/latest/index.html)
 
@@ -242,6 +299,41 @@
         
 - [SmokePing - Vigilador de latencia con visualizacion gráfica (basada en CGI ejecutado por Apache), requiere instalar Apache](https://oss.oetiker.ch/smokeping/)
 
+
+
+- **ssh con servidor de salto (Proxy Jump)**
+
+    - Conexión a servidor situado detras de un servidor de salto:
+
+        ssh -J usuario-salto@servidor-salto:puerto-salto -p puerto usuario@servidor
+    
+- **scp con servidor de salto (Proxy Jump)**
+
+    - Copia desde servidor remoto detras de servidor de salto:
+  
+        scp -o "ProxyJump usuario-salto@servidor-salto:puerto-salto" -P puerto usuario@servidor:ruta-fichero-origen ./
+    
+- [sshuttle - SSH como VPN para conexión a internet a través de otro servidor, muy fácil de utilizar, pero requiere permisos de root(sudo) para habilitarlo en el PC cliente.](https://sshuttle.readthedocs.io/en/stable/)
+
+
+
+    - Conexión a **solo** un rango de IPs a través de otro servidor (el rango se especifica como ip/bits-mascara):
+    
+        sshuttle -vr usuario-remoto@ip-servidor rango-ip 
+
+    - Conexión a **Todo Internet** a través de otro servidor:
+    
+        sshuttle -vr usuario-remoto@ip-servidor 0.0.0.0/0 
+        
+    - Para que también se envíen las peticiones DNS hay que incluir: --dns, p.je:
+    
+        sshuttle --dns -vr usuario-remoto@ip-servidor 0.0.0.0/0 
+        
+    - Para excluir una dirección IP de la conexión se hace con la opción -x IP
+
+        sshuttle --dns -vr usuario-remoto@ip-servidor 0.0.0.0/0 -x IP-EXCLUIDA
+
+
 - [tealdeer - Implementación de tldr muy rápida](https://github.com/tealdeer-rs/tealdeer)
         
     - Descripción: TLDR (resumen de como se utilizan comandos de línea de ordenes), programada en Rust.
@@ -278,6 +370,10 @@
 
             yt-dlp https://www.youtube.com/watch?v=zZzZzZzZzZz -x --audio-format mp3
             
+            Nota: Para convertir los fichero .m4a a mp3 se puede hacer con las siguiente función:
+            
+                for f in *.m4a; do ffmpeg -i "$f" -c:v copy -c:a libmp3lame -q:a 4 "$f.mp3"; done
+            
         - Descargar solo los subtítulos
         
             yt-dlp https://www.youtube.com/watch?v=zZzZzZzZzZz--write-auto-subs --write-subs --sub-lang en --convert-subs srt --sub-format txt 
@@ -293,6 +389,8 @@
         - Opciones útiles
 
             --restrict-filenames  --windows-filenames
+            
+
 
 -  [convert - Conversion de ficheros de imágenes desde línea de órdenes](https://imagemagick.org/script/convert.php)
 
@@ -350,7 +448,35 @@
 
             ```
 
+- [Línea de órdenes - Bash]
+
+
+    - Copiar un fichero al portapapeles (con Wayland):
+
+        ```
+        cat fichero > wl-copy
+        ```
+        
+    - Escribir el portapapeles a un fichero (con Wayland):
+
+        ```
+        wl-paste > fichero
+        ```
+        
+    - Borrado historia:
+
+        ```
+        cat /dev/null > ~/.bash_history && history -c && exit
+        ```
+
+    - Eliminar líneas vacías con awk (en el ejemplo los 
     
+        cat fichero | awk NF
+        
+    - Eliminar espacios en una lines
+    
+        cat fichero | tr -d " "
+        
 
 ### Utilidades web
 
