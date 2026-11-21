@@ -16,10 +16,10 @@
 
 - [Go - Golang](./notas_golang.html)
 
-- [QEMU y Virt Manager- Golang](./notas_qemu.html)
+- [QEMU y Virt Manager](./notas_qemu.html)
 
 - [Limpiar fotos de documentos con GIMP](./notas_gimp_documentos.html)
 
 ## Referencia
 
-- [Utilidades](./notas_utilidades.md)
+- [Utilidades](./notas_utilidades.html)
