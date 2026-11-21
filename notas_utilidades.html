@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <link rel="stylesheet" href="/estaticos/mini.css">
+</head>
+<body>
+<div id="wrapper"  class="col-sm-12 col-md-8 col-lg-6 col-md-offset-2  col-lg-offset-3">  
+<header class="sticky">
+
+
+<a href="https://celticman.github.io/"><h1 class="title">Celticman - notas personales</h1></a>
+
+</header>
+
+
+<h2 id="utilidades">Utilidades</h2>
+<h3 id="utilidades-línea-de-órdenes">Utilidades Línea de órdenes</h3>
+<ul>
+<li><p><a href="https://github.com/junegunn/fzf">fzf - fuzzy finder -
+Busqueda por nombre de fichero o directorio</a></p>
+<ul>
+<li><p>Instalar en ubuntu: “sudo apt install fzf”.</p></li>
+<li><p>Uso:</p>
+<ul>
+<li>Ctrl + T: Búsqueda de ficheros</li>
+<li>Alt + C: Busqueda directorios</li>
+</ul></li>
+</ul></li>
+<li><p><a href="https://github.com/ggreer/the_silver_searcher">ag - The
+silver searcher - Busqueda por contedido de ficheros</a></p>
+<ul>
+<li><p>Instalar en ubuntu: “sudo apt install silversearcher-ag”</p></li>
+<li><p>Uso:</p>
+<ul>
+<li>Teclear: ag TERMINIO-BUSQUEDA.</li>
+<li>Para que solo aparezca el listado de ficheros, añadir la opcion
+“-l”.</li>
+<li>Para que busque la cadena indicada (sin utilizar una expresión
+regular), añadir “–literal”.</li>
+<li>Para buscar en directorios ocultos, añadir la opción “–hidden”.</li>
+</ul></li>
+</ul></li>
+<li><p><a href="https://httpie.org/">httpie - Línea de ordenes para
+interaccionar con API HTTP</a></p>
+<ul>
+<li><p>Instalar en ubuntu: “sudo apt install httpie”</p></li>
+<li><p>Uso:</p>
+<pre><code>  http https://ifconfig.me/all.json -p HBhb
+  http https://api.weather.gov/points/40,-116 -p HBhb
+  http http://worldtimeapi.org/api/ip -p HBhb</code></pre></li>
+</ul></li>
+<li><p><a href="https://www.visidata.org">visidata - Visor y editor de
+hojas de calculo (csv, json, sqlite y otros) en línea de ordenes</a></p>
+<ul>
+<li><p>Instalar en Ubuntu:</p>
+<pre><code>  sudo apt install visidata</code></pre></li>
+<li><p>Uso:</p>
+<ul>
+<li><p>Ver un fichero CSV con separador “;”:</p>
+<p>vd input.csv</p></li>
+<li><p>Ver un fichero CSV con separador “ð”:</p>
+<p>vd input.csv –csv-delimiter ð</p></li>
+</ul></li>
+</ul></li>
+<li><p><a href="https://github.com/andmarti1424/sc-im">sc-im -
+Spreadsheet Calculator Improved - Hoja de calculo en modo texto</a></p>
+<ul>
+<li><p>Instalar en Ubuntu (probablemente instalado por defecto):</p>
+<p>sudo apt install sc-im</p></li>
+<li><p>Uso:</p>
+<ul>
+<li><p>Ver un fichero CSV con separador “;”:</p>
+<p>sc-im input.csv</p></li>
+<li><p>Ver un fichero CSV con separador “ð”:</p>
+<p>sc-im input.csv –txtdelim=ð</p></li>
+</ul></li>
+</ul></li>
+<li><p><a
+href="https://csvkit.readthedocs.io/en/latest/index.html">csvkit -
+Paquete de herramientas para trabajar con difhceros CSV</a></p>
+<ul>
+<li><p>Instalar en Ubuntu:</p>
+<pre><code>  sudo apt install csvkit</code></pre></li>
+<li><p>Herramietas que integra:</p>
+<ul>
+<li><p>Entrada</p>
+<ul>
+<li><p>in2csv</p></li>
+<li><p>sql2csv</p></li>
+</ul></li>
+<li><p>Procesamiento</p>
+<ul>
+<li><p>csvclean</p></li>
+<li><p>csvcut</p></li>
+<li><p>csvgrep</p></li>
+<li><p>csvjoin</p></li>
+<li><p>csvsort</p></li>
+<li><p>csvstack</p></li>
+<li><p>Ver también:</p>
+<ul>
+<li><p>Para eliminar duplicados y combinar archivos CSV, considera
+csvdedupe.</p></li>
+<li><p>Para cambiar los valores de los campos (es decir, ejecutar
+comandos tipo sed o awk en archivos CSV), considera el comando replace
+de qsv o miller (mlr put).</p></li>
+<li><p>Para transponer archivos CSV, considera el comando flatten de qsv
+o la compatibilidad con XTAB de miller (mlr –oxtab).</p></li>
+</ul></li>
+</ul></li>
+<li><p>Salida y análisis</p>
+<ul>
+<li><p>csvformat</p></li>
+<li><p>csvjson</p></li>
+<li><p>csvlook</p></li>
+<li><p>csvpy</p></li>
+<li><p>csvsql</p></li>
+<li><p>csvstat</p></li>
+<li><p>Para crear gráficos, considera jp.</p></li>
+<li><p>Para comparar (diff) archivos CSV, considera daff.</p></li>
+<li><p>Para explorar archivos CSV de forma interactiva, considera
+VisiData.</p></li>
+<li><p>Las alternativas a csvsql son q y textql.</p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p><a
+href="https://ocrmypdf.readthedocs.io/en/latest/index.html">ocrmypdf -
+Genera un pdf con reconocimiento de textos y que se puede buscar</a></p>
+<ul>
+<li><p>Instalar en Ubuntu:</p>
+<pre><code>  sudo apt install ocrmypdf tesseract-ocr tesseract-ocr-spa jbig2dec</code></pre></li>
+<li><p>Uso:</p>
+<pre><code>  ocrmypdf origen.pdf -l spa destino.pdf </code></pre></li>
+</ul></li>
+<li><p><a href="https://github.com/espeak-ng/espeak-ng">espeak-ng -
+Sintetizador de voz a partir de un texto</a></p>
+<ul>
+<li><p>Instalar en Ubuntu:</p>
+<pre><code>  sudo apt install espeak-ng</code></pre></li>
+<li><p>Uso para que lea la voz de forma directa en Español:</p>
+<pre><code>  espeak-ng -f fichero.txt -v es -s 145 -p 50</code></pre></li>
+<li><p>Uso para que genere un fichero wav en Español:</p>
+<pre><code>  espeak-ng -f fichero.txt -v es -s 145 -p 50 -w fichero-salida.wav</code></pre></li>
+<li><p>Convertir el fichero anterior a mp3:</p>
+<pre><code>  ffmpeg -i fichero-salida.wav -acodec mp3 fichero-salida.mp3</code></pre></li>
+</ul></li>
+<li><p><a href="https://github.com/adrianlopezroche/fdupes">fdupes -
+Buscar y borrar ficheros duplicados</a></p>
+<ul>
+<li><p>Instalar en Ubuntu:</p>
+<pre><code>  sudo apt install fdupes&quot;</code></pre></li>
+<li><p>Buscar ficheros duplicados en el directorio actual (y sus
+subdirectorios con la opción -r):</p>
+<pre><code>  fdupes -r ./</code></pre></li>
+<li><p>Buscar y eliminar los ficheros duplicados en el directorio
+actual:</p>
+<pre><code>  fdupes -r ./ --delete</code></pre></li>
+<li><p>Buscar y eliminar los ficheros duplicados en el directorio actual
+de forma automática (no pregunta y conserva aquel que tiene la fecha de
+modificación más antigua)</p>
+<pre><code>  fdupes -r ./ -d -N
+
+  -d = borrar (delete)
+  -N = No preguntar (no prompt)</code></pre></li>
+</ul></li>
+<li><p><a href="https://www.cups.org/doc/man-lpadmin.html">lpadmin -
+Añadir y quitar impresoras desde línea de ordenes (para impresoras que
+soporten IPP</a></p>
+<ul>
+<li><p>Instalar en Ubuntu:</p>
+<pre><code>  sudo apt install cups</code></pre></li>
+<li><p>Añadir impresora:</p>
+<pre><code>  sudo lpadmin -p NOMBRE_IMPRESORA -E -v ipp://DIRECCION_IP/ipp/print -m everywhere</code></pre></li>
+<li><p>Quitar impresora:</p>
+<pre><code>  sudo lpadmin -x NOMBRE_IMPRESORA</code></pre></li>
+<li><p>Listar impresoras disponibles:</p>
+<pre><code>  sudo lpinfo -lv</code></pre></li>
+</ul></li>
+<li><p><a href="https://github.com/facebook/zstd">zstd - Compresión de
+alta velocidad</a></p>
+<ul>
+<li><p>Descripcion: Compresion mas eficiente en tiempo que Gzip y tamaño
+final igual a gzip y cercano a 7-zip. Los tiempos siguientes son el
+resultado de comprimir un mismo directorio con muchos ficheros de texto
+de pequeño tamaño.</p>
+<table>
+<thead>
+<tr>
+<th>Algoritmo</th>
+<th>Tiempo (mm:ss)</th>
+<th>Tamaño final</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gzip</td>
+<td>02:56</td>
+<td>1.4 GB</td>
+</tr>
+<tr>
+<td>7-zip</td>
+<td>02:43</td>
+<td>1.1 GB</td>
+</tr>
+<tr>
+<td>LZ4</td>
+<td>00:22</td>
+<td>2.2 GB</td>
+</tr>
+<tr>
+<td>ZSTD</td>
+<td>00:24</td>
+<td>1.4 GB</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Instalar en Ubuntu:</p>
+<pre><code>  sudo apt install zstd</code></pre></li>
+<li><p>Comprimir un fichero:</p>
+<pre><code>  zstd fichero-entrada -o fichero-comprimido.zst</code></pre></li>
+<li><p>Comprimir con tar un directorio entero:</p>
+<pre><code>  tar --zstd -cf dat.tar.zst ./dat</code></pre></li>
+<li><p>Descomprimir:</p>
+<pre><code>  tar -I zstd -xvf dat.tar.zst</code></pre></li>
+<li><p>Descomprimir en un directorio diferente:</p>
+<pre><code>  tar -I zstd -xvf dat.tar.zst -C ./otro-directorio</code></pre></li>
+</ul></li>
+<li><p><a href="https://github.com/facebook/zstd">ncdu - NCurses Disk
+Usage - Herramienta análisis uso de disco</a></p>
+<ul>
+<li><p>Descripción: Esta herramienta permite un análisis <strong>MUY
+RÁPIDO</strong> del tamaño ocupado por cada directorio y acceder a cada
+directorio para ver el tamaño ocupado por los subdirectorios y
+archivos.</p></li>
+<li><p>Instalar en Ubuntu:</p>
+<pre><code>  sudo apt install ncdu</code></pre></li>
+</ul></li>
+<li><p><a href="https://github.com/zxcvbn-ts/zxcvbn">zxcvbn - Cálculo
+complejidad contraseñas</a></p>
+<ul>
+<li><p>Descripción: Esta herramienta permite hacer un cálculo de la
+complejidad de la contraseña.</p></li>
+<li><p>Instalar en Ubuntu:</p>
+<pre><code>  sudo apt install python3-zxcvbn</code></pre></li>
+<li><p>Uso (ya pide el la contraseña):</p>
+<pre><code>  zxcvbn</code></pre></li>
+</ul></li>
+<li><p><a href="https://github.com/robertdavidgraham/masscan">masscan -
+Escaneo de puertos abiertos</a></p>
+<ul>
+<li><p>Descripción: Masscan permite la busqueda de puertos abiertos en
+un equipo ó red. Es muy rápido y de uso sencillo.</p></li>
+<li><p>Instalar en Ubuntu:</p>
+<pre><code>  sudo apt install masscan</code></pre></li>
+<li><p>Uso para buscar puertos abiertos en un equipo (p.ej.
+192.168.0.50):</p></li>
+</ul></li>
+<li><p><a
+href="https://www.gnu.org/software/coreutils/manual/html_node/shred-invocation.html">shred
+- Eliminación segura de datos de archivos ó discos</a></p>
+<ul>
+<li><p>Descripción: Shred elimina de forma segura los datos contenidos
+en los archivos ó discos. Por defecto sobreecribe los datos en tres
+pasadas con datos aleatorios:</p></li>
+<li><p>Instalar: Debe estar siempre instalado, ya que pertenece al
+paquete coreutils.</p></li>
+<li><p>Eliminación de datos ficheros:</p>
+<pre><code>  shred nombre-fichero</code></pre></li>
+<li><p>Eliminación de datos ficheros y borrado del fichero</p>
+<pre><code>  shred -u nombre-fichero</code></pre></li>
+<li><p>Eliminación de datos de un disco duro completo</p>
+<pre><code>  sudo shred -v /dev/XXX</code></pre></li>
+</ul></li>
+<li><p><a href="https://github.com/rakyll/hey">hey - Herramienta carga
+servidor web</a></p>
+<ul>
+<li><p>Descripción: Es una herramienta que envía carga a un servidor
+web.</p></li>
+<li><p>Instalación:</p>
+<p>apt install hey</p></li>
+<li><p>Uso:</p>
+<p>hey http://localhost:8000</p></li>
+</ul></li>
+<li><p><a href="https://www.bitwizard.nl/mtr/">mtr - My traceroute -
+gráfico</a></p>
+<ul>
+<li><p>Descrición: Herramienta para sustituir a ping y traceroute. En
+Ubuntu por defecto se instala mtr-tiny (en modo texto).</p></li>
+<li><p>Instalación de la versión completa:</p>
+<p>apt install mtr</p></li>
+<li><p>Uso:</p>
+<p>mtr 8.8.8.8</p></li>
+</ul></li>
+<li><p><a href="https://oss.oetiker.ch/smokeping/">SmokePing - Vigilador
+de latencia con visualizacion gráfica (basada en CGI ejecutado por
+Apache), requiere instalar Apache</a></p></li>
+<li><p><strong>ssh con servidor de salto (Proxy Jump)</strong></p>
+<ul>
+<li><p>Conexión a servidor situado detras de un servidor de salto:</p>
+<p>ssh -J usuario-salto@servidor-salto:puerto-salto -p puerto
+usuario@servidor</p></li>
+</ul></li>
+<li><p><strong>scp con servidor de salto (Proxy Jump)</strong></p>
+<ul>
+<li><p>Copia desde servidor remoto detras de servidor de salto:</p>
+<p>scp -o “ProxyJump usuario-salto@servidor-salto:puerto-salto” -P
+puerto usuario@servidor:ruta-fichero-origen ./</p></li>
+</ul></li>
+<li><p><a href="https://sshuttle.readthedocs.io/en/stable/">sshuttle -
+SSH como VPN para conexión a internet a través de otro servidor, muy
+fácil de utilizar, pero requiere permisos de root(sudo) para habilitarlo
+en el PC cliente.</a></p>
+<ul>
+<li><p>Conexión a <strong>solo</strong> un rango de IPs a través de otro
+servidor (el rango se especifica como ip/bits-mascara):</p>
+<p>sshuttle -vr usuario-remoto@ip-servidor rango-ip</p></li>
+<li><p>Conexión a <strong>Todo Internet</strong> a través de otro
+servidor:</p>
+<p>sshuttle -vr usuario-remoto@ip-servidor 0.0.0.0/0</p></li>
+<li><p>Para que también se envíen las peticiones DNS hay que incluir:
+–dns, p.je:</p>
+<p>sshuttle –dns -vr usuario-remoto@ip-servidor 0.0.0.0/0</p></li>
+<li><p>Para excluir una dirección IP de la conexión se hace con la
+opción -x IP</p>
+<p>sshuttle –dns -vr usuario-remoto@ip-servidor 0.0.0.0/0 -x
+IP-EXCLUIDA</p></li>
+</ul></li>
+<li><p><a href="https://github.com/tealdeer-rs/tealdeer">tealdeer -
+Implementación de tldr muy rápida</a></p>
+<ul>
+<li><p>Descripción: TLDR (resumen de como se utilizan comandos de línea
+de ordenes), programada en Rust.</p></li>
+<li><p>Instalación:</p>
+<p>apt install tealdeer</p></li>
+<li><p>Uso:</p>
+<ul>
+<li><p>Actualizar cache (hay que ejecutarlo al empezar a usarlo)</p>
+<p>tldr –update</p></li>
+<li><p>Mostrar resumen de un comando</p>
+<p>tldr COMANDO</p></li>
+</ul></li>
+</ul></li>
+<li><p><a href="https://github.com/yt-dlp/yt-dlp">yt-dlp - Descarga de
+videos y audios de videos de Youtube</a></p>
+<ul>
+<li><p>Descripción: Herramienta para descargar videos de
+youtube</p></li>
+<li><p>Instalación:</p>
+<p>apt install yt-dlp</p></li>
+<li><p>Uso:</p>
+<ul>
+<li><p>Descargar un video</p>
+<p>yt-dlp https://www.youtube.com/watch?v=zZzZzZzZzZz</p></li>
+<li><p>Descargar un video en formato mp3</p>
+<p>yt-dlp https://www.youtube.com/watch?v=zZzZzZzZzZz -x –audio-format
+mp3</p>
+<p>Nota: Para convertir los fichero .m4a a mp3 se puede hacer con las
+siguiente función:</p>
+<pre><code>  for f in *.m4a; do ffmpeg -i &quot;$f&quot; -c:v copy -c:a libmp3lame -q:a 4 &quot;$f.mp3&quot;; done</code></pre></li>
+<li><p>Descargar solo los subtítulos</p>
+<p>yt-dlp https://www.youtube.com/watch?v=zZzZzZzZzZz–write-auto-subs
+–write-subs –sub-lang en –convert-subs srt –sub-format txt</p></li>
+<li><p>Descargar una lista de reproducción a mp3</p>
+<p>yt-dlp https://www.youtube.com/<span class="citation"
+data-cites="ZzzzzZzzzzZzzzz/videos">@ZzzzzZzzzzZzzzz/videos</span> -x
+–audio-format mp3</p></li>
+<li><p>Descargar una lista de reproducción a mp3 con una antiguedad
+máxima</p>
+<p>yt-dlp https://www.youtube.com/<span class="citation"
+data-cites="ZzzzzZzzzzZzzzz/videos">@ZzzzzZzzzzZzzzz/videos</span> -x
+–audio-format mp3 –dateafter YYYYMMDD</p></li>
+<li><p>Opciones útiles</p>
+<p>–restrict-filenames –windows-filenames</p></li>
+</ul></li>
+</ul></li>
+<li><p><a href="https://imagemagick.org/script/convert.php">convert -
+Conversion de ficheros de imágenes desde línea de órdenes</a></p>
+<ul>
+<li><p>Descripción: Programa para conversión de imágenes, escalado ó
+tamaño. Pertenece al paquete Image Magik. Convierte también las imágenes
+a PDF. Hay otra función <strong>mogrify</strong> que realiza las mismas
+funciones pero sobrescribiendo el fichero original.</p></li>
+<li><p>Instalación:</p>
+<p>apt install graphicsmagick-imagemagick-compat</p></li>
+<li><p>Uso:</p>
+<ul>
+<li><p>Convertir de .png a .jpg:</p>
+<pre><code>  convert FICHERO-ENTRADA.PNG FICHERO-SALIDA.JPG</code></pre></li>
+<li><p>Redimensionar una imágen a un % del tamao original (pueden ser de
+diferentes tipos p.ej. .png y .jpg):</p>
+<pre><code>  convert FICHERO-ENTRADA -resize 40% -quality 75% FICHERO-SALIDA</code></pre></li>
+<li><p>Redimensionar una imágen a un tamaño máximo (manteniento la
+relación entre alto y ancho):</p>
+<pre><code>  convert FICHERO-ENTRADA -resize 400x500 FICHERO-SALIDA</code></pre></li>
+<li><p>Redimensionar todos los archivos .jpg que hay en un
+directorio:</p>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Muestra un mensaje de advertencia al usuario sobre la acción que se va a realizar</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;ATENCION: Se va a borrar el subdirectorio salida y generar los ficheros de tamaño reducido&quot;</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Solicita confirmación al usuario antes de proceder</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="bu">read</span> <span class="at">-r</span> <span class="at">-p</span> <span class="st">&quot;¿Estas seguro? [s/N] &quot;</span> <span class="va">response</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Verifica si la respuesta del usuario es &#39;s&#39; o &#39;S&#39; (sí)</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$response</span><span class="st">&quot;</span> <span class="ot">=~</span> <span class="pp">^</span><span class="op">([</span><span class="ss">sS</span><span class="op">])$</span> <span class="kw">]]</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="cf">then</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Crea el directorio &#39;reducidas&#39; si no existe</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mkdir</span> <span class="at">-p</span> ./reducidas</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Elimina todos los archivos en el directorio &#39;reducidas&#39;</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rm</span> <span class="at">-Rf</span> ./reducidas/<span class="pp">*</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Itera sobre todos los archivos .jpg en el directorio actual</span></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> nombre_fichero <span class="kw">in</span> <span class="pp">*</span>.jpg<span class="kw">;</span> <span class="cf">do</span> </span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Muestra el nombre del archivo actual</span></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$nombre_fichero</span><span class="st">&quot;</span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Extrae el nombre del archivo sin la extensión .jpg</span></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">nombre_sin_extension</span><span class="op">=</span><span class="st">&quot;</span><span class="va">${nombre_fichero</span><span class="op">%</span>.jpg<span class="va">}</span><span class="st">&quot;</span></span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Utiliza el comando &#39;convert&#39; para redimensionar la imagen al 40% de su tamaño original</span></span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># y establece la calidad de la imagen en 75%, guardando el nuevo archivo en el directorio &#39;reducidas&#39;</span></span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>        <span class="ex">convert</span> <span class="st">&quot;</span><span class="va">$nombre_fichero</span><span class="st">&quot;</span> <span class="at">-resize</span> 40% <span class="at">-quality</span> 75% <span class="st">&quot;./reducidas/</span><span class="va">$nombre_sin_extension</span><span class="st">&quot;</span>_reducida.jpg</span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">done</span></span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div></li>
+</ul></li>
+</ul></li>
+<li><p>[Línea de órdenes - Bash]</p>
+<ul>
+<li><p>Copiar un fichero al portapapeles (con Wayland):</p>
+<pre><code>cat fichero &gt; wl-copy</code></pre></li>
+<li><p>Escribir el portapapeles a un fichero (con Wayland):</p>
+<pre><code>wl-paste &gt; fichero</code></pre></li>
+<li><p>Borrado historia:</p>
+<pre><code>cat /dev/null &gt; ~/.bash_history &amp;&amp; history -c &amp;&amp; exit</code></pre></li>
+<li><p>Eliminar líneas vacías con awk (en el ejemplo los</p>
+<p>cat fichero | awk NF</p></li>
+<li><p>Eliminar espacios en una lines</p>
+<p>cat fichero | tr -d ” ”</p></li>
+</ul></li>
+<li><p>[xargs - Utilidad STDIN y lo pasa a argumentos de ordenes]</p>
+<pre><code>  - Descripción: Los elementos de la entrada estándar —por ejemplo, los que llegan por un |— y los usa como argumentos de un comando.
+
+  - Instalación:
+
+          apt install findutils
+
+  - Uso:
+
+          1. Un parametro en cada linea
+
+      - Entrada: echo &quot;alfa\nganma&quot; | xargs echo
+      - Salida:
+
+          alfa
+          beta
+
+          2. Un parametro en cada linea, mezclado
+
+      - Entrada: printf &#39;londres\nparis\n&#39; | xargs -I[] echo Por [] pasa un rio
+
+      - Salida:
+
+          Por londres pasa un rio
+          Por paris pasa un rio
+
+      - Nota: El _ puede ser sustituido por otros caracteres despues del -I, p.ej. []
+
+          3. Dos parámetros en cada línea:
+
+      - Entrada: printf &#39;Londres Tamesis\nParis Sena\n&#39; | xargs -l sh -c &#39;echo Por $0 pasa el rio $1&#39;
+
+      - Salida:
+
+          Por Londres pasa el rio Tamesis
+          Por Paris pasa el rio Sena</code></pre></li>
+<li><p>[Vipe - Utilidad modificacion PIPE]</p>
+<ul>
+<li><p>Descripción: Permite modifica los datos que recibe por un pipe
+(STDIN) y los imprime por STDOUT, lo que permite modificar en medio de
+una serie de comandos de tubería los datos que pasan de una aplicación a
+otra.</p></li>
+<li><p>Instalación:</p>
+<p>apt install moreutils</p></li>
+<li><p>Uso:</p>
+<pre><code>      - P.ej. Para copiar solo unos ficheros y no otros
+
+              ls *.log | vipe | xargs -I _ move _ ./archivo
+
+      - El manejo es igual que Vim:
+
+              v = seleccionar caracter a caracter.
+              V = seleccionar líneas enteras.
+              d = borrar línea o selección si hay una selección.
+              Insertar = Entrar en modo modificación (insertar ó reemplazar).
+              :wq = salir, genera la salida con el valor actual (guardar).
+              :!q = salir, dar salida al valor original (descartar la modificación)</code></pre></li>
+</ul></li>
+</ul>
+<h3 id="utilidades-web">Utilidades web</h3>
+<ul>
+<li><p><a href="https://obs.ninja/">OBS.Ninja -
+Videoconferencia</a></p></li>
+<li><p><a href="https://talky.io">Talky.io -
+Videoconferencia</a></p></li>
+<li><p><a href="https://wormhole.app/">Wormhole - Envío de ficheros -
+alternativa a firefox Send</a>: Hay que compartir un enlace, pero la
+transferencia puede ser offline.</p></li>
+<li><p><a href="https://blaze.vercel.app/">Vercel - Blaze - Compartir
+ficheros</a>: Funciona incluso en una red local (los equipos se conectan
+automáticamente sin tener que compartir un enlace).</p></li>
+<li><p><a href="https://ntfy.sh/">ntfy - Envío notificaciones PUSH a
+móvil</a></p>
+<ul>
+<li><p>Descripción: Servicio para que el envío de notificaciones PUSH a
+un teléfono móvil sea muy sencillo</p></li>
+<li><p>Paso 1: Instalar en el teléfono móvil (iOS ó Android) la
+aplicación <strong>ntfy</strong>.</p></li>
+<li><p>Paso 2: Crear un “asunto” ó “topic” con una cadena (si se desea
+que sea privada, debe ser larga y/o aleatoria). P.ej.
+MIS-NOTIFICACIONES</p></li>
+<li><p>Paso 3: Enviar mediante línea de órdenes la notificación del
+siguiente modo:</p>
+<p>curl -d “mensaje de la notificacion”
+ntfy.sh/MIS-NOTIFICACIONES</p></li>
+</ul></li>
+</ul>
+<h3 id="utilidades-escritorio">Utilidades escritorio</h3>
+<ul>
+<li><a href="https://dbeaver.io/">DBeaver - Administración bases de
+datos</a></li>
+</ul>
+
+
+<footer>
+Estilo: <a href="https://minicss.us">Mini.css</a>
+Generador: <a href="https://pandoc.org/">pandoc 3.7.0.2</a>
+Fecha: 2026-11-21
+Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
+</footer>
+</div>
+</body>
+</html>

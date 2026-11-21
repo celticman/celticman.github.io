@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <link rel="stylesheet" href="/estaticos/mini.css">
+</head>
+<body>
+<div id="wrapper"  class="col-sm-12 col-md-8 col-lg-6 col-md-offset-2  col-lg-offset-3">  
+<header class="sticky">
+
+
+<a href="https://celticman.github.io/"><h1 class="title">Celticman - notas personales</h1></a>
+
+</header>
+
+
+<h1 id="bloqueo-acceso-internet-para-niños">Bloqueo acceso internet para
+niños</h1>
+<p>Si se utiliza un ordenador para que puedan utilizarlos los niños,
+pero se desea bloquear que puedan acceder a Internet, es posible en el
+caso de utilizar Linux.</p>
+<p>Preparación:</p>
+<ul>
+<li><p>Debe haber un usuario con permisos de administrador (sudo), por
+ejemplo PADRE.</p></li>
+<li><p>Se crea un script en el directorio del PADRE, llamado:
+red_bloquear.sh, con sel siguiente contenido:</p>
+<p>systemctl stop NetworkManager.service systemctl disable
+NetworkManager.service systemctl mask NetworkManager.service</p></li>
+<li><p>Se crea un script en el directorio del PADRE, llamado:
+red_desbloquear.sh, con sel siguiente contenido:</p>
+<p>systemctl unmask NetworkManager.service systemctl enable
+NetworkManager.service systemctl start NetworkManager.service</p></li>
+</ul>
+<p>Uso:</p>
+<ul>
+<li><p>Para bloquear:</p>
+<ul>
+<li><p>Acceder a la cuenta del padre.</p></li>
+<li><p>Ejecutar el siguiente comando:</p>
+<p>sudo ./red_bloquear.sh</p></li>
+</ul></li>
+<li><p>Para desbloquear:</p>
+<ul>
+<li><p>Acceder a la cuenta del padre.</p></li>
+<li><p>Ejecutar el siguiente comando:</p>
+<p>sudo ./red_desbloquear.sh</p></li>
+</ul></li>
+</ul>
+
+
+<footer>
+Estilo: <a href="https://minicss.us">Mini.css</a>
+Generador: <a href="https://pandoc.org/">pandoc 3.7.0.2</a>
+Fecha: 2026-11-21
+Alojamiento: <a href="https://github.com/celticman/celticman.github.io"><img src="/estaticos/gitHubmark32px.png"></a>
+</footer>
+</div>
+</body>
+</html>
