@@ -8,15 +8,15 @@ Preparación:
 
 - Se crea un script en el directorio del PADRE, llamado: red_bloquear.sh, con sel siguiente contenido:
 
-    systemctl stop NetworkManager.service
-    systemctl disable NetworkManager.service
-    systemctl mask NetworkManager.service
+        systemctl stop NetworkManager.service
+        systemctl disable NetworkManager.service
+        systemctl mask NetworkManager.service
 
 - Se crea un script en el directorio del PADRE, llamado: red_desbloquear.sh, con sel siguiente contenido:
 
-    systemctl unmask NetworkManager.service
-    systemctl enable NetworkManager.service
-    systemctl start NetworkManager.service
+        systemctl unmask NetworkManager.service
+        systemctl enable NetworkManager.service
+        systemctl start NetworkManager.service
 
 Uso:
 
@@ -26,7 +26,7 @@ Uso:
 
     - Ejecutar el siguiente comando:
 
-        sudo ./red_bloquear.sh
+            sudo ./red_bloquear.sh
 
 - Para desbloquear:
 
@@ -34,6 +34,6 @@ Uso:
 
     - Ejecutar el siguiente comando:
 
-        sudo ./red_desbloquear.sh
+            sudo ./red_desbloquear.sh
 
 

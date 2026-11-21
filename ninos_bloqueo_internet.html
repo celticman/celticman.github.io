@@ -25,12 +25,14 @@ caso de utilizar Linux.</p>
 ejemplo PADRE.</p></li>
 <li><p>Se crea un script en el directorio del PADRE, llamado:
 red_bloquear.sh, con sel siguiente contenido:</p>
-<p>systemctl stop NetworkManager.service systemctl disable
-NetworkManager.service systemctl mask NetworkManager.service</p></li>
+<pre><code>  systemctl stop NetworkManager.service
+  systemctl disable NetworkManager.service
+  systemctl mask NetworkManager.service</code></pre></li>
 <li><p>Se crea un script en el directorio del PADRE, llamado:
 red_desbloquear.sh, con sel siguiente contenido:</p>
-<p>systemctl unmask NetworkManager.service systemctl enable
-NetworkManager.service systemctl start NetworkManager.service</p></li>
+<pre><code>  systemctl unmask NetworkManager.service
+  systemctl enable NetworkManager.service
+  systemctl start NetworkManager.service</code></pre></li>
 </ul>
 <p>Uso:</p>
 <ul>
@@ -38,13 +40,13 @@ NetworkManager.service systemctl start NetworkManager.service</p></li>
 <ul>
 <li><p>Acceder a la cuenta del padre.</p></li>
 <li><p>Ejecutar el siguiente comando:</p>
-<p>sudo ./red_bloquear.sh</p></li>
+<pre><code>  sudo ./red_bloquear.sh</code></pre></li>
 </ul></li>
 <li><p>Para desbloquear:</p>
 <ul>
 <li><p>Acceder a la cuenta del padre.</p></li>
 <li><p>Ejecutar el siguiente comando:</p>
-<p>sudo ./red_desbloquear.sh</p></li>
+<pre><code>  sudo ./red_desbloquear.sh</code></pre></li>
 </ul></li>
 </ul>
 
